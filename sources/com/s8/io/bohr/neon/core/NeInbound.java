@@ -3,6 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Keywords;
+import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.methods.NeMethodRunner;
 import com.s8.io.bytes.alpha.ByteInflow;
 
@@ -15,7 +16,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  */
 public class NeInbound {
 
-	private final NeBranch branch;
+	private final NeBranch<?> branch;
 
 
 	private int forkCode;
@@ -26,7 +27,7 @@ public class NeInbound {
 
 	private Object[] params;
 
-	public NeInbound(NeBranch branch) {
+	public NeInbound(NeBranch<?> branch) {
 		super();
 		this.branch = branch;
 	}
@@ -80,20 +81,20 @@ public class NeInbound {
 	private void runFunc(ByteInflow inflow) throws IOException {
 		
 		String index = inflow.getStringUTF8();
-		NeVertex object = branch.vertices.get(index);
-		if(object == null) { throw new IOException("No Object for index = "+index); }
+		NeVertex<?> vertex = branch.vertices.get(index);
+		if(vertex == null) { throw new IOException("No Object for index = "+index); }
 		
 		int code = inflow.getUInt8();
-		NeMethodRunner runner = object.prototype.methodRunners[code];
+		NeMethodRunner runner = vertex.getPrototype().methodRunners[code];
 		if(runner == null) { throw new IOException("No runner for code = "+code); }
 		
 		int ordinal = runner.ordinal;
 		
-		NeFunc func = object.funcs[ordinal];
-		if(func == null) { throw new IOException("Missing func @ code = "+code+", for index = "+index); }
+		NeFunction function = vertex.getFunction(ordinal);
+		if(function == null) { throw new IOException("Missing func @ code = "+code+", for index = "+index); }
 		
 		/* run function */
-		runner.run(branch, inflow, func.lambda);
+		runner.run(branch, inflow, function);
 	}
 
 	

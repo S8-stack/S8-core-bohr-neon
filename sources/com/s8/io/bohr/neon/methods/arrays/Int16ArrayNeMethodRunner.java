@@ -4,8 +4,9 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObject.UInt16ArrayLambda;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.functions.NeFunction;
+import com.s8.io.bohr.neon.functions.arrays.UInt16ArrayNeFunction;
 import com.s8.io.bohr.neon.methods.NeMethodRunner;
 import com.s8.io.bytes.alpha.ByteInflow;
 
@@ -34,13 +35,13 @@ public class Int16ArrayNeMethodRunner extends NeMethodRunner {
 
 
 	@Override
-	public void run(NeBranch branch, ByteInflow inflow, Object lambda) throws IOException {
+	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
 		int[] arg = null;
 		int length = (int) inflow.getUInt7x();
 		if(length >= 0) {
 			arg = new int[length];
 			for(int i=0; i<length; i++) { arg[i] = inflow.getInt16(); }
 		}
-		((UInt16ArrayLambda) lambda).operate(arg);
+		((UInt16ArrayNeFunction) function).run(arg);
 	}
 }

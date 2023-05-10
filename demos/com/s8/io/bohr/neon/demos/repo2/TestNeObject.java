@@ -1,5 +1,6 @@
 package com.s8.io.bohr.neon.demos.repo2;
 
+import com.s8.io.bohr.neon.control.NeController;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObject;
 
@@ -11,10 +12,10 @@ import com.s8.io.bohr.neon.core.NeObject;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class TestNeObject extends NeObject {
+public class TestNeObject extends NeObject<NeController> {
 
 
-	public TestNeObject(NeBranch branch) {
+	public TestNeObject(NeBranch<NeController> branch) {
 		super(branch, "Test-object");
 	}
 

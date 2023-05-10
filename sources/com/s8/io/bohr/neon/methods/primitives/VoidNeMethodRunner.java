@@ -4,8 +4,9 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObject;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.functions.NeFunction;
+import com.s8.io.bohr.neon.functions.none.VoidNeFunction;
 import com.s8.io.bohr.neon.methods.NeMethodRunner;
 import com.s8.io.bytes.alpha.ByteInflow;
 
@@ -43,8 +44,8 @@ public class VoidNeMethodRunner extends NeMethodRunner {
 
 
 	@Override
-	public void run(NeBranch branch, ByteInflow inflow, Object lambda) throws IOException {
-		((NeObject.VoidLambda) lambda).operate();
+	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+		((VoidNeFunction) function).run();
 	}
 
 }

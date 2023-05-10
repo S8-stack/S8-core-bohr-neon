@@ -4,32 +4,33 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeFunc;
+import com.s8.io.bohr.neon.core.NeMethod;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
-import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethodRunner;
-import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethodRunner;
-import com.s8.io.bohr.neon.methods.arrays.Float64ArrayNeMethodRunner;
+import com.s8.io.bohr.neon.functions.NeFunction;
+import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
+import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
+import com.s8.io.bohr.neon.methods.arrays.Float64ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Int16ArrayNeMethodRunner;
 import com.s8.io.bohr.neon.methods.arrays.Int32ArrayNeMethodRunner;
 import com.s8.io.bohr.neon.methods.arrays.Int64ArrayNeMethodRunner;
 import com.s8.io.bohr.neon.methods.arrays.Int8ArrayNeMethodRunner;
-import com.s8.io.bohr.neon.methods.arrays.StringUTF8ArrayNeMethodRunner;
-import com.s8.io.bohr.neon.methods.arrays.UInt16ArrayNeMethodRunner;
+import com.s8.io.bohr.neon.methods.arrays.StringUTF8ArrayNeMethod;
+import com.s8.io.bohr.neon.methods.arrays.UInt16ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.UInt32ArrayNeMethodRunner;
 import com.s8.io.bohr.neon.methods.arrays.UInt64ArrayNeMethodRunner;
-import com.s8.io.bohr.neon.methods.arrays.UInt8ArrayNeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.Bool8NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.Float32NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.Float64NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.Int16NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.Int32NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.Int64NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.Int8NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.StringUTF8NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.UInt16NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.UInt32NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.UInt64NeMethodRunner;
-import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethodRunner;
+import com.s8.io.bohr.neon.methods.arrays.UInt8ArrayNeMethod;
+import com.s8.io.bohr.neon.methods.primitives.Bool8NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.Float32NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.Float64NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.Int16NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.Int32NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.Int64NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.Int8NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.StringUTF8NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.UInt16NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.UInt32NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.UInt64NeMethod;
+import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.VoidNeMethodRunner;
 import com.s8.io.bytes.alpha.ByteInflow;
 
@@ -71,8 +72,8 @@ public abstract class NeMethodRunner {
 	public abstract long getSignature();
 
 
-	public NeFunc createFunc() {
-		return new NeFunc();
+	public NeMethod createFunc() {
+		return new NeMethod();
 	}
 
 
@@ -83,7 +84,7 @@ public abstract class NeMethodRunner {
 	 * @param lambda
 	 * @throws IOException
 	 */
-	public abstract void run(NeBranch branch, ByteInflow inflow, Object lambda) throws IOException;
+	public abstract void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException;
 
 
 
@@ -117,30 +118,30 @@ public abstract class NeMethodRunner {
 
 
 		/* <booleans> */
-		case BOHR_Types.BOOL8: return Bool8NeMethodRunner.SIGNATURE;
+		case BOHR_Types.BOOL8: return Bool8NeMethod.SIGNATURE;
 		/* </booleans> */
 
 		/* <unsigned-integers> */
-		case BOHR_Types.UINT8: return UInt8NeMethodRunner.SIGNATURE;
-		case BOHR_Types.UINT16: return UInt16NeMethodRunner.SIGNATURE;
-		case BOHR_Types.UINT32: return UInt32NeMethodRunner.SIGNATURE;
-		case BOHR_Types.UINT64: return UInt64NeMethodRunner.SIGNATURE;
+		case BOHR_Types.UINT8: return UInt8NeMethod.SIGNATURE;
+		case BOHR_Types.UINT16: return UInt16NeMethod.SIGNATURE;
+		case BOHR_Types.UINT32: return UInt32NeMethod.SIGNATURE;
+		case BOHR_Types.UINT64: return UInt64NeMethod.SIGNATURE;
 		/* </unsigned-integers> */
 
 		/* <signed-integers> */
-		case BOHR_Types.INT8: return Int8NeMethodRunner.SIGNATURE;
-		case BOHR_Types.INT16: return Int16NeMethodRunner.SIGNATURE;
-		case BOHR_Types.INT32: return Int32NeMethodRunner.SIGNATURE;
-		case BOHR_Types.INT64: return Int64NeMethodRunner.SIGNATURE;
+		case BOHR_Types.INT8: return Int8NeMethod.SIGNATURE;
+		case BOHR_Types.INT16: return Int16NeMethod.SIGNATURE;
+		case BOHR_Types.INT32: return Int32NeMethod.SIGNATURE;
+		case BOHR_Types.INT64: return Int64NeMethod.SIGNATURE;
 		/* </signed-integers> */
 
 		/* <float> */
-		case BOHR_Types.FLOAT32: return Float32NeMethodRunner.SIGNATURE;
-		case BOHR_Types.FLOAT64: return Float64NeMethodRunner.SIGNATURE;
+		case BOHR_Types.FLOAT32: return Float32NeMethod.SIGNATURE;
+		case BOHR_Types.FLOAT64: return Float64NeMethod.SIGNATURE;
 		/* </float> */
 
 		/* <string> */
-		case BOHR_Types.STRING_UTF8: return StringUTF8NeMethodRunner.SIGNATURE;
+		case BOHR_Types.STRING_UTF8: return StringUTF8NeMethod.SIGNATURE;
 		/* </string> */
 
 		/* <object> */
@@ -162,10 +163,10 @@ public abstract class NeMethodRunner {
 		int code = inflow.getUInt8();
 		switch (code) {
 
-		case BOHR_Types.BOOL8: return Bool8ArrayNeMethodRunner.SIGNATURE;
+		case BOHR_Types.BOOL8: return Bool8ArrayNeMethod.SIGNATURE;
 
-		case BOHR_Types.UINT8: return UInt8ArrayNeMethodRunner.SIGNATURE;
-		case BOHR_Types.UINT16: return UInt16ArrayNeMethodRunner.SIGNATURE;
+		case BOHR_Types.UINT8: return UInt8ArrayNeMethod.SIGNATURE;
+		case BOHR_Types.UINT16: return UInt16ArrayNeMethod.SIGNATURE;
 		case BOHR_Types.UINT32: return UInt32ArrayNeMethodRunner.SIGNATURE;
 		case BOHR_Types.UINT64: return UInt64ArrayNeMethodRunner.SIGNATURE;
 
@@ -174,10 +175,10 @@ public abstract class NeMethodRunner {
 		case BOHR_Types.INT32: return Int32ArrayNeMethodRunner.SIGNATURE;
 		case BOHR_Types.INT64: return Int64ArrayNeMethodRunner.SIGNATURE;
 
-		case BOHR_Types.FLOAT32: return Float32ArrayNeMethodRunner.SIGNATURE;
-		case BOHR_Types.FLOAT64: return Float64ArrayNeMethodRunner.SIGNATURE;
+		case BOHR_Types.FLOAT32: return Float32ArrayNeMethod.SIGNATURE;
+		case BOHR_Types.FLOAT64: return Float64ArrayNeMethod.SIGNATURE;
 
-		case BOHR_Types.STRING_UTF8: return StringUTF8ArrayNeMethodRunner.SIGNATURE;
+		case BOHR_Types.STRING_UTF8: return StringUTF8ArrayNeMethod.SIGNATURE;
 		//case BOHR_Types.S8OBJECT: return S8ObjectArrayNeMethodRunner.SIGNATURE;
 
 		default: throw new IOException("Unsupported BOHR ARRAY type code: " + code);

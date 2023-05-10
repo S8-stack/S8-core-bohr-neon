@@ -18,7 +18,7 @@ public class NeOutbound {
 	/**
 	 * 
 	 */
-	private Queue<NeVertex> unpublishedChanges;
+	private Queue<NeVertex<?>> unpublishedChanges;
 	
 	
 	/**
@@ -26,7 +26,7 @@ public class NeOutbound {
 	 */
 	public NeOutbound() {
 		super();
-		unpublishedChanges = new LinkedList<NeVertex>();
+		unpublishedChanges = new LinkedList<NeVertex<?>>();
 	}
 	
 	
@@ -52,7 +52,7 @@ public class NeOutbound {
 	 * 
 	 * @param object
 	 */
-	public void notifyChanged(NeVertex object) {
+	public void notifyChanged(NeVertex<?> object) {
 		unpublishedChanges.add(object);
 	}
 	

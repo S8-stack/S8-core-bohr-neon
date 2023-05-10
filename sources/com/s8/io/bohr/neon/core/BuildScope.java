@@ -35,7 +35,7 @@ public abstract class BuildScope {
 	 * @param index
 	 * @return
 	 */
-	public abstract NeObject retrieveObject(String index);
+	public abstract NeObject<?> retrieveObject(String index);
 	
 	/**
 	 * <p><b>ALWAYS RESOLVE AFTER DESERIALIZATION</b></p>
