@@ -9,6 +9,7 @@ import com.s8.io.bohr.neon.functions.arrays.UInt16ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt32ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt64ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt8ArrayNeFunction;
+import com.s8.io.bohr.neon.functions.none.VoidNeFunction;
 import com.s8.io.bohr.neon.functions.objects.ObjectNeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Bool8NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Float32NeFunction;
@@ -98,6 +99,18 @@ public class NeVertexLayer2 extends NeVertexLayer1 {
 	public NeFunction getFunction(int ordinal) {
 		return functions[ordinal];
 	}
+	
+	
+	
+	@Override
+	public void setVoidMethod(String name, VoidNeFunction function) {
+
+		/* retrieve (or define if first time) method runner */
+		Bool8NeMethod method = prototype.getBool8Method(name);
+		int ordinal = getMethodOrdinal(method);
+		functions[ordinal] = function;
+	}
+
 
 
 

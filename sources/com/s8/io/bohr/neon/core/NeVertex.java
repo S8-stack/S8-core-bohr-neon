@@ -12,6 +12,7 @@ import com.s8.io.bohr.neon.functions.arrays.UInt16ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt32ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt64ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt8ArrayNeFunction;
+import com.s8.io.bohr.neon.functions.none.VoidNeFunction;
 import com.s8.io.bohr.neon.functions.objects.ObjectNeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Bool8NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Float32NeFunction;
@@ -67,6 +68,12 @@ public interface NeVertex {
 	public void publish(ByteOutflow outflow) throws IOException;
 	
 	
+	/**
+	 * 
+	 * @param name
+	 * @param function
+	 */
+	public void setVoidMethod(String name, VoidNeFunction function);
 
 
 

@@ -12,6 +12,7 @@ import com.s8.io.bohr.neon.functions.arrays.UInt32ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt64ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt8ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.none.VoidNeFunction;
+import com.s8.io.bohr.neon.functions.primitives.Bool8NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Float32NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Float64NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Int16NeFunction;
@@ -35,6 +36,7 @@ import com.s8.io.bohr.neon.lambdas.arrays.UInt16ArrayLambda;
 import com.s8.io.bohr.neon.lambdas.arrays.UInt32ArrayLambda;
 import com.s8.io.bohr.neon.lambdas.arrays.UInt64ArrayLambda;
 import com.s8.io.bohr.neon.lambdas.arrays.UInt8ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Bool8Lambda;
 import com.s8.io.bohr.neon.lambdas.primitives.Float32Lambda;
 import com.s8.io.bohr.neon.lambdas.primitives.Float64Lambda;
 import com.s8.io.bohr.neon.lambdas.primitives.Int16Lambda;
@@ -62,6 +64,14 @@ public interface NeSyncFuncGenerator {
 	 * @return
 	 */
 	public VoidNeFunction createVoidFunc(VoidLambda lambda);
+	
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public Bool8NeFunction createBool8Func(Bool8Lambda lambda);
 	
 
 	/**
