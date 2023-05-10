@@ -1,4 +1,4 @@
-package com.s8.io.bohr.neon.control;
+package com.s8.io.bohr.neon.functions;
 
 import com.s8.io.bohr.neon.functions.arrays.Float32ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.Float64ArrayNeFunction;

@@ -1,6 +1,6 @@
 package com.s8.io.bohr.neon.core;
 
-import com.s8.io.bohr.neon.control.NeSyncFuncGenerator;
+import com.s8.io.bohr.neon.functions.NeSyncFuncGenerator;
 
 public class NeObject {
 

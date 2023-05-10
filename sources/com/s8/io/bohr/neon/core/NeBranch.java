@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.s8.io.bohr.neon.control.NeSyncFuncGenerator;
+import com.s8.io.bohr.neon.functions.NeSyncFuncGenerator;
 import com.s8.io.bytes.base64.Base64Generator;
 
 /**

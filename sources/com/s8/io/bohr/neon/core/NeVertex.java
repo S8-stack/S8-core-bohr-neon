@@ -45,6 +45,10 @@ public interface NeVertex {
 	 */
 	public String getIndex();
 	
+	
+	
+	public NeBranch getBranch();
+	
 
 	public NeObject getAttachedObject();
 

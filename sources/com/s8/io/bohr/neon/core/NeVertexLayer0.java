@@ -86,6 +86,10 @@ public abstract class NeVertexLayer0 implements NeVertex {
 
 	}
 
+	@Override
+	public NeBranch getBranch() {
+		return branch;
+	}
 
 	@Override
 	public NeObject getAttachedObject() {
