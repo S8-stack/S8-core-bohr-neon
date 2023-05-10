@@ -16,5 +16,5 @@ public abstract class Int32NeFunction extends NeFunction {
 	}
 	
 
-	public abstract void operate(int arg);
+	public abstract void run(Object context, int arg);
 }

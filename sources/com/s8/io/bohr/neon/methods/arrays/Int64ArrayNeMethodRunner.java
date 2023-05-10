@@ -7,7 +7,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt64ArrayNeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 /**
@@ -17,7 +17,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class Int64ArrayNeMethodRunner extends NeMethodRunner {
+public class Int64ArrayNeMethodRunner extends NeMethod {
 
 
 	public final static long SIGNATURE = (BOHR_Types.ARRAY << 8) & BOHR_Types.INT64;
@@ -35,13 +35,13 @@ public class Int64ArrayNeMethodRunner extends NeMethodRunner {
 
 
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		long[] arg = null;
 		int length = (int) inflow.getUInt7x();
 		if(length >= 0) {
 			arg = new long[length];
 			for(int i=0; i<length; i++) { arg[i] = inflow.getInt64(); }
 		}
-		((UInt64ArrayNeFunction) function).run(arg);
+		((UInt64ArrayNeFunction) function).run(context, arg);
 	}
 }

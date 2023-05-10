@@ -26,7 +26,7 @@ public abstract class UInt64NeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void operate(long arg);
+	public abstract void run(Object context, long arg);
 	
 }
 

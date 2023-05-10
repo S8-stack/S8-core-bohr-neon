@@ -15,5 +15,5 @@ public abstract class UInt16NeFunction extends NeFunction {
 	}
 	
 
-	public abstract void run(int arg);
+	public abstract void run(Object context, int arg);
 }

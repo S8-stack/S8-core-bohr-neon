@@ -20,7 +20,7 @@ public abstract class VoidNeFunction extends NeFunction {
 	/**
 	 * 
 	 */
-	public abstract void run();
+	public abstract void run(Object context);
 
 
 

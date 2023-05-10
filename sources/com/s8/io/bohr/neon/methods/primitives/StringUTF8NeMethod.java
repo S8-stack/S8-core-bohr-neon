@@ -7,7 +7,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.StringUTF8NeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 
@@ -19,7 +19,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class StringUTF8NeMethod extends NeMethodRunner {
+public class StringUTF8NeMethod extends NeMethod {
 
 
 	public interface Lambda {
@@ -45,9 +45,9 @@ public class StringUTF8NeMethod extends NeMethodRunner {
 
 
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		String arg = inflow.getStringUTF8();
-		((StringUTF8NeFunction) function).run(arg);
+		((StringUTF8NeFunction) function).run(context, arg);
 	}
 
 }

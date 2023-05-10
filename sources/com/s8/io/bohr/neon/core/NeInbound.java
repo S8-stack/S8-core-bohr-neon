@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Keywords;
 import com.s8.io.bohr.neon.functions.NeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 
@@ -16,7 +16,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  */
 public class NeInbound {
 
-	private final NeBranch<?> branch;
+	private final NeBranch branch;
 
 
 	private int forkCode;
@@ -27,7 +27,7 @@ public class NeInbound {
 
 	private Object[] params;
 
-	public NeInbound(NeBranch<?> branch) {
+	public NeInbound(NeBranch branch) {
 		super();
 		this.branch = branch;
 	}
@@ -38,13 +38,13 @@ public class NeInbound {
 	 * @param inflow
 	 * @throws IOException
 	 */
-	public void consume(ByteInflow inflow) throws IOException {
+	public void consume(Object context, ByteInflow inflow) throws IOException {
 		int code;
 		boolean isClosed = false;
 		while(!isClosed) {
 			switch(code = inflow.getUInt8()) {
 			case BOHR_Keywords.DECLARE_METHOD: declareMethod(inflow); break;
-			case BOHR_Keywords.RUN_METHOD : runFunc(inflow); break;
+			case BOHR_Keywords.RUN_METHOD : runFunc(context, inflow); break;
 			case BOHR_Keywords.CLOSE_JUMP : isClosed = true; break;
 			default: throw new IOException("[NeInbound] Code "+code+" is not supported");
 			}
@@ -78,14 +78,14 @@ public class NeInbound {
 	 * @param inflow
 	 * @throws IOException
 	 */
-	private void runFunc(ByteInflow inflow) throws IOException {
+	private void runFunc(Object context, ByteInflow inflow) throws IOException {
 		
 		String index = inflow.getStringUTF8();
-		NeVertex<?> vertex = branch.vertices.get(index);
+		NeVertex vertex = branch.vertices.get(index);
 		if(vertex == null) { throw new IOException("No Object for index = "+index); }
 		
 		int code = inflow.getUInt8();
-		NeMethodRunner runner = vertex.getPrototype().methodRunners[code];
+		NeMethod runner = vertex.getPrototype().methods[code];
 		if(runner == null) { throw new IOException("No runner for code = "+code); }
 		
 		int ordinal = runner.ordinal;
@@ -94,7 +94,7 @@ public class NeInbound {
 		if(function == null) { throw new IOException("Missing func @ code = "+code+", for index = "+index); }
 		
 		/* run function */
-		runner.run(branch, inflow, function);
+		runner.run(branch, context, inflow, function);
 	}
 
 	

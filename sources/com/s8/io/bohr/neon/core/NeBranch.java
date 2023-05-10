@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.s8.io.bohr.neon.control.NeController;
+import com.s8.io.bohr.neon.control.NeSyncFuncGenerator;
 import com.s8.io.bytes.base64.Base64Generator;
 
 /**
@@ -14,14 +14,14 @@ import com.s8.io.bytes.base64.Base64Generator;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeBranch<C extends NeController> {
+public class NeBranch {
 	
 	
 	public final String address;
 	
 	public final String id;
 	
-	public final C ctrl;
+	public final NeSyncFuncGenerator sync;
 	
 	
 	final Map<String, NeObjectTypeHandler> prototypesByName;
@@ -32,7 +32,7 @@ public class NeBranch<C extends NeController> {
 	/**
 	 * 
 	 */
-	final Map<String, NeVertex<C>> vertices;
+	final Map<String, NeVertex> vertices;
 
 	
 	/**
@@ -51,11 +51,11 @@ public class NeBranch<C extends NeController> {
 	
 	private final Base64Generator idxGen;
 	
-	public NeBranch(String address, String id, C ctrl) {
+	public NeBranch(String address, String id, NeSyncFuncGenerator sync) {
 		super();
 		this.address = address;
 		this.id = id;
-		this.ctrl = ctrl;
+		this.sync = sync;
 		
 		prototypesByName = new HashMap<>();
 		prototypesByCode = new HashMap<>();
@@ -87,7 +87,7 @@ public class NeBranch<C extends NeController> {
 	 * @param vertex
 	 * @return
 	 */
-	String appendObject(NeVertex<C> object) {
+	String appendObject(NeVertex object) {
 		
 		String index = createNewIndex();
 		
@@ -105,7 +105,7 @@ public class NeBranch<C extends NeController> {
 	 * @param index
 	 * @return
 	 */
-	public NeVertex<C> getVertex(String index) {
+	public NeVertex getVertex(String index) {
 		return vertices.get(index);
 	}
 	
@@ -115,8 +115,8 @@ public class NeBranch<C extends NeController> {
 	 * @param index
 	 * @return
 	 */
-	public NeObject<C> getObject(String index) {
-		NeVertex<C> vertex = vertices.get(index);
+	public NeObject getObject(String index) {
+		NeVertex vertex = vertices.get(index);
 		return vertex != null ? vertex.getAttachedObject() : null;
 	}
 

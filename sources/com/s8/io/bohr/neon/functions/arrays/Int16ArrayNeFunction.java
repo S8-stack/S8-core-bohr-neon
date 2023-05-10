@@ -14,6 +14,6 @@ public abstract class Int16ArrayNeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void operate(int[] arg);
+	public abstract void run(Object context, int[] arg);
 	
 }

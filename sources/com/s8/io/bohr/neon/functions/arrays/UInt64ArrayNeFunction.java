@@ -20,7 +20,7 @@ public abstract class UInt64ArrayNeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void run(long[] arg);
+	public abstract void run(Object context, long[] arg);
 	
 }
 

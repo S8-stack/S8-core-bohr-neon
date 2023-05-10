@@ -12,6 +12,6 @@ public abstract class Bool8ArrayNeFunction extends NeFunction {
 	public @Override long getSignature() { return SIGNATURE; }
 	
 	
-	public abstract void operate(boolean[] arg);
+	public abstract void operate(Object context, boolean[] arg);
 
 }

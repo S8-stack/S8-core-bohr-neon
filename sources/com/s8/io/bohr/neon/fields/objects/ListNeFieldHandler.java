@@ -21,7 +21,7 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class ListNeFieldHandler<T extends NeObject<?>> extends NeFieldHandler {
+public class ListNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 
 	public final static long SIGNATURE =  BOHR_Types.ARRAY << 8 & BOHR_Types.S8OBJECT;
 
@@ -111,7 +111,7 @@ public class ListNeFieldHandler<T extends NeObject<?>> extends NeFieldHandler {
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value<T extends NeObject<?>> extends NeFieldValue {
+	public static class Value<T extends NeObject> extends NeFieldValue {
 
 		private List<T> list;
 

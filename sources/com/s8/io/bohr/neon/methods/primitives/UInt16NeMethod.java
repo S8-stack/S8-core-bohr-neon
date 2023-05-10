@@ -7,7 +7,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt16NeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 
@@ -16,7 +16,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * @author pierreconvert
  *
  */
-public class UInt16NeMethod extends NeMethodRunner {
+public class UInt16NeMethod extends NeMethod {
 
 	public final static long SIGNATURE = BOHR_Types.UINT16;
 	
@@ -28,8 +28,8 @@ public class UInt16NeMethod extends NeMethodRunner {
 	}
 
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		int arg =  inflow.getUInt16();
-		((UInt16NeFunction) function).run(arg);
+		((UInt16NeFunction) function).run(context, arg);
 	}
 }

@@ -15,6 +15,6 @@ public abstract class UInt32ArrayNeFunction extends NeFunction {
 
 	public @Override long getSignature() { return SIGNATURE; }
 
-	public abstract void run(int[] arg);
+	public abstract void run(Object context, int[] arg);
 	
 }

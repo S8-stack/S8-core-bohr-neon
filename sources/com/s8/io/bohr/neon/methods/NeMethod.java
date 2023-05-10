@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeMethod;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
@@ -42,7 +41,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public abstract class NeMethodRunner {
+public abstract class NeMethod {
 
 
 	public NeObjectTypeHandler prototype;
@@ -61,7 +60,7 @@ public abstract class NeMethodRunner {
 	 * 
 	 * @param name
 	 */
-	public NeMethodRunner(NeObjectTypeHandler prototype, String name, int ordinal) {
+	public NeMethod(NeObjectTypeHandler prototype, String name, int ordinal) {
 		super();
 		this.prototype = prototype;
 		this.name = name;
@@ -72,11 +71,6 @@ public abstract class NeMethodRunner {
 	public abstract long getSignature();
 
 
-	public NeMethod createFunc() {
-		return new NeMethod();
-	}
-
-
 	/**
 	 * 
 	 * @param branch
@@ -84,7 +78,7 @@ public abstract class NeMethodRunner {
 	 * @param lambda
 	 * @throws IOException
 	 */
-	public abstract void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException;
+	public abstract void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException;
 
 
 

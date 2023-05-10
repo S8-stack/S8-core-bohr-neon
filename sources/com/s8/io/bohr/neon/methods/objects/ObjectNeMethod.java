@@ -9,7 +9,7 @@ import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.core.NeVertex;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.objects.ObjectNeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 /**
@@ -19,7 +19,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class ObjectNeMethod<T extends NeObject<?>> extends NeMethodRunner {
+public class ObjectNeMethod<T extends NeObject> extends NeMethod {
 
 
 
@@ -42,10 +42,10 @@ public class ObjectNeMethod<T extends NeObject<?>> extends NeMethodRunner {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		String index = inflow.getStringUTF8();
-		NeVertex<?> arg = index != null ? branch.getVertex(index) : null;
+		NeVertex arg = index != null ? branch.getVertex(index) : null;
 		T object = (T) arg.getAttachedObject();
-		((ObjectNeFunction<T>) function).run(object);
+		((ObjectNeFunction<T>) function).run(context, object);
 	}
 }

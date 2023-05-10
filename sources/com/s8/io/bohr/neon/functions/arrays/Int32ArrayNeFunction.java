@@ -9,5 +9,5 @@ public abstract class Int32ArrayNeFunction extends NeFunction {
 
 	public @Override long getSignature() { return SIGNATURE; }
 
-	public abstract void operate(int[] arg);
+	public abstract void run(Object context, int[] arg);
 }

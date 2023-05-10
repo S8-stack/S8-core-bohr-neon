@@ -7,7 +7,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.arrays.Float64ArrayNeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 /**
@@ -17,7 +17,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class Float64ArrayNeMethod extends NeMethodRunner {
+public class Float64ArrayNeMethod extends NeMethod {
 
 
 	public interface Lambda {
@@ -44,7 +44,7 @@ public class Float64ArrayNeMethod extends NeMethodRunner {
 
 
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		double[] arg = null;
 		int length = (int) inflow.getUInt7x();
 		if(length >= 0) {
@@ -52,7 +52,7 @@ public class Float64ArrayNeMethod extends NeMethodRunner {
 			for(int i=0; i<length; i++) { arg[i] = inflow.getFloat64(); }
 		
 		}
-		((Float64ArrayNeFunction) function).run(arg);
+		((Float64ArrayNeFunction) function).run(context, arg);
 	}
 
 

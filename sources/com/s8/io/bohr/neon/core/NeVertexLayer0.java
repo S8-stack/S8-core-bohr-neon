@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import com.s8.io.bohr.atom.BOHR_Keywords;
-import com.s8.io.bohr.neon.control.NeController;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;
@@ -39,11 +38,11 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public abstract class NeVertexLayer0<C extends NeController> implements NeVertex<C> {
+public abstract class NeVertexLayer0 implements NeVertex {
 
-	public final NeBranch<C> branch;
+	public final NeBranch branch;
 
-	public final NeObject<C> object;
+	public final NeObject object;
 
 	private boolean hasUnpublishedChanges = false;
 
@@ -74,7 +73,7 @@ public abstract class NeVertexLayer0<C extends NeController> implements NeVertex
 	 * 
 	 * @param branch
 	 */
-	public NeVertexLayer0(NeBranch<C> branch, String typeName, NeObject<C> object) {
+	public NeVertexLayer0(NeBranch branch, String typeName, NeObject object) {
 		super();
 
 
@@ -89,7 +88,7 @@ public abstract class NeVertexLayer0<C extends NeController> implements NeVertex
 
 
 	@Override
-	public NeObject<C> getAttachedObject() {
+	public NeObject getAttachedObject() {
 		return object;
 	}
 	
@@ -490,7 +489,7 @@ public abstract class NeVertexLayer0<C extends NeController> implements NeVertex
 
 
 	@Override
-	public <T extends NeObject<C>> void setObj(String name, T value) {
+	public <T extends NeObject> void setObj(String name, T value) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		NeFieldValue entry = getEntry(field);
 		field.set(entry, value);
@@ -502,7 +501,7 @@ public abstract class NeVertexLayer0<C extends NeController> implements NeVertex
 
 
 	@Override
-	public <T extends NeObject<C>> void setObjList(String name, List<T> value) {
+	public <T extends NeObject> void setObjList(String name, List<T> value) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		field.set(entry, value);
@@ -514,7 +513,7 @@ public abstract class NeVertexLayer0<C extends NeController> implements NeVertex
 	
 
 	@Override
-	public <T extends NeObject<C>> void addObjToList(String name, T obj) {
+	public <T extends NeObject> void addObjToList(String name, T obj) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		field.add(entry, obj);
@@ -523,7 +522,7 @@ public abstract class NeVertexLayer0<C extends NeController> implements NeVertex
 
 
 	@Override
-	public <T extends NeObject<C>> void removeObjFromList(String name, T obj) {
+	public <T extends NeObject> void removeObjFromList(String name, T obj) {
 		if(obj != null) {
 			ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 			NeFieldValue entry = getEntry(field);

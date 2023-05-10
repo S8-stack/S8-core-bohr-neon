@@ -3,7 +3,6 @@ package com.s8.io.bohr.neon.core;
 import java.io.IOException;
 import java.util.List;
 
-import com.s8.io.bohr.neon.control.NeController;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.arrays.Bool8ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.Float32ArrayNeFunction;
@@ -36,7 +35,7 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public interface NeVertex<C extends NeController> {
+public interface NeVertex {
 
 	
 	/**
@@ -46,7 +45,7 @@ public interface NeVertex<C extends NeController> {
 	public String getIndex();
 	
 
-	public NeObject<C> getAttachedObject();
+	public NeObject getAttachedObject();
 
 	
 	public NeObjectTypeHandler getPrototype();
@@ -537,7 +536,7 @@ public interface NeVertex<C extends NeController> {
 	 * @param name
 	 * @param value
 	 */
-	public <T extends NeObject<C>> void setObj(String name, T value);
+	public <T extends NeObject> void setObj(String name, T value);
 
 
 	/**
@@ -546,7 +545,7 @@ public interface NeVertex<C extends NeController> {
 	 * @param name
 	 * @return
 	 */
-	public <T extends NeObject<C>> T getObj(String name);
+	public <T extends NeObject> T getObj(String name);
 	
 	
 	/**
@@ -555,12 +554,12 @@ public interface NeVertex<C extends NeController> {
 	 * @param name
 	 * @return
 	 */
-	public <T extends NeObject<C>> void setObjectMethod(String name, ObjectNeFunction<T> function);
+	public <T extends NeObject> void setObjectMethod(String name, ObjectNeFunction<T> function);
 
 
 
 
-	public <T extends NeObject<C>> void setObjList(String name, List<T> value);
+	public <T extends NeObject> void setObjList(String name, List<T> value);
 
 
 	
@@ -570,7 +569,7 @@ public interface NeVertex<C extends NeController> {
 	 * @param name
 	 * @return a <b>COPY</b> of the underlying list
 	 */
-	public <T extends NeObject<C>> List<T> getObjList(String name);
+	public <T extends NeObject> List<T> getObjList(String name);
 
 	
 	/**
@@ -579,7 +578,7 @@ public interface NeVertex<C extends NeController> {
 	 * @param name
 	 * @param obj
 	 */
-	public <T extends NeObject<C>> void addObjToList(String name, T obj);
+	public <T extends NeObject> void addObjToList(String name, T obj);
 	
 	
 	/**
@@ -588,7 +587,7 @@ public interface NeVertex<C extends NeController> {
 	 * @param name
 	 * @param obj
 	 */
-	public <T extends NeObject<C>> void removeObjFromList(String name, T obj);
+	public <T extends NeObject> void removeObjFromList(String name, T obj);
 
 
 	

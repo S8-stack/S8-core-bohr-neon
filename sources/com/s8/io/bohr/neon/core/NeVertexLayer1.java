@@ -3,7 +3,6 @@ package com.s8.io.bohr.neon.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.s8.io.bohr.neon.control.NeController;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.Float32ArrayNeFieldHandler;
@@ -36,7 +35,7 @@ import com.s8.io.bohr.neon.fields.primitives.UInt8NeFieldHandler;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public abstract class NeVertexLayer1<C extends NeController> extends NeVertexLayer0<C> {
+public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 
@@ -46,7 +45,7 @@ public abstract class NeVertexLayer1<C extends NeController> extends NeVertexLay
 	 * @param typeName
 	 * @param object
 	 */
-	public NeVertexLayer1(NeBranch<C> branch, String typeName, NeObject<C> object) {
+	public NeVertexLayer1(NeBranch branch, String typeName, NeObject object) {
 		super(branch, typeName, object);
 	}
 
@@ -214,7 +213,7 @@ public abstract class NeVertexLayer1<C extends NeController> extends NeVertexLay
 	
 
 	@Override
-	public <T extends NeObject<C>> T getObj(String name) {
+	public <T extends NeObject> T getObj(String name) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -222,7 +221,7 @@ public abstract class NeVertexLayer1<C extends NeController> extends NeVertexLay
 
 
 	@Override
-	public <T extends NeObject<C>> List<T> getObjList(String name) {
+	public <T extends NeObject> List<T> getObjList(String name) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		List<T> list = field.get(entry);

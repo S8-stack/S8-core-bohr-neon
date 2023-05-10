@@ -7,7 +7,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Float64NeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 /**
@@ -17,7 +17,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class Float64NeMethod extends NeMethodRunner {
+public class Float64NeMethod extends NeMethod {
 
 	public final static long SIGNATURE = BOHR_Types.FLOAT64;
 	public @Override long getSignature() { return SIGNATURE; }
@@ -28,9 +28,9 @@ public class Float64NeMethod extends NeMethodRunner {
 	}
 
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		double arg =  inflow.getFloat64();
-		((Float64NeFunction) function).run(arg);
+		((Float64NeFunction) function).run(context, arg);
 	}
 }
 

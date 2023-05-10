@@ -9,7 +9,7 @@ import com.s8.io.bohr.neon.functions.NeFunction;
  * @author pierreconvert
  *
  */
-public abstract class ObjectNeFunction<T extends NeObject<?>> extends NeFunction {
+public abstract class ObjectNeFunction<T extends NeObject> extends NeFunction {
 
 	
 	
@@ -26,7 +26,7 @@ public abstract class ObjectNeFunction<T extends NeObject<?>> extends NeFunction
 	 * 
 	 * @param arg
 	 */
-	public abstract void run(NeObject<?> arg);
+	public abstract void run(Object context, T arg);
 	
 	
 }

@@ -16,6 +16,6 @@ public abstract class Float64NeFunction extends NeFunction {
 	}
 	
 	
-	public abstract void run(double arg);
+	public abstract void run(Object context, double arg);
 	
 }

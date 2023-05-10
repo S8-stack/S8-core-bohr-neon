@@ -1,6 +1,5 @@
 package com.s8.io.bohr.neon.core;
 
-import com.s8.io.bohr.neon.control.NeController;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.arrays.Bool8ArrayNeFunction;
 import com.s8.io.bohr.neon.functions.arrays.Float32ArrayNeFunction;
@@ -23,7 +22,7 @@ import com.s8.io.bohr.neon.functions.primitives.UInt16NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt32NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt64NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt8NeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float64ArrayNeMethod;
@@ -51,7 +50,7 @@ import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertexLayer2<C extends NeController> extends NeVertexLayer1<C> {
+public class NeVertexLayer2 extends NeVertexLayer1 {
 
 
 
@@ -65,7 +64,7 @@ public class NeVertexLayer2<C extends NeController> extends NeVertexLayer1<C> {
 	 * @param typeName
 	 * @param object
 	 */
-	public NeVertexLayer2(NeBranch<C> branch, String typeName, NeObject<C> object) {
+	public NeVertexLayer2(NeBranch branch, String typeName, NeObject object) {
 		super(branch, typeName, object);
 
 		functions = new NeFunction[4];
@@ -79,7 +78,7 @@ public class NeVertexLayer2<C extends NeController> extends NeVertexLayer1<C> {
 	 * @param method
 	 * @return
 	 */
-	private int getMethodOrdinal(NeMethodRunner method) {
+	private int getMethodOrdinal(NeMethod method) {
 		int ordinal = method.ordinal;
 		while(ordinal >= functions.length) {
 			int n = values.length;
@@ -308,7 +307,7 @@ public class NeVertexLayer2<C extends NeController> extends NeVertexLayer1<C> {
 
 
 	@Override
-	public <T extends NeObject<C>> void setObjectMethod(String name, ObjectNeFunction<T> function) {
+	public <T extends NeObject> void setObjectMethod(String name, ObjectNeFunction<T> function) {
 		/* retrieve (or define if first time) method runner */
 		 @SuppressWarnings("unchecked")
 		ObjectNeMethod<T> method = (ObjectNeMethod<T>) prototype.getObjectMethod(name);

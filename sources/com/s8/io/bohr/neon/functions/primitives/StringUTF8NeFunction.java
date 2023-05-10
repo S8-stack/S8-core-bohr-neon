@@ -20,5 +20,5 @@ public abstract class StringUTF8NeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void run(String arg);
+	public abstract void run(Object context, String arg);
 }

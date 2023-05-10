@@ -33,7 +33,7 @@ import com.s8.io.bohr.neon.fields.primitives.UInt16NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.UInt32NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.UInt64NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.UInt8NeFieldHandler;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float64ArrayNeMethod;
@@ -93,9 +93,9 @@ public class NeObjectTypeHandler {
 	/**
 	 * Code-based. Code is defined by inbound
 	 */
-	public NeMethodRunner[] methodRunners;
+	public NeMethod[] methods;
 
-	private Map<String, NeMethodRunner> methodRunnersByName;
+	private Map<String, NeMethod> methodByName;
 
 	private int nextMethodOrdinal = 0;
 
@@ -107,8 +107,8 @@ public class NeObjectTypeHandler {
 		fieldComposersByName = new HashMap<>();
 
 
-		this.methodRunners = new NeMethodRunner[2];
-		this.methodRunnersByName = new HashMap<>();
+		this.methods = new NeMethod[2];
+		this.methodByName = new HashMap<>();
 
 		isUnpublished = true;
 	}
@@ -122,7 +122,7 @@ public class NeObjectTypeHandler {
 	
 	
 	public VoidNeMethodRunner getVoidMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != VoidNeMethodRunner.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -160,7 +160,7 @@ public class NeObjectTypeHandler {
 
 
 	public Bool8NeMethod getBool8Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Bool8NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -190,7 +190,7 @@ public class NeObjectTypeHandler {
 
 
 	public Bool8ArrayNeMethod getBool8ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Bool8ArrayNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -233,7 +233,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt8NeMethod getUInt8Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt8NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -270,7 +270,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt8ArrayNeMethod getUInt8ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt16ArrayNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -312,7 +312,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt16NeMethod getUInt16Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt8NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -355,7 +355,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt16ArrayNeMethod getUInt16ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt16ArrayNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -396,7 +396,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt32NeMethod getUInt32Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt32NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -439,7 +439,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt32ArrayNeMethodRunner getUInt32ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt32ArrayNeMethodRunner.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -483,7 +483,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt64NeMethod getUInt64Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt64NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -526,7 +526,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public UInt64ArrayNeMethodRunner getUInt64ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != UInt64ArrayNeMethodRunner.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -568,7 +568,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int8NeMethod getInt8Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int8NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -609,7 +609,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int8ArrayNeMethodRunner getInt8ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int8ArrayNeMethodRunner.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -649,7 +649,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int16NeMethod getInt16Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int16NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -690,7 +690,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int16ArrayNeMethodRunner getInt16ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int16ArrayNeMethodRunner.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -731,7 +731,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int32NeMethod getInt32Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int32NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -773,7 +773,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int32ArrayNeMethodRunner getInt32ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int32ArrayNeMethodRunner.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -818,7 +818,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int64NeMethod getInt64Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int64NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -861,7 +861,7 @@ public class NeObjectTypeHandler {
 	 * @return
 	 */
 	public Int64ArrayNeMethodRunner getInt64ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Int64ArrayNeMethodRunner.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); }
@@ -897,7 +897,7 @@ public class NeObjectTypeHandler {
 
 
 	public Float32NeMethod getFloat32Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Float32NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -935,7 +935,7 @@ public class NeObjectTypeHandler {
 
 
 	public Float32ArrayNeMethod getFloat32ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Float32ArrayNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -972,7 +972,7 @@ public class NeObjectTypeHandler {
 
 
 	public Float64NeMethod getFloat64Method(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Float64NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -1011,7 +1011,7 @@ public class NeObjectTypeHandler {
 
 
 	public Float64ArrayNeMethod getFloat64ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != Float64ArrayNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -1055,7 +1055,7 @@ public class NeObjectTypeHandler {
 
 
 	public StringUTF8NeMethod getStringUTF8NeMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != StringUTF8NeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -1095,7 +1095,7 @@ public class NeObjectTypeHandler {
 
 
 	public StringUTF8ArrayNeMethod getStringUTF8ArrayMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != StringUTF8ArrayNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -1112,7 +1112,7 @@ public class NeObjectTypeHandler {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject<?>> ObjNeFieldHandler<T> getObjField(String name) {
+	public <T extends NeObject> ObjNeFieldHandler<T> getObjField(String name) {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
 			if(field.getSignature() != ObjNeFieldHandler.SIGNATURE) { 
@@ -1130,8 +1130,8 @@ public class NeObjectTypeHandler {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject<?>>  ObjectNeMethod<T> getObjectMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+	public <T extends NeObject>  ObjectNeMethod<T> getObjectMethod(String name) {
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != ObjectNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -1148,7 +1148,7 @@ public class NeObjectTypeHandler {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject<?>> ListNeFieldHandler<T> getObjArrayField(String name) {
+	public <T extends NeObject> ListNeFieldHandler<T> getObjArrayField(String name) {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
 			if(field.getSignature() != ListNeFieldHandler.SIGNATURE) { 
@@ -1163,8 +1163,8 @@ public class NeObjectTypeHandler {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject<?>> ListNeMethod<T> getObjListMethod(String name) {
-		NeMethodRunner method = methodRunnersByName.get(name);
+	public <T extends NeObject> ListNeMethod<T> getObjListMethod(String name) {
+		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != ListNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
@@ -1208,15 +1208,15 @@ public class NeObjectTypeHandler {
 	 * Assign ordinal
 	 * @param field
 	 */
-	private void appendMethod(NeMethodRunner methodRunner) {
+	private void appendMethod(NeMethod methodRunner) {
 		
 		String name = methodRunner.name;
 		
-		if(methodRunnersByName.containsKey(name)) {
+		if(methodByName.containsKey(name)) {
 			System.err.println("NE_COMPILE_ERROR: METHOD name conflict: "+name);
 		}
 		
-		methodRunnersByName.put(name, methodRunner);
+		methodByName.put(name, methodRunner);
 	}
 
 
@@ -1225,13 +1225,13 @@ public class NeObjectTypeHandler {
 		String methodName = inflow.getStringUTF8();
 
 
-		NeMethodRunner methodRunner = methodRunnersByName.get(methodName);
+		NeMethod methodRunner = methodByName.get(methodName);
 		if(methodRunner == null) {
 			System.err.println("CANNOT find method for name : "+methodName);
 		}
 
 		
-		long format = NeMethodRunner.parseFormat(inflow);
+		long format = NeMethod.parseFormat(inflow);
 		if(format != methodRunner.getSignature()) {
 			System.err.println("Lismatch in signature for method: "+methodName);
 		}
@@ -1240,19 +1240,19 @@ public class NeObjectTypeHandler {
 		int code = inflow.getUInt8();
 		
 		methodRunner.code = code;
-		int n = methodRunners.length;
+		int n = methods.length;
 
 		/* extend if necessary */
 		if(n <= code) {
-			int m = methodRunners.length;
+			int m = methods.length;
 			while(m <= code) { m*=2; }
-			NeMethodRunner[] extended = new NeMethodRunner[m]; 
-			for(int i=0; i<n; i++) { extended[i] = methodRunners[i]; }
-			methodRunners = extended;
+			NeMethod[] extended = new NeMethod[m]; 
+			for(int i=0; i<n; i++) { extended[i] = methods[i]; }
+			methods = extended;
 		}
 
 		// method runner is now assined a code
-		methodRunners[code] = methodRunner;
+		methods[code] = methodRunner;
 	}
 
 

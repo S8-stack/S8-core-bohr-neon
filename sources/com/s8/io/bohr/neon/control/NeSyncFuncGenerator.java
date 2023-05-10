@@ -47,121 +47,118 @@ import com.s8.io.bohr.neon.lambdas.primitives.UInt32Lambda;
 import com.s8.io.bohr.neon.lambdas.primitives.UInt64Lambda;
 import com.s8.io.bohr.neon.lambdas.primitives.UInt8Lambda;
 
-public class StubNeController implements NeController {
+/**
+ * 
+ * @author pierreconvert
+ *
+ */
+public interface NeSyncFuncGenerator {
 
-	@Override
-	public VoidNeFunction createUint8Func(VoidLambda lambda) {
-		return null;
-	}
 
-	@Override
-	public UInt8NeFunction createUint8Func(UInt8Lambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public VoidNeFunction createVoidFunc(VoidLambda lambda);
+	
 
-	@Override
-	public UInt8ArrayNeFunction createUint8ArrayFunc(UInt8ArrayLambda lambda) {
-		return null;
-	}
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt8NeFunction createUInt8Func(UInt8Lambda lambda);
 
-	@Override
-	public UInt16NeFunction createUint16Func(UInt16Lambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt8ArrayNeFunction createUint8ArrayFunc(UInt8ArrayLambda lambda);
 
-	@Override
-	public UInt16ArrayNeFunction createUint16ArrayFunc(UInt16ArrayLambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt16NeFunction createUint16Func(UInt16Lambda lambda);
 
-	@Override
-	public UInt32NeFunction createUint32Func(UInt32Lambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt16ArrayNeFunction createUint16ArrayFunc(UInt16ArrayLambda lambda);
 
-	@Override
-	public UInt32ArrayNeFunction createUint32Func(UInt32ArrayLambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt32NeFunction createUint32Func(UInt32Lambda lambda);
 
-	@Override
-	public UInt64NeFunction createUint64Func(UInt64Lambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt32ArrayNeFunction createUint32Func(UInt32ArrayLambda lambda);
 
-	@Override
-	public UInt64ArrayNeFunction createUint64Func(UInt64ArrayLambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt64NeFunction createUint64Func(UInt64Lambda lambda);
 
-	@Override
-	public Int8NeFunction createInt8Func(Int8Lambda lambda) {
-		return null;
-	}
+	
+	/**
+	 * 
+	 * @param lambda
+	 * @return
+	 */
+	public UInt64ArrayNeFunction createUint64Func(UInt64ArrayLambda lambda);
+	
+	
+	
+	public Int8NeFunction createInt8Func(Int8Lambda lambda);
 
-	@Override
-	public Int8ArrayNeFunction createInt8ArrayFunc(Int8ArrayLambda lambda) {
-		return null;
-	}
+	public Int8ArrayNeFunction createInt8ArrayFunc(Int8ArrayLambda lambda);
 
-	@Override
-	public Int16NeFunction createInt16Func(Int16Lambda lambda) {
-		return null;
-	}
+	public Int16NeFunction createInt16Func(Int16Lambda lambda);
 
-	@Override
-	public Int16ArrayNeFunction createInt16ArrayFunc(Int16ArrayLambda lambda) {
-		return null;
-	}
+	public Int16ArrayNeFunction createInt16ArrayFunc(Int16ArrayLambda lambda);
 
-	@Override
-	public Int32NeFunction createInt32Func(Int32Lambda lambda) {
-		return null;
-	}
+	public Int32NeFunction createInt32Func(Int32Lambda lambda);
 
-	@Override
-	public Int32ArrayNeFunction createInt32ArrayFunc(Int32ArrayLambda lambda) {
-		return null;
-	}
+	public Int32ArrayNeFunction createInt32ArrayFunc(Int32ArrayLambda lambda);
 
-	@Override
-	public Int64NeFunction createInt64Func(Int64Lambda lambda) {
-		return null;
-	}
+	public Int64NeFunction createInt64Func(Int64Lambda lambda);
 
-	@Override
-	public Int64ArrayNeFunction createInt64ArrayFunc(Int64ArrayLambda lambda) {
-		return null;
-	}
+	public Int64ArrayNeFunction createInt64ArrayFunc(Int64ArrayLambda lambda);
+	
+	
+	
+	public Float32NeFunction createFloat32Func(Float32Lambda lambda);
 
-	@Override
-	public Float32NeFunction createFloat32Func(Float32Lambda lambda) {
-		return null;
-	}
+	public Float32ArrayNeFunction createFloat32ArrayFunc(Float32ArrayLambda lambda);
 
-	@Override
-	public Float32ArrayNeFunction createFloat32ArrayFunc(Float32ArrayLambda lambda) {
-		return null;
-	}
+	public Float64NeFunction createFloat64Func(Float64Lambda lambda);
 
-	@Override
-	public Float64NeFunction createFloat64Func(Float64Lambda lambda) {
-		return null;
-	}
+	public Float64ArrayNeFunction createFloat64ArrayFunc(Float64ArrayLambda lambda);
 
-	@Override
-	public Float64ArrayNeFunction createFloat64ArrayFunc(Float64ArrayLambda lambda) {
-		return null;
-	}
 
-	@Override
-	public StringUTF8NeFunction createStringUTF8Func(StringUTF8Lambda lambda) {
-		return null;
-	}
+	
+	public StringUTF8NeFunction createStringUTF8Func(StringUTF8Lambda lambda);
 
-	@Override
-	public StringUTF8ArrayNeFunction createStringUTF8ArrayFunc(StringUTF8ArrayLambda lambda) {
-		return null;
-	}
+	public StringUTF8ArrayNeFunction createStringUTF8ArrayFunc(StringUTF8ArrayLambda lambda);
 
 }

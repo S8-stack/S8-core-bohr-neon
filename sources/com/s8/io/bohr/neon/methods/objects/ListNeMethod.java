@@ -7,7 +7,7 @@ import java.util.List;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObject;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.objects.ObjectsListNeFunction;
@@ -20,7 +20,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class ListNeMethod<T extends NeObject<?>> extends NeMethodRunner {
+public class ListNeMethod<T extends NeObject> extends NeMethod {
 
 
 
@@ -44,7 +44,7 @@ public class ListNeMethod<T extends NeObject<?>> extends NeMethodRunner {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		List<T> list = null;
 		int length = (int) inflow.getUInt7x();
 		if(length >= 0) {
@@ -54,6 +54,6 @@ public class ListNeMethod<T extends NeObject<?>> extends NeMethodRunner {
 				list.add(index != null ? (T) branch.getObject(index) : null);
 			}	
 		}
-		((ObjectsListNeFunction<T>) function).run(list);	
+		((ObjectsListNeFunction<T>) function).run(context, list);	
 	}
 }

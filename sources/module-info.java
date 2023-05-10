@@ -11,6 +11,8 @@ module com.s8.io.bohr.neon {
 	
 
 	/* <neon> */
+	exports com.s8.io.bohr.neon.control;
+	
 	exports com.s8.io.bohr.neon.core;
 	
 	exports com.s8.io.bohr.neon.fields;

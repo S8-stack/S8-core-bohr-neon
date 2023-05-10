@@ -7,7 +7,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.none.VoidNeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 /**
@@ -17,7 +17,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class VoidNeMethodRunner extends NeMethodRunner {
+public class VoidNeMethodRunner extends NeMethod {
 
 
 	public interface Lambda {
@@ -44,8 +44,8 @@ public class VoidNeMethodRunner extends NeMethodRunner {
 
 
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
-		((VoidNeFunction) function).run();
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
+		((VoidNeFunction) function).run(context);
 	}
 
 }

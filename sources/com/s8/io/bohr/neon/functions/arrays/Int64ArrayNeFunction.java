@@ -10,5 +10,5 @@ public abstract class Int64ArrayNeFunction extends NeFunction {
 
 	public @Override long getSignature() { return SIGNATURE; }
 
-	public abstract void operate(long[] arg);
+	public abstract void operate(Object context, long[] arg);
 }

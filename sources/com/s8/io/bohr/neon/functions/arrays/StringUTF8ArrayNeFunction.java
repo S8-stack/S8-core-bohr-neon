@@ -15,6 +15,6 @@ public abstract class StringUTF8ArrayNeFunction extends NeFunction {
 
 	public @Override long getSignature() { return SIGNATURE; }
 	
-	public abstract void run(String[] arg);
+	public abstract void run(Object context, String[] arg);
 	
 }

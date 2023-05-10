@@ -15,6 +15,6 @@ public abstract class Bool8NeFunction extends NeFunction {
 	}
 	
 	
-	public abstract void operate(boolean arg);
+	public abstract void run(Object context, boolean arg);
 
 }

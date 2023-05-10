@@ -16,5 +16,5 @@ public abstract class Int64NeFunction extends NeFunction {
 	}
 	
 
-	public abstract void run(long arg);
+	public abstract void run(Object context, long arg);
 }

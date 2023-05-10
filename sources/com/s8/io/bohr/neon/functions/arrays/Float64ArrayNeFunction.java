@@ -19,5 +19,5 @@ public abstract class Float64ArrayNeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void run(double[] arg);
+	public abstract void run(Object context, double[] arg);
 }

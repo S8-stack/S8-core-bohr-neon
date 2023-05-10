@@ -7,7 +7,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt8NeFunction;
-import com.s8.io.bohr.neon.methods.NeMethodRunner;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 
@@ -16,7 +16,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * @author pierreconvert
  *
  */
-public class UInt8NeMethod extends NeMethodRunner {
+public class UInt8NeMethod extends NeMethod {
 
 	public final static long SIGNATURE = BOHR_Types.UINT8;
 	
@@ -28,8 +28,8 @@ public class UInt8NeMethod extends NeMethodRunner {
 	}
 
 	@Override
-	public void run(NeBranch<?> branch, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
 		int arg =  inflow.getUInt8();
-		((UInt8NeFunction) function).run(arg);
+		((UInt8NeFunction) function).run(context, arg);
 	}
 }

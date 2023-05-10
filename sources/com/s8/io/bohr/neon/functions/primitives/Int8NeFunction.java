@@ -25,7 +25,7 @@ public abstract class Int8NeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void run(int arg);
+	public abstract void run(Object context, int arg);
 	
 	
 }

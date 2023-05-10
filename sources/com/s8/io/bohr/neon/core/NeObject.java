@@ -1,24 +1,24 @@
 package com.s8.io.bohr.neon.core;
 
-import com.s8.io.bohr.neon.control.NeController;
+import com.s8.io.bohr.neon.control.NeSyncFuncGenerator;
 
-public class NeObject<C extends NeController> {
+public class NeObject {
 
 
-	public final NeVertex<C> vertex;
+	public final NeVertex vertex;
 	
-	public final C ctrl;
+	public final NeSyncFuncGenerator sync;
 
 
-	public NeObject(NeBranch<C> branch, String typeName) {
+	public NeObject(NeBranch branch, String typeName) {
 		super();
 		
 		/* create vertex and assign object to it */
-		vertex = new NeVertexLayer2<C>(branch, typeName, this);
+		vertex = new NeVertexLayer2(branch, typeName, this);
 		
 		
 		/* create ctrl */
-		this.ctrl = branch.ctrl;
+		this.sync = branch.sync;
 	}
 
 

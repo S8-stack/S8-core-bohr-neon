@@ -19,5 +19,5 @@ public abstract class UInt8ArrayNeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void run(int[] arg);
+	public abstract void run(Object context, int[] arg);
 }
