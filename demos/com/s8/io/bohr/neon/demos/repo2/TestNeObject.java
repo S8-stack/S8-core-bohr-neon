@@ -21,19 +21,19 @@ public class TestNeObject extends NeObject {
 
 
 
-	public void setRotor(AircraftRotor value) { vertex.setObj("rotor", value); }
+	public void setRotor(AircraftRotor value) { vertex.setObjectField("rotor", value); }
 
-	public AircraftRotor getRotor() { return vertex.getObj("rotor"); }
+	public AircraftRotor getRotor() { return vertex.getObjectField("rotor"); }
 
 
-	public void setPitch(double value) { vertex.setFloat64("pitch", value); }
+	public void setPitch(double value) { vertex.setFloat64Field("pitch", value); }
 
-	public double getPitch() { return vertex.getFloat64("pitch"); }
+	public double getPitch() { return vertex.getFloat64Field("pitch"); }
 
 	
-	public void setYaw(double value) { vertex.setFloat64("yaw", value); }
+	public void setYaw(double value) { vertex.setFloat64Field("yaw", value); }
 
-	public double getYaw() { return vertex.getFloat64("yaw"); }
+	public double getYaw() { return vertex.getFloat64Field("yaw"); }
 
 
 
@@ -42,7 +42,7 @@ public class TestNeObject extends NeObject {
 	 * @param vertices
 	 */
 	public void setVertexCoordinates(double[] vertices) {
-		vertex.setFloat64Array("vertex-coordinates#12", vertices);
+		vertex.setFloat64ArrayField("vertex-coordinates#12", vertices);
 	}
 
 

@@ -52,7 +52,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public boolean getBool8(String name) {
+	public boolean getBool8Field(String name) {
 		Bool8NeFieldHandler field = prototype.getBool8Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -60,7 +60,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public boolean[] getBool8Array(String name) {
+	public boolean[] getBool8ArrayField(String name) {
 		Bool8ArrayNeFieldHandler field = prototype.getBool8ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -68,7 +68,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public int getUInt8(String name) {
+	public int getUInt8Field(String name) {
 		UInt8NeFieldHandler field = prototype.getUInt8Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -76,7 +76,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public int[] getUInt8Array(String name) {
+	public int[] getUInt8ArrayField(String name) {
 		UInt8ArrayNeFieldHandler field = prototype.getUInt8ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -85,7 +85,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public int getUInt16(String name) {
+	public int getUInt16Field(String name) {
 		UInt16NeFieldHandler field = prototype.getUInt16Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -93,7 +93,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public int[] getUInt16Array(String name) {
+	public int[] getUInt16ArrayField(String name) {
 		UInt16ArrayNeFieldHandler field = prototype.getUInt16ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -101,7 +101,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public long getUInt32(String name) {
+	public long getUInt32Field(String name) {
 		UInt32NeFieldHandler field = prototype.getUInt32Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -109,7 +109,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public long[] getUInt32Array(String name) {
+	public long[] getUInt32ArrayField(String name) {
 		UInt32ArrayNeFieldHandler field = prototype.getUInt32ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -117,7 +117,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public long getUInt64(String name) {
+	public long getUInt64Field(String name) {
 		UInt64NeFieldHandler field = prototype.getUInt64Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -125,7 +125,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public int getInt8(String name) {
+	public int getInt8Field(String name) {
 		Int8NeFieldHandler field = prototype.getInt8Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -133,7 +133,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public int getInt16(String name) {
+	public int getInt16Field(String name) {
 		Int16NeFieldHandler field = prototype.getInt16Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -141,7 +141,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public int getInt32(String name) {
+	public int getInt32Field(String name) {
 		Int32NeFieldHandler field = prototype.getInt32Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -149,7 +149,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public long getInt64(String name) {
+	public long getInt64Field(String name) {
 		Int64NeFieldHandler field = prototype.getInt64Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -157,7 +157,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public long[] getInt64Array(String name) {
+	public long[] getInt64ArrayField(String name) {
 		Int64ArrayNeFieldHandler field = prototype.getInt64ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -165,7 +165,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public float getFloat32(String name) {
+	public float getFloat32Field(String name) {
 		Float32NeFieldHandler field = prototype.getFloat32Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -173,7 +173,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public float[] getFloat32Array(String name) {
+	public float[] getFloat32ArrayField(String name) {
 		Float32ArrayNeFieldHandler field = prototype.getFloat32ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -181,7 +181,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public double getFloat64(String name) {
+	public double getFloat64Field(String name) {
 		Float64NeFieldHandler field = prototype.getFloat64Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -189,7 +189,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public double[] getFloat64Array(String name) {
+	public double[] getFloat64ArrayField(String name) {
 		Float64ArrayNeFieldHandler field = prototype.getFloat64ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -197,7 +197,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public String getStringUTF8(String name) {
+	public String getStringUTF8Field(String name) {
 		StringUTF8NeFieldHandler field = prototype.getStringUTF8Field(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -205,7 +205,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 	
 
 	@Override
-	public String[] getStringUTF8Array(String name) {
+	public String[] getStringUTF8ArrayField(String name) {
 		StringUTF8ArrayNeFieldHandler field = prototype.getStringUTF8ArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -213,7 +213,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 	
 
 	@Override
-	public <T extends NeObject> T getObj(String name) {
+	public <T extends NeObject> T getObjectField(String name) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -221,7 +221,7 @@ public abstract class NeVertexLayer1 extends NeVertexLayer0 {
 
 
 	@Override
-	public <T extends NeObject> List<T> getObjList(String name) {
+	public <T extends NeObject> List<T> getObjectListField(String name) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		List<T> list = field.get(entry);

@@ -86,14 +86,14 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setBool8(String name, boolean value);
+	public void setBool8Field(String name, boolean value);
 
 	/**
 	 * 
 	 * @param name
 	 * @return
 	 */
-	public boolean getBool8(String name);
+	public boolean getBool8Field(String name);
 
 	/**
 	 * 
@@ -109,7 +109,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setBool8Array(String name, boolean[] value);
+	public void setBool8ArrayField(String name, boolean[] value);
 
 
 	/**
@@ -117,7 +117,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public boolean[] getBool8Array(String name);
+	public boolean[] getBool8ArrayField(String name);
 	
 
 	/**
@@ -133,7 +133,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setUInt8(String name, int value);
+	public void setUInt8Field(String name, int value);
 
 
 	/**
@@ -141,7 +141,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public int getUInt8(String name);
+	public int getUInt8Field(String name);
 	
 	
 	/**
@@ -157,7 +157,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setUInt8Array(String name, int[] value);
+	public void setUInt8ArrayField(String name, int[] value);
 
 
 	/**
@@ -165,7 +165,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public int[] getUInt8Array(String name);
+	public int[] getUInt8ArrayField(String name);
 	
 	
 	public void setUInt8ArrayMethod(String name, UInt8ArrayNeFunction function);
@@ -176,14 +176,14 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setUInt16(String name, int value);
+	public void setUInt16Field(String name, int value);
 
 	/**
 	 * 
 	 * @param name
 	 * @return
 	 */
-	public int getUInt16(String name);
+	public int getUInt16Field(String name);
 	/**
 	 * 
 	 * @param name
@@ -197,14 +197,14 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setUInt16Array(String name, int[] value);
+	public void setUInt16ArrayField(String name, int[] value);
 
 	/**
 	 * 
 	 * @param name
 	 * @return
 	 */
-	public int[] getUInt16Array(String name);
+	public int[] getUInt16ArrayField(String name);
 
 	
 	public void setUInt16ArrayMethod(String name, UInt16ArrayNeFunction function);
@@ -215,7 +215,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setUInt32(String name, long value);
+	public void setUInt32Field(String name, long value);
 	
 	
 	/**
@@ -223,7 +223,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public long getUInt32(String name);
+	public long getUInt32Field(String name);
 	
 	
 	/**
@@ -240,7 +240,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setUInt32Array(String name, long[] value);
+	public void setUInt32ArrayField(String name, long[] value);
 	
 	
 
@@ -249,7 +249,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public long[] getUInt32Array(String name);
+	public long[] getUInt32ArrayField(String name);
 	
 	
 	public void setUInt32ArrayMethod(String name, UInt32ArrayNeFunction function);
@@ -261,7 +261,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setUInt64(String name, long value);
+	public void setUInt64Field(String name, long value);
 	
 
 
@@ -270,7 +270,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public long getUInt64(String name);
+	public long getUInt64Field(String name);
 	
 	
 
@@ -293,7 +293,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setInt8(String name, int value);
+	public void setInt8Field(String name, int value);
 	
 	
 
@@ -302,7 +302,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public int getInt8(String name);
+	public int getInt8Field(String name);
 	
 	
 	/**
@@ -318,13 +318,13 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setInt16(String name, int value);
+	public void setInt16Field(String name, int value);
 
 
 	/*
 	 * 
 	 */
-	public int getInt16(String name);
+	public int getInt16Field(String name);
 	
 	
 	/**
@@ -341,7 +341,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setInt32(String name, int value);
+	public void setInt32Field(String name, int value);
 	
 
 
@@ -350,7 +350,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public int getInt32(String name);
+	public int getInt32Field(String name);
 	
 
 	
@@ -367,7 +367,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setInt64(String name, long value);
+	public void setInt64Field(String name, long value);
 
 
 	/**
@@ -375,7 +375,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public long getInt64(String name);
+	public long getInt64Field(String name);
 	
 	
 	
@@ -393,7 +393,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setInt64Array(String name, long[] value);
+	public void setInt64ArrayField(String name, long[] value);
 	
 
 	/**
@@ -401,7 +401,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public long[] getInt64Array(String name);
+	public long[] getInt64ArrayField(String name);
 	
 
 
@@ -410,7 +410,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setFloat32(String name, float value);
+	public void setFloat32Field(String name, float value);
 
 
 	/**
@@ -418,7 +418,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public float getFloat32(String name);
+	public float getFloat32Field(String name);
 	
 	/**
 	 * 
@@ -433,7 +433,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setFloat32Array(String name, float[] value);
+	public void setFloat32ArrayField(String name, float[] value);
 
 
 
@@ -442,7 +442,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public float[] getFloat32Array(String name);
+	public float[] getFloat32ArrayField(String name);
 
 	
 	public void setFloat32ArrayMethod(String name, Float32ArrayNeFunction function);
@@ -455,7 +455,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setFloat64(String name, double value);
+	public void setFloat64Field(String name, double value);
 
 
 	/**
@@ -463,7 +463,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public double getFloat64(String name);
+	public double getFloat64Field(String name);
 
 	/**
 	 * 
@@ -478,7 +478,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setFloat64Array(String name, double[] value);
+	public void setFloat64ArrayField(String name, double[] value);
 
 
 	/**
@@ -486,7 +486,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public double[] getFloat64Array(String name);
+	public double[] getFloat64ArrayField(String name);
 
 
 	/**
@@ -502,10 +502,10 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setStringUTF8(String name, String value);
+	public void setStringUTF8Field(String name, String value);
 
 
-	public String getStringUTF8(String name);
+	public String getStringUTF8Field(String name);
 
 
 	/**
@@ -521,7 +521,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public void setStringUTF8Array(String name, String[] value);
+	public void setStringUTF8ArrayField(String name, String[] value);
 
 
 	/**
@@ -529,7 +529,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public String[] getStringUTF8Array(String name);
+	public String[] getStringUTF8ArrayField(String name);
 	
 	
 	/**
@@ -547,7 +547,7 @@ public interface NeVertex {
 	 * @param name
 	 * @param value
 	 */
-	public <T extends NeObject> void setObj(String name, T value);
+	public <T extends NeObject> void setObjectField(String name, T value);
 
 
 	/**
@@ -556,7 +556,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return
 	 */
-	public <T extends NeObject> T getObj(String name);
+	public <T extends NeObject> T getObjectField(String name);
 	
 	
 	/**
@@ -570,7 +570,7 @@ public interface NeVertex {
 
 
 
-	public <T extends NeObject> void setObjList(String name, List<T> value);
+	public <T extends NeObject> void setObjectListField(String name, List<T> value);
 
 
 	
@@ -580,7 +580,7 @@ public interface NeVertex {
 	 * @param name
 	 * @return a <b>COPY</b> of the underlying list
 	 */
-	public <T extends NeObject> List<T> getObjList(String name);
+	public <T extends NeObject> List<T> getObjectListField(String name);
 
 	
 	/**
