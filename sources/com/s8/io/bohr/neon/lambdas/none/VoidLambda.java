@@ -1,4 +1,4 @@
-package com.s8.io.bohr.neon.lambdas;
+package com.s8.io.bohr.neon.lambdas.none;
 
 public interface VoidLambda {
 

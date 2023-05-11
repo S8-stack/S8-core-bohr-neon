@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.functions.none;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.functions.NeFunction;
 
-public abstract class VoidNeFunction extends NeFunction {
+public interface VoidNeFunction extends NeFunction {
 
 	
 	
@@ -11,7 +11,7 @@ public abstract class VoidNeFunction extends NeFunction {
 
 	
 	@Override
-	public long getSignature() { 
+	public default long getSignature() { 
 		return SIGNATURE; 
 	}
 	

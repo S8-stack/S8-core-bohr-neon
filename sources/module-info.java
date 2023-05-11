@@ -20,7 +20,7 @@ module com.s8.io.bohr.neon {
 	exports com.s8.io.bohr.neon.fields.objects;
 	
 	
-	exports com.s8.io.bohr.neon.lambdas;
+	exports com.s8.io.bohr.neon.lambdas.none;
 	exports com.s8.io.bohr.neon.lambdas.primitives;
 	exports com.s8.io.bohr.neon.lambdas.arrays;
 	exports com.s8.io.bohr.neon.lambdas.list;

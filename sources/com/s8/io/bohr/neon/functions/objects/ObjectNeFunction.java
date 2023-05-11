@@ -9,7 +9,7 @@ import com.s8.io.bohr.neon.functions.NeFunction;
  * @author pierreconvert
  *
  */
-public abstract class ObjectNeFunction<T extends NeObject> extends NeFunction {
+public interface ObjectNeFunction<T extends NeObject> extends NeFunction {
 
 	
 	
@@ -17,7 +17,7 @@ public abstract class ObjectNeFunction<T extends NeObject> extends NeFunction {
 
 	
 	@Override
-	public long getSignature() { 
+	public default long getSignature() { 
 		return SIGNATURE; 
 	}
 	

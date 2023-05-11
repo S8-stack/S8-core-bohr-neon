@@ -1,6 +1,6 @@
 package com.s8.io.bohr.neon.functions;
 
-public abstract class NeFunction {
+public interface NeFunction {
 	
 
 	public abstract long getSignature();

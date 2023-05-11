@@ -8,12 +8,12 @@ import com.s8.io.bohr.neon.functions.NeFunction;
  * @author pierreconvert
  *
  */
-public abstract class UInt64ArrayNeFunction extends NeFunction {
+public interface UInt64ArrayNeFunction extends NeFunction {
 
 	
 	public final static long SIGNATURE = (BOHR_Types.ARRAY << 8) & BOHR_Types.UINT64;
 
-	public @Override long getSignature() { return SIGNATURE; }
+	public @Override default long getSignature() { return SIGNATURE; }
 	
 	
 	/**
