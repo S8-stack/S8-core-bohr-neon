@@ -7,7 +7,7 @@ public interface VoidLambda {
 	/**
 	 * 
 	 */
-	public void operate() throws Exception;
+	public void operate();
 
 
 
