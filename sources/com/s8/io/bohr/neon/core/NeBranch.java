@@ -16,8 +16,6 @@ import com.s8.io.bytes.base64.Base64Generator;
 public class NeBranch {
 	
 	
-	public final String address;
-	
 	public final String id;
 	
 	
@@ -49,9 +47,8 @@ public class NeBranch {
 	
 	private final Base64Generator idxGen;
 	
-	public NeBranch(String address, String id) {
+	public NeBranch(String id) {
 		super();
-		this.address = address;
 		this.id = id;
 		
 		prototypesByName = new HashMap<>();
