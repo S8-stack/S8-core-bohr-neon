@@ -26,6 +26,26 @@ import com.s8.io.bohr.neon.functions.primitives.UInt16NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt32NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt64NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt8NeFunction;
+import com.s8.io.bohr.neon.lambdas.arrays.Bool8ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.arrays.Float32ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.arrays.Float64ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.arrays.StringUTF8ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.arrays.UInt16ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.arrays.UInt32ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.arrays.UInt64ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.arrays.UInt8ArrayLambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Bool8Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Float32Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Float64Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Int16Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Int32Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Int64Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.Int8Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.StringUTF8Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.UInt16Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.UInt32Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.UInt64Lambda;
+import com.s8.io.bohr.neon.lambdas.primitives.UInt8Lambda;
 import com.s8.io.bytes.alpha.ByteOutflow;
 
 
@@ -107,6 +127,9 @@ public interface NeVertex {
 	 */
 	public void setBool8Method(String name, Bool8NeFunction function);
 
+	public default void setBool8Method(String name, Bool8Lambda lambda) {
+		setBool8Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 
 	/**
@@ -132,6 +155,10 @@ public interface NeVertex {
 	 */
 	public void setBool8ArrayMethod(String name, Bool8ArrayNeFunction function);
 
+	
+	public default void setBool8ArrayMethod(String name, Bool8ArrayLambda lambda) {
+		setBool8ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 
 	/**
 	 * 
@@ -160,6 +187,16 @@ public interface NeVertex {
 	/**
 	 * 
 	 * @param name
+	 * @param lambda
+	 */
+	public default void setUInt8Method(String name, UInt8Lambda lambda) {
+		setUInt8Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
+	
+	
+	/**
+	 * 
+	 * @param name
 	 * @param value
 	 */
 	public void setUInt8ArrayField(String name, int[] value);
@@ -175,6 +212,9 @@ public interface NeVertex {
 	
 	public void setUInt8ArrayMethod(String name, UInt8ArrayNeFunction function);
 
+	public default void setUInt8ArrayMethod(String name, UInt8ArrayLambda lambda) {
+		setUInt8ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 
 	/**
 	 * 
@@ -195,7 +235,11 @@ public interface NeVertex {
 	 * @param function
 	 */
 	public void setUInt16Method(String name, UInt16NeFunction function);
-
+	
+	
+	public default void setUInt16Method(String name, UInt16Lambda lambda) {
+		setUInt16Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 	/**
 	 * 
@@ -214,6 +258,9 @@ public interface NeVertex {
 	
 	public void setUInt16ArrayMethod(String name, UInt16ArrayNeFunction function);
 
+	public default void setUInt16ArrayMethod(String name, UInt16ArrayLambda lambda) {
+		setUInt16ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 
 	/**
 	 * 
@@ -238,6 +285,9 @@ public interface NeVertex {
 	 */
 	public void setUInt32Method(String name, UInt32NeFunction function);
 
+	public default void setUInt32Method(String name, UInt32Lambda lambda) {
+		setUInt32Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 	
 	/**
@@ -259,6 +309,10 @@ public interface NeVertex {
 	
 	public void setUInt32ArrayMethod(String name, UInt32ArrayNeFunction function);
 
+	
+	public default void setUInt32ArrayMethod(String name, UInt32ArrayLambda lambda) {
+		setUInt32ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 
 
 	/**
@@ -287,10 +341,16 @@ public interface NeVertex {
 	public void setUInt64Method(String name, UInt64NeFunction function);
 	
 	
+	public default void setUInt64Method(String name, UInt64Lambda lambda) {
+		setUInt64Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 
 	public void setUInt64ArrayMethod(String name, UInt64ArrayNeFunction function);
 
+	public default void setUInt64ArrayMethod(String name, UInt64ArrayLambda lambda) {
+		setUInt64ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 	
 	/**
@@ -317,6 +377,10 @@ public interface NeVertex {
 	 */
 	public void setInt8Method(String name, Int8NeFunction function);
 	
+	public default void setInt8Method(String name, Int8Lambda lambda) {
+		setInt8Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
+	
 
 	/**
 	 * 
@@ -338,6 +402,15 @@ public interface NeVertex {
 	 * @param function
 	 */
 	public void setInt16Method(String name, Int16NeFunction function);
+	
+	/**
+	 * 
+	 * @param name
+	 * @param lambda
+	 */
+	public default void setInt16Method(String name, Int16Lambda lambda) {
+		setInt16Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 
 
@@ -366,6 +439,9 @@ public interface NeVertex {
 	 */
 	public void setInt32Method(String name, Int32NeFunction function);
 	
+	public default void setInt32Method(String name, Int32Lambda lambda) {
+		setInt32Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 	/**
 	 * 
@@ -392,6 +468,9 @@ public interface NeVertex {
 	public void setInt64Method(String name, Int64NeFunction function);
 	
 	
+	public default void setInt64Method(String name, Int64Lambda lambda) {
+		setInt64Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 
 	/**
 	 * 
@@ -432,7 +511,11 @@ public interface NeVertex {
 	 */
 	public void setFloat32Method(String name, Float32NeFunction function);
 
-
+	public default void setFloat32Method(String name, Float32Lambda lambda) {
+		setFloat32Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
+	
+	
 	/**
 	 * 
 	 * @param name
@@ -452,7 +535,9 @@ public interface NeVertex {
 	
 	public void setFloat32ArrayMethod(String name, Float32ArrayNeFunction function);
 
-
+	public default void setFloat32ArrayMethod(String name, Float32ArrayLambda lambda) {
+		setFloat32ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 
 
 	/**
@@ -477,6 +562,9 @@ public interface NeVertex {
 	 */
 	public void setFloat64Method(String name, Float64NeFunction function);
 
+	public default void setFloat64Method(String name, Float64Lambda lambda) {
+		setFloat64Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 	/**
 	 * 
@@ -501,6 +589,9 @@ public interface NeVertex {
 	 */
 	public void setFloat64ArrayMethod(String name, Float64ArrayNeFunction function);
 
+	public default void setFloat64ArrayMethod(String name, Float64ArrayLambda lambda) {
+		setFloat64ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 	
 	/**
 	 * 
@@ -521,6 +612,11 @@ public interface NeVertex {
 	public void setStringUTF8Method(String name, StringUTF8NeFunction function);
 	
 
+	public default void setStringUTF8Method(String name, StringUTF8Lambda lambda) {
+		setStringUTF8Method(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
+	
+	
 	/**
 	 * 
 	 * @param name
@@ -544,7 +640,9 @@ public interface NeVertex {
 	 */
 	public void setStringUTF8ArrayMethod(String name, StringUTF8ArrayNeFunction function);
 
-
+	public default void setStringUTF8ArrayMethod(String name, StringUTF8ArrayLambda lambda) {
+		setStringUTF8ArrayMethod(name, (flow, value) -> flow.then(0, () -> lambda.operate(value)).send());
+	}
 
 	/**
 	 * 
@@ -571,8 +669,6 @@ public interface NeVertex {
 	 * @return
 	 */
 	public <T extends NeObject> void setObjectMethod(String name, ObjectNeFunction<T> function);
-
-
 
 
 	public <T extends NeObject> void setObjectListField(String name, List<T> value);
