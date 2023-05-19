@@ -2,6 +2,7 @@ package com.s8.io.bohr.neon.core;
 
 import java.io.IOException;
 
+import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Keywords;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.methods.NeMethod;
@@ -38,13 +39,13 @@ public class NeInbound {
 	 * @param inflow
 	 * @throws IOException
 	 */
-	public void consume(Object context, ByteInflow inflow) throws IOException {
+	public void consume(S8AsyncFlow flow, ByteInflow inflow) throws IOException {
 		int code;
 		boolean isClosed = false;
 		while(!isClosed) {
 			switch(code = inflow.getUInt8()) {
 			case BOHR_Keywords.DECLARE_METHOD: declareMethod(inflow); break;
-			case BOHR_Keywords.RUN_METHOD : runFunc(context, inflow); break;
+			case BOHR_Keywords.RUN_METHOD : runFunc(flow, inflow); break;
 			case BOHR_Keywords.CLOSE_JUMP : isClosed = true; break;
 			default: throw new IOException("[NeInbound] Code "+code+" is not supported");
 			}
@@ -78,7 +79,7 @@ public class NeInbound {
 	 * @param inflow
 	 * @throws IOException
 	 */
-	private void runFunc(Object context, ByteInflow inflow) throws IOException {
+	private void runFunc(S8AsyncFlow flow, ByteInflow inflow) throws IOException {
 		
 		String index = inflow.getStringUTF8();
 		NeVertex vertex = branch.vertices.get(index);
@@ -94,7 +95,7 @@ public class NeInbound {
 		if(function == null) { throw new IOException("Missing func @ code = "+code+", for index = "+index); }
 		
 		/* run function */
-		runner.run(branch, context, inflow, function);
+		runner.run(branch, flow, inflow, function);
 	}
 
 	

@@ -1,8 +1,10 @@
 package com.s8.io.bohr.neon.functions.arrays;
 
+import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.functions.NeFunction;
 
+@FunctionalInterface
 public interface Int16ArrayNeFunction extends NeFunction {
 	
 	
@@ -14,6 +16,6 @@ public interface Int16ArrayNeFunction extends NeFunction {
 	 * 
 	 * @param arg
 	 */
-	public abstract void run(Object context, int[] arg);
+	public abstract void run(S8AsyncFlow flow, int[] arg);
 	
 }

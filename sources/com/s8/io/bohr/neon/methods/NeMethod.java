@@ -2,6 +2,7 @@ package com.s8.io.bohr.neon.methods;
 
 import java.io.IOException;
 
+import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
@@ -78,7 +79,7 @@ public abstract class NeMethod {
 	 * @param lambda
 	 * @throws IOException
 	 */
-	public abstract void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException;
+	public abstract void run(NeBranch branch, S8AsyncFlow flow, ByteInflow inflow, NeFunction function) throws IOException;
 
 
 

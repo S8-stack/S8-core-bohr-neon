@@ -49,8 +49,13 @@ public interface NeVertex {
 	
 	public NeBranch getBranch();
 	
-
+	
+	/**
+	 * Object attached to this vertex
+	 * @return
+	 */
 	public NeObject getAttachedObject();
+
 
 	
 	public NeObjectTypeHandler getPrototype();
@@ -599,6 +604,8 @@ public interface NeVertex {
 	 * @param obj
 	 */
 	public <T extends NeObject> void removeObjFromList(String name, T obj);
+
+
 
 
 	

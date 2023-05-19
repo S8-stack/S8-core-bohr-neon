@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObject;
-import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.objects.ObjectsListNeFunction;
+import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 /**
@@ -44,7 +45,7 @@ public class ListNeMethod<T extends NeObject> extends NeMethod {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, S8AsyncFlow flow, ByteInflow inflow, NeFunction function) throws IOException {
 		List<T> list = null;
 		int length = (int) inflow.getUInt7x();
 		if(length >= 0) {
@@ -54,6 +55,6 @@ public class ListNeMethod<T extends NeObject> extends NeMethod {
 				list.add(index != null ? (T) branch.getObject(index) : null);
 			}	
 		}
-		((ObjectsListNeFunction<T>) function).run(context, list);	
+		((ObjectsListNeFunction<T>) function).run(flow, list);	
 	}
 }

@@ -2,6 +2,7 @@ package com.s8.io.bohr.neon.methods.arrays;
 
 import java.io.IOException;
 
+import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
@@ -43,7 +44,7 @@ public class StringUTF8ArrayNeMethod extends NeMethod {
 
 
 	@Override
-	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, S8AsyncFlow flow, ByteInflow inflow, NeFunction function) throws IOException {
 		String[] arg = null;
 		int length = (int) inflow.getUInt7x();
 		if(length >= 0) {
@@ -51,7 +52,7 @@ public class StringUTF8ArrayNeMethod extends NeMethod {
 			for(int i=0; i<length; i++) { arg[i] = inflow.getStringUTF8(); }
 			
 		}
-		((StringUTF8ArrayNeFunction) function).run(context, arg);
+		((StringUTF8ArrayNeFunction) function).run(flow, arg);
 	}
 
 }

@@ -3,7 +3,6 @@ package com.s8.io.bohr.neon.core;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.s8.io.bohr.neon.functions.NeSyncFuncGenerator;
 import com.s8.io.bytes.base64.Base64Generator;
 
 /**
@@ -21,7 +20,6 @@ public class NeBranch {
 	
 	public final String id;
 	
-	public final NeSyncFuncGenerator sync;
 	
 	
 	final Map<String, NeObjectTypeHandler> prototypesByName;
@@ -51,11 +49,10 @@ public class NeBranch {
 	
 	private final Base64Generator idxGen;
 	
-	public NeBranch(String address, String id, NeSyncFuncGenerator sync) {
+	public NeBranch(String address, String id) {
 		super();
 		this.address = address;
 		this.id = id;
-		this.sync = sync;
 		
 		prototypesByName = new HashMap<>();
 		prototypesByCode = new HashMap<>();

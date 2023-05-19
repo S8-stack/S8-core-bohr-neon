@@ -2,6 +2,7 @@ package com.s8.io.bohr.neon.methods.primitives;
 
 import java.io.IOException;
 
+import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
@@ -36,9 +37,9 @@ public class Bool8NeMethod extends NeMethod {
 
 
 	@Override
-	public void run(NeBranch branch, Object context, ByteInflow inflow, NeFunction function) throws IOException {
+	public void run(NeBranch branch, S8AsyncFlow flow, ByteInflow inflow, NeFunction function) throws IOException {
 		boolean arg = inflow.getBool8();
 		//if(function.getSignature() != getSignature()) { throw new IOException("Wrong signature"); }
-		((Bool8NeFunction) function).run(context, arg);
+		((Bool8NeFunction) function).run(flow, arg);
 	}
 }
