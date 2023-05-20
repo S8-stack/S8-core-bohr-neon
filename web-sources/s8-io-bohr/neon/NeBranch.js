@@ -11,6 +11,12 @@ import { jump } from "./NeJump.js";
 
 
 export class NeBranch {
+	
+	
+	/**
+	 * UInt8
+	 */
+	requestKeyword;
 
 	/**
 	 * @type {Map<string, NeObjectTypeHandler>}
@@ -33,14 +39,15 @@ export class NeBranch {
 	/**
 	 * Out of thin air!
 	 */
-	constructor() {
+	constructor(screenNode, requestKeyword) {
+		
+		this.requestKeyword = requestKeyword;
 
 		/** views */
 		this.vertices.set("NULL", null);
 
 		/* <screen> */
-		this.screenNode = document.createElement("div");
-		document.body.appendChild(this.screenNode);
+		this.screenNode = screenNode;
 		/* </screen> */
 
 		// create branch inbound

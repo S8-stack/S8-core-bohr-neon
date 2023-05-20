@@ -28,7 +28,7 @@ class S8Context {
 	/**
 	 * @type {NeBranch}
 	 */
-	branch = new NeBranch();
+	branch;
 
 
 	constructor() {
