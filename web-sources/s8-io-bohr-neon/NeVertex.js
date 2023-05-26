@@ -3,8 +3,8 @@
 import { ByteInflow } from "/s8-io-bytes/ByteInflow.js";
 import { ByteOutflow } from "/s8-io-bytes/ByteOutflow.js";
 
-import { S8 } from "/s8-io-bohr/atom/S8.js";
-import { BOHR_Keywords, BOHR_Methods } from "/s8-io-bohr/atom/BOHR_Protocol.js";
+import { S8 } from "/s8-io-bohr-atom/S8.js";
+import { BOHR_Keywords, BOHR_Methods } from "/s8-io-bohr-atom/BOHR_Protocol.js";
 
 import { NeBranch } from "./NeBranch.js";
 import { NeObject } from "./NeObject.js";
