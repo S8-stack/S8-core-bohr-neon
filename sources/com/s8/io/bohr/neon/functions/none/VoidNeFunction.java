@@ -8,7 +8,7 @@ public interface VoidNeFunction extends NeFunction {
 
 	
 	
-	public final static long SIGNATURE = BOHR_Types.BOOL8;
+	public final static long SIGNATURE = BOHR_Types.VOID;
 
 	
 	@Override

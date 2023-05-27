@@ -14,9 +14,9 @@ export class NeBranch {
 	
 	
 	/**
-	 * UInt8
+	 * @type{number} UInt8
 	 */
-	requestKeyword;
+	requestRunFuncKeyword;
 
 	/**
 	 * @type {Map<string, NeObjectTypeHandler>}
@@ -39,9 +39,9 @@ export class NeBranch {
 	/**
 	 * Out of thin air!
 	 */
-	constructor(screenNode, requestKeyword) {
+	constructor(screenNode, requestRunFuncKeyword) {
 		
-		this.requestKeyword = requestKeyword;
+		this.requestRunFuncKeyword = requestRunFuncKeyword;
 
 		/** views */
 		this.vertices.set("NULL", null);

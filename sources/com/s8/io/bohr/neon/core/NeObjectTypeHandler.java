@@ -60,7 +60,7 @@ import com.s8.io.bohr.neon.methods.primitives.UInt16NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt32NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt64NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethod;
-import com.s8.io.bohr.neon.methods.primitives.VoidNeMethodRunner;
+import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 import com.s8.io.bytes.alpha.ByteOutflow;
 
@@ -121,16 +121,16 @@ public class NeObjectTypeHandler {
 
 	
 	
-	public VoidNeMethodRunner getVoidMethod(String name) {
+	public VoidNeMethod getVoidMethod(String name) {
 		NeMethod method = methodByName.get(name);
 		if(method != null) {
-			if(method.getSignature() != VoidNeMethodRunner.SIGNATURE) { 
+			if(method.getSignature() != VoidNeMethod.SIGNATURE) { 
 				throw new RuntimeException("Cannot change field signature"); 
 			}
-			return (VoidNeMethodRunner) method;
+			return (VoidNeMethod) method;
 		}
 		else {
-			VoidNeMethodRunner newMethod = new VoidNeMethodRunner(this, name, nextMethodOrdinal++);
+			VoidNeMethod newMethod = new VoidNeMethod(this, name, nextMethodOrdinal++);
 			appendMethod(newMethod);
 			return newMethod;
 		}
@@ -1233,10 +1233,13 @@ public class NeObjectTypeHandler {
 		
 		long format = NeMethod.parseFormat(inflow);
 		if(format != methodRunner.getSignature()) {
-			System.err.println("Lismatch in signature for method: "+methodName);
+			System.err.println("Mismatch in signature for method: "+methodName);
+			System.err.println("\tDeclared by front: "+format);
+			System.err.println("\tDeclared by back: "+methodRunner.getSignature());
 		}
 		
 
+		/** method code */
 		int code = inflow.getUInt8();
 		
 		methodRunner.code = code;

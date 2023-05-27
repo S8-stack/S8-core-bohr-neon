@@ -1,4 +1,4 @@
-package com.s8.io.bohr.neon.methods.primitives;
+package com.s8.io.bohr.neon.methods.zero;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class VoidNeMethodRunner extends NeMethod {
+public class VoidNeMethod extends NeMethod {
 
 
 	public interface Lambda {
@@ -38,7 +38,7 @@ public class VoidNeMethodRunner extends NeMethod {
 	 * @param prototype
 	 * @param name
 	 */
-	public VoidNeMethodRunner(NeObjectTypeHandler prototype, String name, int ordinal) {
+	public VoidNeMethod(NeObjectTypeHandler prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 

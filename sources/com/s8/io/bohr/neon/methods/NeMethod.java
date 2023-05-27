@@ -31,7 +31,7 @@ import com.s8.io.bohr.neon.methods.primitives.UInt16NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt32NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt64NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethod;
-import com.s8.io.bohr.neon.methods.primitives.VoidNeMethodRunner;
+import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 
@@ -99,7 +99,7 @@ public abstract class NeMethod {
 		switch (code) {
 		
 		/* <specials> */
-		case BOHR_Types.VOID: return VoidNeMethodRunner.SIGNATURE;
+		case BOHR_Types.VOID: return VoidNeMethod.SIGNATURE;
 		/* </specials> */
 
 

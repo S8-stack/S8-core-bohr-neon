@@ -42,6 +42,7 @@ import com.s8.io.bohr.neon.methods.primitives.UInt16NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt32NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt64NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethod;
+import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
 
 
 /**
@@ -106,7 +107,7 @@ public class NeVertexLayer2 extends NeVertexLayer1 {
 	public void setVoidMethod(String name, VoidNeFunction function) {
 
 		/* retrieve (or define if first time) method runner */
-		Bool8NeMethod method = prototype.getBool8Method(name);
+		VoidNeMethod method = prototype.getVoidMethod(name);
 		int ordinal = getMethodOrdinal(method);
 		functions[ordinal] = function;
 	}
