@@ -18,7 +18,7 @@ public class AircraftRotor extends NeObject {
 	public AircraftRotor(NeBranch branch) {
 		super(branch, "Aircraft-rotor");
 		
-		vertex.setFloat32Method("pitch", (flow, p) -> flow.then(0, ()-> {
+		vertex.setFloat32Method("pitch", (flow, p) -> flow.runBlock(0, ()-> {
 			vertex.setFloat64Field("pitch^2", p*p);
 			vertex.setFloat64Field("pitch*radius", p*vertex.getFloat64Field("radius"));
 		}).send());
