@@ -103,7 +103,7 @@ public abstract class NeVertexLayer0 implements NeVertex {
 
 
 	@Override
-	public String getIndex() {
+	public String getId() {
 
 		if(index == null) {
 
@@ -161,7 +161,7 @@ public abstract class NeVertexLayer0 implements NeVertex {
 	public void publish(ByteOutflow outflow) throws IOException {
 
 		if(hasUnpublishedChanges) {
-			String index = getIndex();
+			String index = getId();
 
 			/* publish prototype */
 			prototype.publish_DECLARE_TYPE(outflow);
@@ -530,7 +530,7 @@ public abstract class NeVertexLayer0 implements NeVertex {
 		if(obj != null) {
 			ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 			NeFieldValue entry = getEntry(field);
-			field.remove(entry, obj.vertex.getIndex());
+			field.remove(entry, obj.vertex.getId());
 		}
 	}
 

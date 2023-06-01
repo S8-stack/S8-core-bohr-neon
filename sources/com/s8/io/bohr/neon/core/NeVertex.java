@@ -64,7 +64,7 @@ public interface NeVertex {
 	 * 
 	 * @return index
 	 */
-	public String getIndex();
+	public String getId();
 	
 	
 	

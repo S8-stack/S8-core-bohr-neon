@@ -20,7 +20,7 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  * 
  */
 public class ObjNeFieldHandler<T extends NeObject> extends NeFieldHandler {
-	
+
 	public final static long SIGNATURE =  BOHR_Types.S8OBJECT;
 
 	public @Override long getSignature() { return SIGNATURE; }
@@ -39,8 +39,8 @@ public class ObjNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 		outflow.putUInt8(BOHR_Types.S8OBJECT);
 	}
 
-	
-	
+
+
 
 	/**
 	 * 
@@ -51,8 +51,8 @@ public class ObjNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 	public T get(NeFieldValue wrapper) {
 		return ((Value<T>) wrapper).value;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param values
@@ -62,49 +62,63 @@ public class ObjNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 	public void set(NeFieldValue wrapper, T value) {
 		((Value<T>) wrapper).setValue(value);
 	}
-	
-	
+
+
 	@Override
 	public NeFieldValue createValue() {
 		return new Value<>();
 	}
-	
 
-	
+
+
 	/**
 	 * 
 	 * @author pierreconvert
 	 *
 	 */
 	public static class Value<T extends NeObject> extends NeFieldValue {
-		
+
 		private T value;
-	
+
 		public Value() {
 			super();
 		}
-		
-		
+
+
+		private boolean checkIfHasDelta(T value) {
+			return (this.value == null && value != null) || 
+					(this.value != null && value == null) ||
+					(this.value != null && value != null && !this.value.vertex.getId().equals(value.vertex.getId()));
+
+		}
+
+
+		/**
+		 * 
+		 * @param value
+		 */
 		public void setValue(T value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(checkIfHasDelta(value)) {
+				this.value = value;
+				this.hasDelta = true;	
+			}
 		}
 
 		@Override
 		public void compose(ByteOutflow outflow) throws IOException {
-			outflow.putStringUTF8(value != null ? value.vertex.getIndex() : null);
+			outflow.putStringUTF8(value != null ? value.vertex.getId() : null);
 		}
 
-		
+
 		@Override
 		public void parse(ByteInflow inflow, BuildScope scope) throws IOException {
-			
+
 			// get index
 			String index = inflow.getStringUTF8();
-			
+
 			if(index != null) {
 				scope.appendBinding(new BuildScope.Binding() {
-					
+
 					@SuppressWarnings("unchecked")
 					@Override
 					public void resolve(BuildScope scope) throws IOException {

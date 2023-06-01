@@ -80,10 +80,45 @@ public class Float64ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 			super();
 		}
 		
-		public void setValue(double[] value) {
-			this.value = value;
-			this.hasDelta = true;
+		
+		/**
+		 * 
+		 * @param value
+		 * @return
+		 */
+		private boolean checkIfHasDelta(double[] value) {
+			if(this.value == null && value == null) {
+				return false;
+			}
+			else if((this.value != null && value == null) || (this.value == null && value != null)) {
+				return true;
+			}
+			else { /* this.value != null && value != null */
+				int nLeft = this.value.length, nRight = value.length;
+				if(nLeft != nRight) {
+					return true;
+				}
+				else {
+					for(int i= 0; i<nLeft; i++) {
+						if(this.value[i] != value[i]) { return true; }
+					}
+					return false;
+				}
+			}
 		}
+		
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public void setValue(double[] value) {
+			if(checkIfHasDelta(value)) {
+				this.value = value;
+				this.hasDelta = true;		
+			}
+		}
+		
 
 		@Override
 		public void compose(ByteOutflow outflow) throws IOException {

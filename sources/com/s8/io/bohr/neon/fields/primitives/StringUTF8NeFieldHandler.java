@@ -19,12 +19,12 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  */
 public class StringUTF8NeFieldHandler extends PrimitiveNeFieldHandler {
 
-	
+
 	public final static long SIGNATURE = BOHR_Types.STRING_UTF8;
 
 	public @Override long getSignature() { return SIGNATURE; }
 
-	
+
 
 
 	public StringUTF8NeFieldHandler(NeObjectTypeHandler prototype, String name) {
@@ -45,8 +45,8 @@ public class StringUTF8NeFieldHandler extends PrimitiveNeFieldHandler {
 	public String get(NeFieldValue wrapper) {
 		return ((Value) wrapper).value;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param values
@@ -55,9 +55,9 @@ public class StringUTF8NeFieldHandler extends PrimitiveNeFieldHandler {
 	public void set(NeFieldValue wrapper, String value) {
 		((Value) wrapper).setValue(value);
 	}
-	
-	
-	
+
+
+
 	@Override
 	public NeFieldValue createValue() {
 		return new Value();
@@ -71,16 +71,19 @@ public class StringUTF8NeFieldHandler extends PrimitiveNeFieldHandler {
 	 *
 	 */
 	public static class Value extends PrimitiveNeFieldHandler.Value {
-		
+
 		private String value;
-	
+
 		public Value() {
 			super();
 		}
-		
+
 		public void setValue(String value) {
-			this.value = value;
-			this.hasDelta = true;
+			if((this.value == null && value != null) || (this.value != null && value == null) ||
+					(this.value != null && value != null && !this.value.equals(value))) {
+				this.value = value;
+				this.hasDelta = true;
+			}
 		}
 
 		@Override

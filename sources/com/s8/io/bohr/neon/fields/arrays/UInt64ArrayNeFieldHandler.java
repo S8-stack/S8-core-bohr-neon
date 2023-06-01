@@ -43,8 +43,8 @@ public class UInt64ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public long[] get(NeFieldValue wrapper) {
 		return ((Value) wrapper).value;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param values
@@ -53,31 +53,55 @@ public class UInt64ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public void set(NeFieldValue wrapper, long[] value) {
 		((Value) wrapper).setValue(value);
 	}
-	
+
 
 	@Override
 	public NeFieldValue createValue() {
 		return new Value();
 	}
 
-	
-	
+
+
 	/**
 	 * 
 	 * @author pierreconvert
 	 *
 	 */
 	public static class Value extends PrimitiveNeFieldHandler.Value {
-		
+
 		private long[] value;
-	
+
 		public Value() {
 			super();
 		}
 
+
+		private boolean checkIfHasDelta(long[] value) {
+			if(this.value == null && value == null) {
+				return false;
+			}
+			else if((this.value != null && value == null) || (this.value == null && value != null)) {
+				return true;
+			}
+			else { /* this.value != null && value != null */
+				int nLeft = this.value.length, nRight = value.length;
+				if(nLeft != nRight) {
+					return true;
+				}
+				else {
+					for(int i= 0; i<nLeft; i++) {
+						if(this.value[i] != value[i]) { return true; }
+					}
+					return false;
+				}
+			}
+		}
+
 		public void setValue(long[] value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(checkIfHasDelta(value)) {
+				this.value = value;
+				this.hasDelta = true;
+			}
 		}
 
 		@Override

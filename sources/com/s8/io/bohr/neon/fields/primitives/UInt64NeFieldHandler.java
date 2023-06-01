@@ -78,8 +78,10 @@ public class UInt64NeFieldHandler extends PrimitiveNeFieldHandler {
 		}
 		
 		public void setValue(long value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(this.value != value) {
+				this.value = value;
+				this.hasDelta = true;	
+			}
 		}
 
 		@Override

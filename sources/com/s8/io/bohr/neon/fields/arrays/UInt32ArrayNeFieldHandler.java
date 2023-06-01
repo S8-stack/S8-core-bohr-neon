@@ -76,9 +76,34 @@ public class UInt32ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 			super();
 		}
 		
+		
+		private boolean checkIfHasDelta(long[] value) {
+			if(this.value == null && value == null) {
+				return false;
+			}
+			else if((this.value != null && value == null) || (this.value == null && value != null)) {
+				return true;
+			}
+			else { /* this.value != null && value != null */
+				int nLeft = this.value.length, nRight = value.length;
+				if(nLeft != nRight) {
+					return true;
+				}
+				else {
+					for(int i= 0; i<nLeft; i++) {
+						if(this.value[i] != value[i]) { return true; }
+					}
+					return false;
+				}
+			}
+		}
+		
+		
 		public void setValue(long[] value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(checkIfHasDelta(value)) {
+				this.value = value;
+				this.hasDelta = true;	
+			}
 		}
 
 

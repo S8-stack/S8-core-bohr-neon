@@ -77,8 +77,10 @@ public class UInt16NeFieldHandler extends PrimitiveNeFieldHandler {
 		}
 		
 		public void setValue(int value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(this.value != value) {
+				this.value = value;
+				this.hasDelta = true;	
+			}
 		}
 
 		@Override

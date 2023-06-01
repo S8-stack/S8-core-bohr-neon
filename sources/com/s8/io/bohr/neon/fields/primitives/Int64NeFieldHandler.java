@@ -19,7 +19,7 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  */
 public class Int64NeFieldHandler extends PrimitiveNeFieldHandler {
 
-	
+
 	public final static long SIGNATURE = BOHR_Types.INT64;
 
 	public @Override long getSignature() { return SIGNATURE; }
@@ -44,8 +44,8 @@ public class Int64NeFieldHandler extends PrimitiveNeFieldHandler {
 	public long get(NeFieldValue wrapper) {
 		return ((Value) wrapper).value;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param values
@@ -54,31 +54,33 @@ public class Int64NeFieldHandler extends PrimitiveNeFieldHandler {
 	public void set(NeFieldValue wrapper, long value) {
 		((Value) wrapper).setValue(value);
 	}
-	
 
-	
+
+
 	@Override
 	public NeFieldValue createValue() {
 		return new Value();
 	}
 
-	
+
 	/**
 	 * 
 	 * @author pierreconvert
 	 *
 	 */
 	public static class Value extends PrimitiveNeFieldHandler.Value {
-		
+
 		private long value;
-	
+
 		public Value() {
 			super();
 		}
-		
+
 		public void setValue(long value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(this.value != value) {
+				this.value = value;
+				this.hasDelta = true;
+			}
 		}
 
 		@Override

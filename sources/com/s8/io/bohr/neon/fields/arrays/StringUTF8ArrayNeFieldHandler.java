@@ -43,8 +43,8 @@ public class StringUTF8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public String[] get(NeFieldValue wrapper) {
 		return ((Value) wrapper).value;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param values
@@ -53,8 +53,8 @@ public class StringUTF8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public void set(NeFieldValue wrapper, String[] value) {
 		((Value) wrapper).setValue(value);
 	}
-	
-	
+
+
 	@Override
 	public NeFieldValue createValue() {
 		return new Value();
@@ -68,16 +68,55 @@ public class StringUTF8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	 *
 	 */
 	public static class Value extends PrimitiveNeFieldHandler.Value {
-		
+
 		private String[] value;
-	
+
 		public Value() {
 			super();
 		}
 
+		
+		/**
+		 * 
+		 * @param value
+		 * @return
+		 */
+		private boolean checkIfHasDelta(String[] value) {
+			if(this.value == null && value == null) {
+				return false;
+			}
+			else if((this.value != null && value == null) || (this.value == null && value != null)) {
+				return true;
+			}
+			else { /* this.value != null && value != null */
+				int nLeft = this.value.length, nRight = value.length;
+				if(nLeft != nRight) {
+					return true;
+				}
+				else {
+					for(int i= 0; i<nLeft; i++) {
+						String left = this.value[i], right = value[i];
+						if((left == null && right != null) || 
+								(left != null && right == null) ||
+								(left != null && right != null && !left.equals(right))) {
+							return true;
+						}
+					}
+					return false;
+				}
+			}
+		}
+
+		
+		/**
+		 * 
+		 * @param value
+		 */
 		public void setValue(String[] value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(checkIfHasDelta(value)) {
+				this.value = value;
+				this.hasDelta = true;	
+			}
 		}
 
 		@Override

@@ -79,8 +79,10 @@ public class Float32NeFieldHandler extends PrimitiveNeFieldHandler {
 		}
 		
 		public void setValue(float value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(this.value != value) {
+				this.value = value;
+				this.hasDelta = true;	
+			}
 		}
 
 		@Override

@@ -22,7 +22,7 @@ public class UInt8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public final static long SIGNATURE =  BOHR_Types.ARRAY << 8 & BOHR_Types.UINT8;
 
 	public @Override long getSignature() { return SIGNATURE; }
-	
+
 
 
 	/**
@@ -49,8 +49,8 @@ public class UInt8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public int[] get(NeFieldValue wrapper) {
 		return ((Value) wrapper).value;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param values
@@ -59,33 +59,58 @@ public class UInt8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public void set(NeFieldValue wrapper, int[] value) {
 		((Value) wrapper).setValue(value);
 	}
-	
+
 
 	@Override
 	public NeFieldValue createValue() {
 		return new Value();
 	}
 
-	
-	
+
+
 	/**
 	 * 
 	 * @author pierreconvert
 	 *
 	 */
 	public static class Value extends PrimitiveNeFieldHandler.Value {
-		
+
 		private int[] value;
-	
+
 		public Value() {
 			super();
 		}
 
-		public void setValue(int[] value) {
-			this.value = value;
-			this.hasDelta = true;
+
+		private boolean checkIfHasDelta(int[] value) {
+			if(this.value == null && value == null) {
+				return false;
+			}
+			else if((this.value != null && value == null) || (this.value == null && value != null)) {
+				return true;
+			}
+			else { /* this.value != null && value != null */
+				int nLeft = this.value.length, nRight = value.length;
+				if(nLeft != nRight) {
+					return true;
+				}
+				else {
+					for(int i= 0; i<nLeft; i++) {
+						if(this.value[i] != value[i]) { return true; }
+					}
+					return false;
+				}
+			}
 		}
-		
+
+
+		public void setValue(int[] value) {
+			if(checkIfHasDelta(value)) {
+				this.value = value;
+				this.hasDelta = true;
+			}
+		}
+
 		@Override
 		public void compose(ByteOutflow outflow) throws IOException {
 			if(value != null) {

@@ -19,12 +19,12 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  */
 public class Float64NeFieldHandler extends PrimitiveNeFieldHandler {
 
-	
+
 	public final static long SIGNATURE = BOHR_Types.FLOAT64;
 
 	public @Override long getSignature() { return SIGNATURE; }
 
-	
+
 
 
 	public Float64NeFieldHandler(NeObjectTypeHandler prototype, String name) {
@@ -36,7 +36,7 @@ public class Float64NeFieldHandler extends PrimitiveNeFieldHandler {
 	public void publishEncoding(ByteOutflow outflow) throws IOException {
 		outflow.putUInt8(BOHR_Types.FLOAT64);
 	}
-	
+
 
 	/**
 	 * 
@@ -46,8 +46,8 @@ public class Float64NeFieldHandler extends PrimitiveNeFieldHandler {
 	public double get(NeFieldValue wrapper) {
 		return ((Value) wrapper).value;
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @param values
@@ -56,33 +56,35 @@ public class Float64NeFieldHandler extends PrimitiveNeFieldHandler {
 	public void set(NeFieldValue wrapper, double value) {
 		((Value) wrapper).setValue(value);
 	}
-	
-	
+
+
 	@Override
 	public NeFieldValue createValue() {
 		return new Value();
 	}
 
-	
 
-	
-	
+
+
+
 	/**
 	 * 
 	 * @author pierreconvert
 	 *
 	 */
 	public static class Value extends PrimitiveNeFieldHandler.Value {
-		
+
 		private double value;
-	
+
 		public Value() {
 			super();
 		}
-		
+
 		public void setValue(double value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(this.value != value) {
+				this.value = value;
+				this.hasDelta = true;
+			}
 		}
 
 		@Override

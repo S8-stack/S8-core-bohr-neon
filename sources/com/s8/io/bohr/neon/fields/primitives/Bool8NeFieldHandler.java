@@ -93,8 +93,10 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 		}
 		
 		public void setValue(boolean value) {
-			this.value = value;
-			this.hasDelta = true;
+			if(this.value != value) {
+				this.value = value;
+				this.hasDelta = true;	
+			}
 		}
 
 		@Override
