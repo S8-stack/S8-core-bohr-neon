@@ -521,6 +521,7 @@ public abstract class NeVertexLayer0 implements NeVertex {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		field.add(entry, obj);
+		onUpdate();
 	}
 
 
@@ -531,6 +532,7 @@ public abstract class NeVertexLayer0 implements NeVertex {
 			ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 			NeFieldValue entry = getEntry(field);
 			field.remove(entry, obj.vertex.getId());
+			onUpdate();
 		}
 	}
 

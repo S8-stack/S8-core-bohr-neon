@@ -1037,7 +1037,7 @@ public class NeObjectTypeHandler {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
 			if(field.getSignature() != StringUTF8NeFieldHandler.SIGNATURE) { 
-				throw new RuntimeException("Cannot change field signature");
+				throw new RuntimeException("Cannot change field signature: "+field.getSignature());
 			}
 
 			return (StringUTF8NeFieldHandler) field;
