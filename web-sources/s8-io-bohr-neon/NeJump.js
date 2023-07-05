@@ -20,6 +20,8 @@ export const jump = function (branch, inflow) {
 }
 
 
+const DEBUG_isVerbose = true;
+
 class NeJumpScope {
 
     /**
@@ -94,6 +96,10 @@ class NeJumpScope {
     consume_DECLARE_TYPE(inflow) {
         let objectType = this.branch.declareType(inflow);
 
+        if(DEBUG_isVerbose){
+            console.log("[I/O-BOHR-NEON] Jump : declare type: "+objectType.getTargetClassPathname());
+        }
+
         /* append to type loadings */
         let typeLoading = new NeObjectTypeHandlerLoading(this, objectType);
         this.typeLoadings.set(objectType.code, typeLoading);
@@ -113,7 +119,7 @@ class NeJumpScope {
         let id = inflow.getStringUTF8();
 
         /** @type {NeObjectTypeHandler} */
-        let objectType = this.branch.objectTypes.get(typeCode);
+        let objectType = this.branch.objectTypesByCode.get(typeCode);
 
         let entries = objectType.consumeEntries(inflow);
 

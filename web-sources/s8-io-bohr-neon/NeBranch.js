@@ -27,7 +27,7 @@ export class NeBranch {
 	/**
 	 * @type {Map<number, NeObjectTypeHandler>}
 	 */
-	objectTypes = new Map();
+	objectTypesByCode = new Map();
 
 
 	/**
@@ -151,13 +151,17 @@ export class NeBranch {
 		let name = inflow.getStringUTF8();
 		let code = inflow.getUInt7x();
 
+		if(this.objectTypesByCode.has(code) || this.objectTypesByName.has(name)){
+			throw "[IO/BOHR_NEON] type alreday declared, for name = "+name;
+		}
+
 		let objectType = new NeObjectTypeHandler(this.branch, name, code);
 
 		// register by name
 		this.objectTypesByName.set(name, objectType);
 
 		// register by code
-		this.objectTypes.set(code, objectType);
+		this.objectTypesByCode.set(code, objectType);
 
 		return objectType;
 	}
