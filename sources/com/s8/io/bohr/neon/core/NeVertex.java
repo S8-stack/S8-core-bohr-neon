@@ -676,6 +676,8 @@ public interface NeVertex {
 
 
 	public <T extends NeObject> void setObjectListField(String name, List<T> value);
+	
+	public <T extends NeObject> void setObjectListField(String name, T[] value);
 
 
 	

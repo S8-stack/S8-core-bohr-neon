@@ -1,6 +1,7 @@
 package com.s8.io.bohr.neon.core;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.s8.io.bohr.atom.BOHR_Keywords;
@@ -509,6 +510,21 @@ public abstract class NeVertexLayer0 implements NeVertex {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		field.set(entry, value);
+		onUpdate();
+	}
+	
+
+
+	@Override
+	public <T extends NeObject> void setObjectListField(String name, T[] value) {
+		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
+		NeFieldValue entry = getEntry(field);
+		
+		/*  transform array into list */
+		int n = value.length;
+		List<T> list = new ArrayList<>();
+		for(int i = 0; i<n; i++) { list.add(value[i]); }
+		field.set(entry, list);
 		onUpdate();
 	}
 
