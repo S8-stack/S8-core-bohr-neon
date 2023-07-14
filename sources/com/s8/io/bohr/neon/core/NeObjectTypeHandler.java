@@ -120,6 +120,10 @@ public class NeObjectTypeHandler {
 
 
 	
+	public String getName() {
+		return outboundTypeName;
+	}
+	
 	
 	public VoidNeMethod getVoidMethod(String name) {
 		NeMethod method = methodByName.get(name);
@@ -1227,7 +1231,7 @@ public class NeObjectTypeHandler {
 
 		NeMethod methodRunner = methodByName.get(methodName);
 		if(methodRunner == null) {
-			System.err.println("CANNOT find method for name : "+methodName);
+			throw new IOException("CANNOT find method for name : "+methodName+" for type: "+getName());
 		}
 
 		
