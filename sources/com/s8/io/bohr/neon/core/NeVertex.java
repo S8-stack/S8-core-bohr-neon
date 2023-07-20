@@ -26,6 +26,7 @@ import com.s8.io.bohr.neon.functions.primitives.UInt16NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt32NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt64NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt8NeFunction;
+import com.s8.io.bohr.neon.generators.NeGenerator;
 import com.s8.io.bohr.neon.lambdas.arrays.Bool8ArrayLambda;
 import com.s8.io.bohr.neon.lambdas.arrays.Float32ArrayLambda;
 import com.s8.io.bohr.neon.lambdas.arrays.Float64ArrayLambda;
@@ -710,11 +711,22 @@ public interface NeVertex {
 
 
 
+
+	/**
+	 * 
+	 * @param ordinal
+	 * @return
+	 */
+	public NeGenerator getGenerator(int ordinal);
 	
 
-
-
-
+	
+	/**
+	 * 
+	 * @param name
+	 * @param function
+	 */
+	public void setGenerator(String name, NeGenerator generator);
 
 
 

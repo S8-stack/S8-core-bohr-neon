@@ -52,7 +52,7 @@ import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertexLayer2 extends NeVertexLayer1 {
+public abstract class NeVertexLayer2 extends NeVertexLayer1 {
 
 
 

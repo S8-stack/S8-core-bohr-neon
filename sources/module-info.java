@@ -24,6 +24,10 @@ module com.s8.io.bohr.neon {
 	exports com.s8.io.bohr.neon.functions.primitives;
 	exports com.s8.io.bohr.neon.functions.arrays;
 	
+
+	exports com.s8.io.bohr.neon.generators;
+	
+	
 	exports com.s8.io.bohr.neon.methods;
 	exports com.s8.io.bohr.neon.methods.primitives;
 	exports com.s8.io.bohr.neon.methods.arrays;
