@@ -12,7 +12,7 @@ public class NeObject {
 		super();
 		
 		/* create vertex and assign object to it */
-		vertex = new NeVertexLayer2(branch, typeName, this);
+		vertex = new NeVertex0(branch, typeName, this);
 
 	}
 

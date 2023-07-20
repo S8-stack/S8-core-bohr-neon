@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
@@ -45,7 +45,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
 public abstract class NeMethod {
 
 
-	public NeObjectTypeHandler prototype;
+	public NeObjectTypeMethods prototype;
 	/**
 	 * 
 	 */
@@ -61,7 +61,7 @@ public abstract class NeMethod {
 	 * 
 	 * @param name
 	 */
-	public NeMethod(NeObjectTypeHandler prototype, String name, int ordinal) {
+	public NeMethod(NeObjectTypeMethods prototype, String name, int ordinal) {
 		super();
 		this.prototype = prototype;
 		this.name = name;

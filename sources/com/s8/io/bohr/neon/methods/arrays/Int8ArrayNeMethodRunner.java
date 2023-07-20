@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.arrays.UInt8ArrayNeFunction;
 import com.s8.io.bohr.neon.methods.NeMethod;
@@ -30,7 +30,7 @@ public class Int8ArrayNeMethodRunner extends NeMethod {
 	 * @param prototype
 	 * @param name
 	 */
-	public Int8ArrayNeMethodRunner(NeObjectTypeHandler prototype, String name, int ordinal) {
+	public Int8ArrayNeMethodRunner(NeObjectTypeMethods prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 

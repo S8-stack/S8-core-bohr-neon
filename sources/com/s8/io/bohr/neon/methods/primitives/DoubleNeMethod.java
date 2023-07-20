@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.Float64NeFunction;
 import com.s8.io.bohr.neon.methods.NeMethod;
@@ -31,7 +31,7 @@ public class DoubleNeMethod extends NeMethod {
 	 * @param prototype
 	 * @param name
 	 */
-	public DoubleNeMethod(NeObjectTypeHandler prototype, String name, int ordinal) {
+	public DoubleNeMethod(NeObjectTypeMethods prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 	

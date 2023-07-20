@@ -52,11 +52,14 @@ import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public abstract class NeVertexLayer2 extends NeVertexLayer1 {
+public class NeVertexMethods0 implements NeVertexMethods {
 
 
 
+	public final NeVertex0 vertex;
 
+	public final NeObjectTypeMethods prototype;
+	
 	private NeFunction[] functions;
 
 
@@ -66,8 +69,11 @@ public abstract class NeVertexLayer2 extends NeVertexLayer1 {
 	 * @param typeName
 	 * @param object
 	 */
-	public NeVertexLayer2(NeBranch branch, String typeName, NeObject object) {
-		super(branch, typeName, object);
+	public NeVertexMethods0(NeVertex0 vertex, NeObjectTypeMethods prototype) {
+		super();
+		
+		this.vertex = vertex;
+		this.prototype = prototype;
 
 		functions = new NeFunction[4];
 	}
@@ -83,7 +89,7 @@ public abstract class NeVertexLayer2 extends NeVertexLayer1 {
 	private int getMethodOrdinal(NeMethod method) {
 		int ordinal = method.ordinal;
 		while(ordinal >= functions.length) {
-			int n = values.length;
+			int n = functions.length;
 			NeFunction[] extendedFunctions = new NeFunction[2 * n];
 			for(int i = 0; i < n; i++) { extendedFunctions[i] = functions[i]; }
 			functions = extendedFunctions;
@@ -94,9 +100,6 @@ public abstract class NeVertexLayer2 extends NeVertexLayer1 {
 	
 	
 
-
-
-	@Override
 	public NeFunction getFunction(int ordinal) {
 		return functions[ordinal];
 	}

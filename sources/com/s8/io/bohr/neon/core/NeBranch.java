@@ -28,7 +28,7 @@ public class NeBranch {
 	/**
 	 * 
 	 */
-	final Map<String, NeVertex> vertices;
+	final Map<String, NeVertex0> vertices;
 
 	
 	/**
@@ -81,7 +81,7 @@ public class NeBranch {
 	 * @param vertex
 	 * @return
 	 */
-	String appendObject(NeVertex object) {
+	String appendObject(NeVertex0 object) {
 		
 		String index = createNewIndex();
 		

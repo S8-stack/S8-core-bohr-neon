@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bytes.alpha.ByteInflow;
 import com.s8.io.bytes.alpha.ByteOutflow;
@@ -24,7 +24,7 @@ public class Float64ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public @Override long getSignature() { return SIGNATURE; }
 
 
-	public Float64ArrayNeFieldHandler(NeObjectTypeHandler prototype, String name) {
+	public Float64ArrayNeFieldHandler(NeObjectTypeFields prototype, String name) {
 		super(prototype, name);
 	}
 
@@ -52,8 +52,8 @@ public class Float64ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @param values
 	 * @param value
 	 */
-	public void set(NeFieldValue wrapper, double[] value) {
-		((Value) wrapper).setValue(value);
+	public boolean set(NeFieldValue wrapper, double[] value) {
+		return ((Value) wrapper).setValue(value);
 	}
 	
 	
@@ -112,10 +112,14 @@ public class Float64ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 		 * 
 		 * @param value
 		 */
-		public void setValue(double[] value) {
+		public boolean setValue(double[] value) {
 			if(checkIfHasDelta(value)) {
 				this.value = value;
-				this.hasDelta = true;		
+				this.hasDelta = true;
+				return true;
+			}
+			else {
+				return false;
 			}
 		}
 		

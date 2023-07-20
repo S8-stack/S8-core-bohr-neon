@@ -53,12 +53,34 @@ import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertexLayer3 extends NeVertexLayer2 {
+public class NeVertexGenerators0 implements NeVertexGenerators {
 
+
+	public final NeVertex0 vertex;
 	
+	public final NeObjectTypeHandler prototype;
+
 
 	private NeGenerator[] generators;
 
+	
+	
+
+
+	/**
+	 * 
+	 * @param branch
+	 * @param typeName
+	 * @param object
+	 */
+	public NeVertexGenerators0(NeVertex0 vertex, NeObjectTypeHandler prototype) {
+		super();	
+		this.vertex = vertex;
+		this.prototype = prototype;
+		
+		generators = new NeGenerator[4];
+	}
+	
 
 
 
@@ -71,10 +93,10 @@ public class NeVertexLayer3 extends NeVertexLayer2 {
 	private int getMethodOrdinal(NeMethod method) {
 		int ordinal = method.ordinal;
 		while(ordinal >= generators.length) {
-			int n = values.length;
-			NeGenerator[] extendedFunctions = new NeGenerator[2 * n];
-			for(int i = 0; i < n; i++) { extendedFunctions[i] = generators[i]; }
-			generators = extendedFunctions;
+			int n = generators.length;
+			NeGenerator[] extendedGenerators = new NeGenerator[2 * n];
+			for(int i = 0; i < n; i++) { extendedGenerators[i] = generators[i]; }
+			generators = extendedGenerators;
 		}
 		return ordinal;
 	}
@@ -85,32 +107,19 @@ public class NeVertexLayer3 extends NeVertexLayer2 {
 
 
 	@Override
-	public NeFunction getGenerator(int ordinal) {
-		return functions[ordinal];
+	public NeGenerator getGenerator(int ordinal) {
+		return generators[ordinal];
 	}
 	
 	
-	
-
-
-	/**
-	 * 
-	 * @param branch
-	 * @param typeName
-	 * @param object
-	 */
-	public NeVertexLayer3(NeBranch branch, String typeName, NeObject object) {
-		super(branch, typeName, object);	
-		generators = new NeGenerator[4];
-	}
 	
 
 	@Override
 	public void setGenerator(String name, NeGenerator generator) {
 		/* retrieve (or define if first time) method runner */
-		VoidNeMethod method = prototype.getVoidMethod(name);
+		VoidNeMethod method = prototype.getGenerator(name);
 		int ordinal = getMethodOrdinal(method);
-		functions[ordinal] = function;
+		generators[ordinal] = generator;
 	}
 
 

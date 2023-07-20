@@ -6,7 +6,7 @@ import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObject;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
 import com.s8.io.bohr.neon.core.NeVertex;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.objects.ObjectNeFunction;
@@ -35,7 +35,7 @@ public class ObjectNeMethod<T extends NeObject> extends NeMethod {
 	 * @param prototype
 	 * @param name
 	 */
-	public ObjectNeMethod(NeObjectTypeHandler prototype, String name, int ordinal) {
+	public ObjectNeMethod(NeObjectTypeMethods prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bytes.alpha.ByteInflow;
 import com.s8.io.bytes.alpha.ByteOutflow;
@@ -30,7 +30,7 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * 
 	 * @param name
 	 */
-	public Bool8NeFieldHandler(NeObjectTypeHandler prototype, String name) {
+	public Bool8NeFieldHandler(NeObjectTypeFields prototype, String name) {
 		super(prototype, name);
 	}
 	
@@ -57,8 +57,8 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @param values
 	 * @param value
 	 */
-	public void set(NeFieldValue wrapper, boolean value) {
-		((Value) wrapper).setValue(value);
+	public boolean set(NeFieldValue wrapper, boolean value) {
+		return ((Value) wrapper).setValue(value);
 	}
 	
 
@@ -92,10 +92,14 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 			super();
 		}
 		
-		public void setValue(boolean value) {
+		public boolean setValue(boolean value) {
 			if(this.value != value) {
 				this.value = value;
 				this.hasDelta = true;	
+				return true;
+			}
+			else {
+				return false;
 			}
 		}
 

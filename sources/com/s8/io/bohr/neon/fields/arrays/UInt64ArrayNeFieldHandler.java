@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bytes.alpha.ByteInflow;
 import com.s8.io.bytes.alpha.ByteOutflow;
@@ -24,7 +24,7 @@ public class UInt64ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	public @Override long getSignature() { return SIGNATURE; }
 
 
-	public UInt64ArrayNeFieldHandler(NeObjectTypeHandler prototype, String name) {
+	public UInt64ArrayNeFieldHandler(NeObjectTypeFields prototype, String name) {
 		super(prototype, name);
 	}
 

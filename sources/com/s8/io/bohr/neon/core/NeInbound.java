@@ -70,7 +70,7 @@ public class NeInbound {
 			throw new IOException("Failed to retrieve prototype for code: "+typeCode);
 		}
 		
-		prototype.consume_DECLARE_METHOD(inflow);
+		prototype.methods.consume_DECLARE_METHOD(inflow);
 	}
 	
 	
@@ -82,16 +82,16 @@ public class NeInbound {
 	private void runFunc(S8AsyncFlow flow, ByteInflow inflow) throws IOException {
 		
 		String index = inflow.getStringUTF8();
-		NeVertex vertex = branch.vertices.get(index);
+		NeVertex0 vertex = branch.vertices.get(index);
 		if(vertex == null) { throw new IOException("No Object for index = "+index); }
 		
 		int code = inflow.getUInt8();
-		NeMethod runner = vertex.getPrototype().methods[code];
+		NeMethod runner = vertex.getPrototype().methods.getMethod(code);
 		if(runner == null) { throw new IOException("No runner for code = "+code); }
 		
 		int ordinal = runner.ordinal;
 		
-		NeFunction function = vertex.getFunction(ordinal);
+		NeFunction function = vertex.methods.getFunction(ordinal);
 		if(function == null) { throw new IOException("Missing func @ code = "+code+", for index = "+index); }
 		
 		/* run function */

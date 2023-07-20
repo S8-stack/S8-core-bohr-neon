@@ -7,7 +7,7 @@ import java.util.List;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObject;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bytes.alpha.ByteInflow;
@@ -31,7 +31,7 @@ public class ListNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 	 * 
 	 * @param view
 	 */
-	public ListNeFieldHandler(NeObjectTypeHandler prototype, String name) {
+	public ListNeFieldHandler(NeObjectTypeFields prototype, String name) {
 		super(prototype, name);
 	}
 
@@ -67,8 +67,8 @@ public class ListNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void set(NeFieldValue wrapper, List<T> list) {
-		((Value<T>) wrapper).setValue(list);
+	public boolean set(NeFieldValue wrapper, List<T> list) {
+		return ((Value<T>) wrapper).setValue(list);
 	}
 
 
@@ -160,10 +160,14 @@ public class ListNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 		 * 
 		 * @param value
 		 */
-		public void setValue(List<T> value) {
+		public boolean setValue(List<T> value) {
 			if(checkIfHasDelta(value)) {
 				this.list = value;
-				this.hasDelta = true;	
+				this.hasDelta = true;
+				return true;
+			}
+			else {
+				return false;
 			}
 		}
 		

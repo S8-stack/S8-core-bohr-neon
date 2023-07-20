@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.s8.arch.fluor.S8AsyncFlow;
 import com.s8.io.bohr.atom.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.functions.primitives.UInt16NeFunction;
 import com.s8.io.bohr.neon.methods.NeMethod;
@@ -24,7 +24,7 @@ public class UInt16NeMethod extends NeMethod {
 	public @Override long getSignature() { return SIGNATURE; }
 
 	
-	public UInt16NeMethod(NeObjectTypeHandler prototype, String name, int ordinal) {
+	public UInt16NeMethod(NeObjectTypeMethods prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 

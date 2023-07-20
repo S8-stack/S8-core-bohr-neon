@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.fields;
 import java.io.IOException;
 
 import com.s8.io.bohr.atom.BOHR_Keywords;
-import com.s8.io.bohr.neon.core.NeObjectTypeHandler;
+import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bytes.alpha.ByteOutflow;
 
 /**
@@ -16,7 +16,7 @@ import com.s8.io.bytes.alpha.ByteOutflow;
 public abstract class NeFieldHandler {
 	
 	
-	public NeObjectTypeHandler prototype;
+	public NeObjectTypeFields prototype;
 	
 	
 	/**
@@ -39,7 +39,7 @@ public abstract class NeFieldHandler {
 	 * 
 	 * @param name
 	 */
-	public NeFieldHandler(NeObjectTypeHandler prototype, String name) {
+	public NeFieldHandler(NeObjectTypeFields prototype, String name) {
 		super();
 		this.prototype = prototype;
 		this.name = name;
