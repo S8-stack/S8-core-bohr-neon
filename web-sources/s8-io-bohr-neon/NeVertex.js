@@ -388,7 +388,7 @@ export class NeVertex {
 	 */
 	downloadRaw(providerName) {
 		let provider = this.type.getRawProvider(providerName);
-		this.shoot(methodRunner, argValue);
+		this.shootDownload(provider);
 	}
 
 
@@ -398,7 +398,7 @@ export class NeVertex {
 	* @param {NeProvider} provider 
 	* @param {*} arg 
 	*/
-	shootDownload(provider, arg) {
+	shootDownload(provider) {
 
 		let requestArrayBuffer = new ArrayBuffer(64);
 		let outflow = new ByteOutflow(requestArrayBuffer);
@@ -433,10 +433,10 @@ export class NeVertex {
 
 
 			// The actual download
-			var blob = new Blob([request.response], { type: 'application/pdf' });
+			var blob = new Blob([responseArrayBuffer], { type: 'application/text' });
 			var link = document.createElement('a');
 			link.href = window.URL.createObjectURL(blob);
-			link.download = filename;
+			link.download = "download.txt";
 
 			document.body.appendChild(link);
 			link.click();

@@ -210,7 +210,7 @@ public class NeVertex0 implements NeVertex {
 	}
 
 	@Override
-	public NeVertexProviders generators() {
+	public NeVertexProviders providers() {
 		return providers;
 	}
 

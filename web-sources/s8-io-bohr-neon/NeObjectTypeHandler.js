@@ -9,6 +9,7 @@ import { Float32ArrayNeMethodRunner, Float32NeMethodRunner, Float64ArrayNeMethod
 import { NeBranch } from "./NeBranch.js";
 import { NeFieldEntry } from "./NeFieldEntry.js";
 import { NeObject } from "./NeObject.js";
+import { RawNeProvider } from "/s8-io-bohr-neon/NeProvider.js";
 
 
 

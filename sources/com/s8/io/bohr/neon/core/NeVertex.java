@@ -65,7 +65,7 @@ public interface NeVertex {
 	 * 
 	 * @return the vertex generators handling module
 	 */
-	public NeVertexProviders generators();
+	public NeVertexProviders providers();
 
 
 }
