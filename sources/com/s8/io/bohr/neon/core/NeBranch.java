@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.s8.io.bytes.base64.Base64Generator;
+import com.s8.io.bytes.base64.Base64Composer;
 
 /**
  * 
@@ -45,7 +45,7 @@ public class NeBranch {
 	public final NeOutbound outbound;
 	
 	
-	private final Base64Generator idxGen;
+	private final Base64Composer idxGen;
 	
 	public NeBranch(String id) {
 		super();
@@ -60,7 +60,7 @@ public class NeBranch {
 		this.inbound = new NeInbound(this);
 		this.outbound = new NeOutbound();
 		
-		idxGen = new Base64Generator(id);
+		idxGen = new Base64Composer(id);
 	}
 
 
