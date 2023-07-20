@@ -72,6 +72,19 @@ export class NeObjectTypeHandler {
     methodRunnersByName = new Map();
 
 
+
+
+    /**
+        * @type {number}
+        */
+    providerNextOrdinal = 0;
+
+    /**
+    * @type {Map<string, NeMethodRunner>}
+    */
+    providersByName = new Map();
+
+
     /**
      * 
      * @param {NeBranch} branch 
@@ -428,6 +441,31 @@ export class NeObjectTypeHandler {
      */
     getStringUTF8ArrayMethodRunner(methodName) {
         return this.getMethodRunner(methodName, code => new StringUTF8ArrayNeMethodRunner(methodName, code));
+    }
+
+
+
+
+
+    /**
+     * @param {string} providerName
+     */
+    getProvider(providerName, createFunc) {
+        let provider = this.providersByName.get(providerName);
+        if (provider == undefined) {
+            provider = createFunc(this.providerNextOrdinal++);
+            provider.type = this;
+            this.providersByName.set(providerName, provider);
+        }
+        return provider;
+    }
+
+
+    /**
+     * @param {string} providerName
+     */
+    getRawProvider(providerName) {
+        return this.getProvider(providerName, code => new RawNeProvider(providerName, code));
     }
 
 }
