@@ -41,7 +41,7 @@ export class NeBranch {
 	 * @type{Object} 
 	 * Previously active object: the last which sends a signal
 	 */
-	previouslyFocussed = null;
+	focus = null;
 
 
 
@@ -194,23 +194,28 @@ export class NeBranch {
 	 * @param {Object} object 
 	 */
 	setFocusOn(object) {
-		this.loseFocus();
-		this.previouslyFocussed = object;
+		/* unfocus */
+		if (this.focus != null) {
+			if (this.focus.S8_unfocus) { this.focus.S8_unfocus(); }
+			else { console.log("Object missing a S8_unfocus method: " + previous); }
+		}
+
+		/* replace focus */
+		this.focus = object;
 	}
 
 	/**
 	 * 
 	 */
 	loseFocus(){
-		let previous = this.previouslyFocussed;
-		if (previous != null) {
-			if (previous.S8_unfocus) {
-				previous.S8_unfocus();
-			}
-			else {
-				console.log("Object missing a S8_unfocus method: " + previous);
-			}
+		/* unfocus */
+		if (this.focus != null) {
+			if (this.focus.S8_unfocus) { this.focus.S8_unfocus(); }
+			else { console.log("Object missing a S8_unfocus method: " + previous); }
 		}
+
+		/* replace focus */
+		this.focus = null;
 	}
 }
 
