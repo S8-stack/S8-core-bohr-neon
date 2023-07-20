@@ -3,9 +3,11 @@ package com.s8.io.bohr.neon.core;
 import java.io.IOException;
 
 import com.s8.arch.fluor.S8AsyncFlow;
+import com.s8.arch.fluor.delivery.S8WebResourceGenerator;
 import com.s8.io.bohr.atom.BOHR_Keywords;
 import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.methods.NeMethod;
+import com.s8.io.bohr.neon.providers.NeProvider;
 import com.s8.io.bytes.alpha.ByteInflow;
 
 
@@ -46,6 +48,8 @@ public class NeInbound {
 			switch(code = inflow.getUInt8()) {
 			case BOHR_Keywords.DECLARE_METHOD: declareMethod(inflow); break;
 			case BOHR_Keywords.RUN_METHOD : runFunc(flow, inflow); break;
+			case BOHR_Keywords.DECLARE_PROVIDER: declareProvider(inflow); break;
+			case BOHR_Keywords.RUN_PROVIDER : runProvider(flow, inflow); break;
 			case BOHR_Keywords.CLOSE_JUMP : isClosed = true; break;
 			default: throw new IOException("[NeInbound] Code "+code+" is not supported");
 			}
@@ -86,16 +90,63 @@ public class NeInbound {
 		if(vertex == null) { throw new IOException("No Object for index = "+index); }
 		
 		int code = inflow.getUInt8();
-		NeMethod runner = vertex.getPrototype().methods.getMethod(code);
-		if(runner == null) { throw new IOException("No runner for code = "+code); }
+		NeMethod method = vertex.getPrototype().methods.getMethod(code);
+		if(method == null) { throw new IOException("No runner for code = "+code); }
 		
-		int ordinal = runner.ordinal;
+		int ordinal = method.ordinal;
 		
 		NeFunction function = vertex.methods.getFunction(ordinal);
 		if(function == null) { throw new IOException("Missing func @ code = "+code+", for index = "+index); }
 		
 		/* run function */
-		runner.run(branch, flow, inflow, function);
+		method.run(branch, flow, inflow, function);
+	}
+
+	
+	
+
+	/**
+	 * 
+	 * @param inflow
+	 * @throws IOException
+	 */
+	private void declareProvider(ByteInflow inflow) throws IOException {
+
+		long typeCode = inflow.getUInt7x();
+		
+		NeObjectTypeHandler prototype = branch.prototypesByCode.get(typeCode);
+		if(prototype == null) {
+			throw new IOException("Failed to retrieve prototype for code: "+typeCode);
+		}
+		
+		prototype.providers.consume_DECLARE_PROVIDER(inflow);
+	}
+	
+	
+	
+
+	/**
+	 * 
+	 * @param inflow
+	 * @throws IOException
+	 */
+	private void runProvider(S8AsyncFlow flow, ByteInflow inflow) throws IOException {
+		
+		String index = inflow.getStringUTF8();
+		NeVertex0 vertex = branch.vertices.get(index);
+		if(vertex == null) { throw new IOException("No Object for index = "+index); }
+		
+		int code = inflow.getUInt8();
+		NeProvider provider = vertex.getPrototype().providers.getProvider(code);
+		if(provider == null) { throw new IOException("No runner for code = "+code); }
+		
+		int ordinal = provider.ordinal;
+		
+		S8WebResourceGenerator generator = vertex.providers.getGenerator(ordinal);
+		if(generator == null) { throw new IOException("Missing generator @ code = "+code+", for index = "+index); }
+		
+		/* run function */
+		provider.run(flow, generator);
 	}
 
 	

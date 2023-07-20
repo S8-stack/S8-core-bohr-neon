@@ -46,7 +46,7 @@ public class NeVertex0 implements NeVertex {
 	
 	public final NeVertexMethods0 methods;
 
-	public final NeVertexGenerators0 generators;
+	public final NeVertexProviders0 providers;
 
 
 	/**
@@ -64,7 +64,7 @@ public class NeVertex0 implements NeVertex {
 
 		this.fields = new NeVertexFields0(this, prototype.fields);
 		this.methods = new NeVertexMethods0(this, prototype.methods);
-		this.generators = new NeVertexGenerators0(this, prototype);
+		this.providers = new NeVertexProviders0(this, prototype.providers);
 	}
 
 	@Override
@@ -210,8 +210,8 @@ public class NeVertex0 implements NeVertex {
 	}
 
 	@Override
-	public NeVertexGenerators generators() {
-		return generators;
+	public NeVertexProviders generators() {
+		return providers;
 	}
 
 

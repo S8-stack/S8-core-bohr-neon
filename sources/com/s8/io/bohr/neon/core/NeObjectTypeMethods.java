@@ -642,6 +642,7 @@ public class NeObjectTypeMethods {
 
 	public void consume_DECLARE_METHOD(ByteInflow inflow) throws IOException {
 
+		/* method name */
 		String methodName = inflow.getStringUTF8();
 
 

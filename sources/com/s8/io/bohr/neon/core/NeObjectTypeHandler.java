@@ -32,6 +32,9 @@ public class NeObjectTypeHandler {
 
 	/* methods */
 	public final NeObjectTypeMethods methods;
+	
+	/* providers */
+	public final NeObjectTypeProviders providers;
 
 
 
@@ -45,6 +48,9 @@ public class NeObjectTypeHandler {
 
 		/* methods */
 		this.methods = new NeObjectTypeMethods(this);
+		
+		/* providers */
+		this.providers = new NeObjectTypeProviders(this);
 
 		isUnpublished = true;
 	}
