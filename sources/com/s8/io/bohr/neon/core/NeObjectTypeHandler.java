@@ -2,8 +2,8 @@ package com.s8.io.bohr.neon.core;
 
 import java.io.IOException;
 
-import com.s8.io.bohr.atom.BOHR_Keywords;
-import com.s8.io.bytes.alpha.ByteOutflow;
+import com.s8.api.bohr.BOHR_Keywords;
+import com.s8.api.bytes.ByteOutflow;
 
 
 

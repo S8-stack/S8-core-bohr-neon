@@ -2,8 +2,13 @@ package com.s8.io.bohr.neon.core;
 
 import java.io.IOException;
 
-import com.s8.io.bohr.atom.BOHR_Keywords;
-import com.s8.io.bytes.alpha.ByteOutflow;
+import com.s8.api.bohr.BOHR_Keywords;
+import com.s8.api.bytes.ByteOutflow;
+import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.WebS8Vertex;
+import com.s8.api.objects.web.WebS8VertexFields;
+import com.s8.api.objects.web.WebS8VertexMethods;
+import com.s8.api.objects.web.WebS8VertexProviders;
 
 
 /**
@@ -13,11 +18,11 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertex0 implements NeVertex {
+public class NeVertex0 implements WebS8Vertex {
 
 	public final NeBranch branch;
 
-	public final NeObject object;
+	public final WebS8Object object;
 
 	private boolean hasUnpublishedChanges = false;
 
@@ -53,7 +58,7 @@ public class NeVertex0 implements NeVertex {
 	 * 
 	 * @param branch
 	 */
-	public NeVertex0(NeBranch branch, String typeName, NeObject object) {
+	public NeVertex0(NeBranch branch, String typeName, WebS8Object object) {
 		super();
 
 
@@ -68,16 +73,19 @@ public class NeVertex0 implements NeVertex {
 	}
 
 	@Override
-	public NeBranch getBranch() {
+	public NeBranch getSession() {
 		return branch;
 	}
 
 	@Override
-	public NeObject getAttachedObject() {
+	public WebS8Object getAttachedObject() {
 		return object;
 	}
 	
-	@Override
+	
+	/**
+	 * 
+	 */
 	public NeObjectTypeHandler getPrototype() {
 		return prototype;
 	}
@@ -200,17 +208,17 @@ public class NeVertex0 implements NeVertex {
 	
 
 	@Override
-	public NeVertexFields fields() {
+	public WebS8VertexFields fields() {
 		return fields;
 	}
 
 	@Override
-	public NeVertexMethods methods() {
+	public WebS8VertexMethods methods() {
 		return methods;
 	}
 
 	@Override
-	public NeVertexProviders providers() {
+	public WebS8VertexProviders providers() {
 		return providers;
 	}
 

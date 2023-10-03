@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.s8.api.bytes.ByteInflow;
+import com.s8.api.objects.web.WebS8Object;
 import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
@@ -32,7 +34,6 @@ import com.s8.io.bohr.neon.methods.primitives.UInt32NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt64NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethod;
 import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
-import com.s8.io.bytes.alpha.ByteInflow;
 
 
 
@@ -587,7 +588,7 @@ public class NeObjectTypeMethods {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject>  ObjectNeMethod<T> getObjectMethod(String name) {
+	public <T extends WebS8Object>  ObjectNeMethod<T> getObjectMethod(String name) {
 		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != ObjectNeMethod.SIGNATURE) { 
@@ -604,7 +605,7 @@ public class NeObjectTypeMethods {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject> ListNeMethod<T> getObjListMethod(String name) {
+	public <T extends WebS8Object> ListNeMethod<T> getObjListMethod(String name) {
 		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != ListNeMethod.SIGNATURE) { 

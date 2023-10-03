@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.s8.api.bytes.ByteInflow;
 import com.s8.io.bohr.neon.providers.NeProvider;
 import com.s8.io.bohr.neon.providers.RawNeProvider;
-import com.s8.io.bytes.alpha.ByteInflow;
 
 
 

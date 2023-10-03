@@ -3,6 +3,9 @@ package com.s8.io.bohr.neon.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.WebS8Session;
+import com.s8.api.objects.web.WebS8Vertex;
 import com.s8.io.bytes.base64.Base64Composer;
 
 /**
@@ -13,7 +16,7 @@ import com.s8.io.bytes.base64.Base64Composer;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeBranch {
+public class NeBranch implements WebS8Session {
 	
 	
 	public final String id;
@@ -99,7 +102,7 @@ public class NeBranch {
 	 * @param index
 	 * @return
 	 */
-	public NeVertex getVertex(String index) {
+	public WebS8Vertex getVertex(String index) {
 		return vertices.get(index);
 	}
 	
@@ -109,8 +112,8 @@ public class NeBranch {
 	 * @param index
 	 * @return
 	 */
-	public NeObject getObject(String index) {
-		NeVertex vertex = vertices.get(index);
+	public WebS8Object getObject(String index) {
+		WebS8Vertex vertex = vertices.get(index);
 		return vertex != null ? vertex.getAttachedObject() : null;
 	}
 
@@ -131,5 +134,11 @@ public class NeBranch {
 		});
 	}
 
+
+
+	@Override
+	public WebS8Vertex createVertex(String typeName, WebS8Object object) {
+		return new NeVertex0(this, typeName, object);
+	}
 
 }

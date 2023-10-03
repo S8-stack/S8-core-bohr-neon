@@ -1,6 +1,7 @@
 package com.s8.io.bohr.neon.core;
 
-import com.s8.arch.fluor.delivery.S8WebResourceGenerator;
+import com.s8.api.flow.delivery.S8WebResourceGenerator;
+import com.s8.api.objects.web.WebS8VertexProviders;
 import com.s8.io.bohr.neon.providers.NeProvider;
 import com.s8.io.bohr.neon.providers.RawNeProvider;
 
@@ -12,7 +13,7 @@ import com.s8.io.bohr.neon.providers.RawNeProvider;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertexProviders0 implements NeVertexProviders {
+public class NeVertexProviders0 implements WebS8VertexProviders {
 
 
 	public final NeVertex0 vertex;

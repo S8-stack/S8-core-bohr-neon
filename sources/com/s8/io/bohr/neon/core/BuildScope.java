@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.s8.api.objects.web.WebS8Object;
+
 
 /**
  * 
@@ -35,7 +37,7 @@ public abstract class BuildScope {
 	 * @param index
 	 * @return
 	 */
-	public abstract NeObject retrieveObject(String index);
+	public abstract WebS8Object retrieveObject(String index);
 	
 	/**
 	 * <p><b>ALWAYS RESOLVE AFTER DESERIALIZATION</b></p>

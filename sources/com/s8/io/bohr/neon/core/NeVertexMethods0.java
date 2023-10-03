@@ -1,28 +1,30 @@
 package com.s8.io.bohr.neon.core;
 
-import com.s8.io.bohr.neon.functions.NeFunction;
-import com.s8.io.bohr.neon.functions.arrays.Bool8ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.arrays.Float32ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.arrays.Float64ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.arrays.StringUTF8ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.arrays.UInt16ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.arrays.UInt32ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.arrays.UInt64ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.arrays.UInt8ArrayNeFunction;
-import com.s8.io.bohr.neon.functions.none.VoidNeFunction;
-import com.s8.io.bohr.neon.functions.objects.ObjectNeFunction;
-import com.s8.io.bohr.neon.functions.primitives.Bool8NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.Float32NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.Float64NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.Int16NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.Int32NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.Int64NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.Int8NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.StringUTF8NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.UInt16NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.UInt32NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.UInt64NeFunction;
-import com.s8.io.bohr.neon.functions.primitives.UInt8NeFunction;
+import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.WebS8VertexMethods;
+import com.s8.api.objects.web.functions.NeFunction;
+import com.s8.api.objects.web.functions.arrays.Bool8ArrayNeFunction;
+import com.s8.api.objects.web.functions.arrays.Float32ArrayNeFunction;
+import com.s8.api.objects.web.functions.arrays.Float64ArrayNeFunction;
+import com.s8.api.objects.web.functions.arrays.StringUTF8ArrayNeFunction;
+import com.s8.api.objects.web.functions.arrays.UInt16ArrayNeFunction;
+import com.s8.api.objects.web.functions.arrays.UInt32ArrayNeFunction;
+import com.s8.api.objects.web.functions.arrays.UInt64ArrayNeFunction;
+import com.s8.api.objects.web.functions.arrays.UInt8ArrayNeFunction;
+import com.s8.api.objects.web.functions.none.VoidNeFunction;
+import com.s8.api.objects.web.functions.objects.ObjectNeFunction;
+import com.s8.api.objects.web.functions.primitives.Bool8NeFunction;
+import com.s8.api.objects.web.functions.primitives.Float32NeFunction;
+import com.s8.api.objects.web.functions.primitives.Float64NeFunction;
+import com.s8.api.objects.web.functions.primitives.Int16NeFunction;
+import com.s8.api.objects.web.functions.primitives.Int32NeFunction;
+import com.s8.api.objects.web.functions.primitives.Int64NeFunction;
+import com.s8.api.objects.web.functions.primitives.Int8NeFunction;
+import com.s8.api.objects.web.functions.primitives.StringUTF8NeFunction;
+import com.s8.api.objects.web.functions.primitives.UInt16NeFunction;
+import com.s8.api.objects.web.functions.primitives.UInt32NeFunction;
+import com.s8.api.objects.web.functions.primitives.UInt64NeFunction;
+import com.s8.api.objects.web.functions.primitives.UInt8NeFunction;
 import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
@@ -52,7 +54,7 @@ import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertexMethods0 implements NeVertexMethods {
+public class NeVertexMethods0 implements WebS8VertexMethods {
 
 
 
@@ -324,7 +326,7 @@ public class NeVertexMethods0 implements NeVertexMethods {
 
 
 	@Override
-	public <T extends NeObject> void setObjectMethod(String name, ObjectNeFunction<T> function) {
+	public <T extends WebS8Object> void setObjectMethod(String name, ObjectNeFunction<T> function) {
 		/* retrieve (or define if first time) method runner */
 		 @SuppressWarnings("unchecked")
 		ObjectNeMethod<T> method = (ObjectNeMethod<T>) prototype.getObjectMethod(name);

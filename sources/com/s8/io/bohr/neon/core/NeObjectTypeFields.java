@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.s8.api.bytes.ByteOutflow;
+import com.s8.api.objects.web.WebS8Object;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;
@@ -32,7 +34,6 @@ import com.s8.io.bohr.neon.fields.primitives.UInt16NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.UInt32NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.UInt64NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.UInt8NeFieldHandler;
-import com.s8.io.bytes.alpha.ByteOutflow;
 
 
 
@@ -597,7 +598,7 @@ public class NeObjectTypeFields {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject> ObjNeFieldHandler<T> getObjField(String name) {
+	public <T extends WebS8Object> ObjNeFieldHandler<T> getObjField(String name) {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
 			if(field.getSignature() != ObjNeFieldHandler.SIGNATURE) { 
@@ -614,7 +615,7 @@ public class NeObjectTypeFields {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends NeObject> ListNeFieldHandler<T> getObjArrayField(String name) {
+	public <T extends WebS8Object> ListNeFieldHandler<T> getObjArrayField(String name) {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
 			if(field.getSignature() != ListNeFieldHandler.SIGNATURE) { 

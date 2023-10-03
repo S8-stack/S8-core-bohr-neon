@@ -2,11 +2,12 @@ package com.s8.io.bohr.neon.methods;
 
 import java.io.IOException;
 
-import com.s8.arch.fluor.S8AsyncFlow;
-import com.s8.io.bohr.atom.BOHR_Types;
+import com.s8.api.bohr.BOHR_Types;
+import com.s8.api.bytes.ByteInflow;
+import com.s8.api.flow.S8AsyncFlow;
+import com.s8.api.objects.web.functions.NeFunction;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
-import com.s8.io.bohr.neon.functions.NeFunction;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float64ArrayNeMethod;
@@ -32,7 +33,6 @@ import com.s8.io.bohr.neon.methods.primitives.UInt32NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt64NeMethod;
 import com.s8.io.bohr.neon.methods.primitives.UInt8NeMethod;
 import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
-import com.s8.io.bytes.alpha.ByteInflow;
 
 
 /**

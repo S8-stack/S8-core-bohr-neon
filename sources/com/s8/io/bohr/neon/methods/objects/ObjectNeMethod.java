@@ -2,16 +2,16 @@ package com.s8.io.bohr.neon.methods.objects;
 
 import java.io.IOException;
 
-import com.s8.arch.fluor.S8AsyncFlow;
-import com.s8.io.bohr.atom.BOHR_Types;
+import com.s8.api.bohr.BOHR_Types;
+import com.s8.api.bytes.ByteInflow;
+import com.s8.api.flow.S8AsyncFlow;
+import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.WebS8Vertex;
+import com.s8.api.objects.web.functions.NeFunction;
+import com.s8.api.objects.web.functions.objects.ObjectNeFunction;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObject;
 import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
-import com.s8.io.bohr.neon.core.NeVertex;
-import com.s8.io.bohr.neon.functions.NeFunction;
-import com.s8.io.bohr.neon.functions.objects.ObjectNeFunction;
 import com.s8.io.bohr.neon.methods.NeMethod;
-import com.s8.io.bytes.alpha.ByteInflow;
 
 /**
  * 
@@ -20,7 +20,7 @@ import com.s8.io.bytes.alpha.ByteInflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class ObjectNeMethod<T extends NeObject> extends NeMethod {
+public class ObjectNeMethod<T extends WebS8Object> extends NeMethod {
 
 
 
@@ -45,7 +45,7 @@ public class ObjectNeMethod<T extends NeObject> extends NeMethod {
 	@Override
 	public void run(NeBranch branch, S8AsyncFlow flow, ByteInflow inflow, NeFunction function) throws IOException {
 		String index = inflow.getStringUTF8();
-		NeVertex arg = index != null ? branch.getVertex(index) : null;
+		WebS8Vertex arg = index != null ? branch.getVertex(index) : null;
 		T object = (T) arg.getAttachedObject();
 		((ObjectNeFunction<T>) function).run(flow, object);
 	}

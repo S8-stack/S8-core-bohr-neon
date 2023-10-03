@@ -2,14 +2,14 @@ package com.s8.io.bohr.neon.fields.objects;
 
 import java.io.IOException;
 
-import com.s8.io.bohr.atom.BOHR_Types;
+import com.s8.api.bohr.BOHR_Types;
+import com.s8.api.bytes.ByteInflow;
+import com.s8.api.bytes.ByteOutflow;
+import com.s8.api.objects.web.WebS8Object;
 import com.s8.io.bohr.neon.core.BuildScope;
-import com.s8.io.bohr.neon.core.NeObject;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
-import com.s8.io.bytes.alpha.ByteInflow;
-import com.s8.io.bytes.alpha.ByteOutflow;
 
 
 /**
@@ -19,7 +19,7 @@ import com.s8.io.bytes.alpha.ByteOutflow;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class ObjNeFieldHandler<T extends NeObject> extends NeFieldHandler {
+public class ObjNeFieldHandler<T extends WebS8Object> extends NeFieldHandler {
 
 	public final static long SIGNATURE =  BOHR_Types.S8OBJECT;
 
@@ -76,7 +76,7 @@ public class ObjNeFieldHandler<T extends NeObject> extends NeFieldHandler {
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value<T extends NeObject> extends NeFieldValue {
+	public static class Value<T extends WebS8Object> extends NeFieldValue {
 
 		private T value;
 

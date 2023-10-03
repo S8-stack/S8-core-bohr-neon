@@ -3,6 +3,8 @@ package com.s8.io.bohr.neon.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.WebS8VertexFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;
@@ -36,7 +38,7 @@ import com.s8.io.bohr.neon.fields.primitives.UInt8NeFieldHandler;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertexFields0 implements NeVertexFields {
+public class NeVertexFields0 implements WebS8VertexFields {
 
 	public final NeVertex0 vertex;
 
@@ -300,7 +302,7 @@ public class NeVertexFields0 implements NeVertexFields {
 
 
 	@Override
-	public <T extends NeObject> void setObjectField(String name, T value) {
+	public <T extends WebS8Object> void setObjectField(String name, T value) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		NeFieldValue entry = getEntry(field);
 		boolean isUpdated = field.set(entry, value);
@@ -309,7 +311,7 @@ public class NeVertexFields0 implements NeVertexFields {
 
 
 	@Override
-	public <T extends NeObject> void setObjectListField(String name, List<T> value) {
+	public <T extends WebS8Object> void setObjectListField(String name, List<T> value) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		boolean isUpdated = field.set(entry, value);
@@ -318,7 +320,7 @@ public class NeVertexFields0 implements NeVertexFields {
 
 
 	@Override
-	public <T extends NeObject> void setObjectListField(String name, T[] value) {
+	public <T extends WebS8Object> void setObjectListField(String name, T[] value) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		
@@ -332,7 +334,7 @@ public class NeVertexFields0 implements NeVertexFields {
 	
 
 	@Override
-	public <T extends NeObject> void addObjToList(String name, T obj) {
+	public <T extends WebS8Object> void addObjToList(String name, T obj) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		field.add(entry, obj);
@@ -341,7 +343,7 @@ public class NeVertexFields0 implements NeVertexFields {
 
 
 	@Override
-	public <T extends NeObject> void removeObjFromList(String name, T obj) {
+	public <T extends WebS8Object> void removeObjFromList(String name, T obj) {
 		if(obj != null) {
 			ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 			NeFieldValue entry = getEntry(field);
@@ -521,7 +523,7 @@ public class NeVertexFields0 implements NeVertexFields {
 	
 
 	@Override
-	public <T extends NeObject> T getObjectField(String name) {
+	public <T extends WebS8Object> T getObjectField(String name) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -529,7 +531,7 @@ public class NeVertexFields0 implements NeVertexFields {
 
 
 	@Override
-	public <T extends NeObject> List<T> getObjectListField(String name) {
+	public <T extends WebS8Object> List<T> getObjectListField(String name) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		List<T> list = field.get(entry);
