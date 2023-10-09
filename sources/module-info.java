@@ -35,12 +35,7 @@ module com.s8.io.bohr.neon {
 	/* </neon> */
 	
 	requires transitive com.s8.api;
-	
-	
-	requires transitive com.s8.arch.fluor;
 	requires transitive com.s8.io.bohr.atom;
 	requires transitive com.s8.io.bytes;
-	
-	
 	
 }
