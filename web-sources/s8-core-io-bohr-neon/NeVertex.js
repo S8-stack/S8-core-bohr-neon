@@ -1,16 +1,18 @@
 
 
-import { ByteInflow } from "/s8-io-bytes/ByteInflow.js";
-import { ByteOutflow } from "/s8-io-bytes/ByteOutflow.js";
+import { ByteInflow } from "/s8-core-io-bytes/ByteInflow.js";
+import { ByteOutflow } from "/s8-core-io-bytes/ByteOutflow.js";
 
-import { S8 } from "/s8-io-bohr-atom/S8.js";
-import { BOHR_Keywords } from "/s8-io-bohr-atom/BOHR_Protocol.js";
+import { S8 } from "/s8-core-io-bohr-atom/S8.js";
+import { BOHR_Keywords } from "/s8-core-io-bohr-atom/BOHR_Protocol.js";
+import { NeProvider } from "/s8-core-io-bohr-neon/NeProvider.js";
 
 import { NeBranch } from "./NeBranch.js";
 import { NeObject } from "./NeObject.js";
 import { NeObjectTypeHandler } from "./NeObjectTypeHandler.js";
 import { NeMethodRunner } from "./NeMethodRunner.js";
-import { NeProvider } from "/s8-io-bohr-neon/NeProvider.js";
+
+
 
 /**
  * 
