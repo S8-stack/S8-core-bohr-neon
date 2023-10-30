@@ -6,7 +6,7 @@ import java.util.Map;
 import com.s8.api.objects.web.WebS8Object;
 import com.s8.api.objects.web.WebS8Session;
 import com.s8.api.objects.web.WebS8Vertex;
-import com.s8.io.bytes.base64.Base64Composer;
+import com.s8.core.io.bytes.base64.Base64Composer;
 
 /**
  * 

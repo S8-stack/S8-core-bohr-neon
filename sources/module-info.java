@@ -5,7 +5,7 @@
  * @author pierreconvert
  *
  */
-module com.s8.io.bohr.neon {
+module com.s8.core.io.bohr.neon {
 	
 	
 	
@@ -35,7 +35,7 @@ module com.s8.io.bohr.neon {
 	/* </neon> */
 	
 	requires transitive com.s8.api;
-	requires transitive com.s8.io.bohr.atom;
-	requires transitive com.s8.io.bytes;
+	requires transitive com.s8.core.io.bohr.atom;
+	requires transitive com.s8.core.io.bytes;
 	
 }
