@@ -42,6 +42,12 @@ export class NeBranch {
 	 * Previously active object: the last which sends a signal
 	 */
 	focus = null;
+	
+	
+	/**
+	 * Branch version
+	 */
+	version = -1;
 
 
 
@@ -75,9 +81,27 @@ export class NeBranch {
 			throw "Error: Can only start with a JUMP!!";
 		}
 
+		/* <version> */
+		const jumpVersion = inflow.getUInt64();
+		if(jumpVersion != this.version + 1){
+			/* messed-up with version */
+			alert("Server sync lost. Please Reload Page.")
+			return false;
+		}
+		this.version = jumpVersion;
+		/* </version> */
+		
+		
+		/* <highest-index> */
+		const jumpHighestObjectId = inflow.getUInt64();
+		console.log(jumpHighestObjectId);
+		/* /<highest-index> */
+
 		// perform jump
 		jump(this, inflow);
-
+		
+		/* is successful */
+		return true;
 	}
 
 

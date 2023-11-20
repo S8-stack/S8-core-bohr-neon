@@ -49,6 +49,11 @@ public class NeBranch implements S8WebFront {
 	
 	
 	private final Base64Composer idxGen;
+
+
+
+	public long version = 0x0L;
+	
 	
 	public NeBranch(String id) {
 		super();
@@ -61,7 +66,7 @@ public class NeBranch implements S8WebFront {
 		
 		/* outbound */
 		this.inbound = new NeInbound(this);
-		this.outbound = new NeOutbound();
+		this.outbound = new NeOutbound(this);
 		
 		idxGen = new Base64Composer(id);
 	}

@@ -15,7 +15,12 @@ import com.s8.core.io.bohr.atom.protocol.BOHR_Keywords;
  */
 public class NeOutbound {
 
+	/**
+	 * 
+	 */
+	public final NeBranch branch;
 
+	
 	/**
 	 * 
 	 */
@@ -25,8 +30,9 @@ public class NeOutbound {
 	/**
 	 * 
 	 */
-	public NeOutbound() {
+	public NeOutbound(NeBranch branch) {
 		super();
+		this.branch = branch;
 		unpublishedChanges = new LinkedList<S8WebVertex>();
 	}
 	
@@ -39,6 +45,12 @@ public class NeOutbound {
 	public void publish(ByteOutflow outflow) throws IOException {
 		
 		outflow.putUInt8(BOHR_Keywords.OPEN_JUMP);
+		
+		/* version */
+		outflow.putUInt64(branch.version++);
+		
+		/* last assigned index */
+		outflow.putUInt64(branch.highestObjectId);
 		
 		while(!unpublishedChanges.isEmpty()) {
 			unpublishedChanges.poll().publish(outflow);
