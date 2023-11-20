@@ -3,9 +3,9 @@ package com.s8.io.bohr.neon.core;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.s8.api.objects.web.WebS8Object;
-import com.s8.api.objects.web.WebS8Session;
-import com.s8.api.objects.web.WebS8Vertex;
+import com.s8.api.objects.web.S8WebFrontObject;
+import com.s8.api.objects.web.S8WebFront;
+import com.s8.api.objects.web.S8WebVertex;
 import com.s8.core.io.bytes.base64.Base64Composer;
 
 /**
@@ -16,7 +16,7 @@ import com.s8.core.io.bytes.base64.Base64Composer;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeBranch implements WebS8Session {
+public class NeBranch implements S8WebFront {
 	
 	
 	public final String id;
@@ -102,7 +102,7 @@ public class NeBranch implements WebS8Session {
 	 * @param index
 	 * @return
 	 */
-	public WebS8Vertex getVertex(String index) {
+	public S8WebVertex getVertex(String index) {
 		return vertices.get(index);
 	}
 	
@@ -112,8 +112,8 @@ public class NeBranch implements WebS8Session {
 	 * @param index
 	 * @return
 	 */
-	public WebS8Object getObject(String index) {
-		WebS8Vertex vertex = vertices.get(index);
+	public S8WebFrontObject getObject(String index) {
+		S8WebVertex vertex = vertices.get(index);
 		return vertex != null ? vertex.getAttachedObject() : null;
 	}
 
@@ -137,7 +137,7 @@ public class NeBranch implements WebS8Session {
 
 
 	@Override
-	public WebS8Vertex createVertex(String typeName, WebS8Object object) {
+	public S8WebVertex createVertex(String typeName, S8WebFrontObject object) {
 		return new NeVertex0(this, typeName, object);
 	}
 

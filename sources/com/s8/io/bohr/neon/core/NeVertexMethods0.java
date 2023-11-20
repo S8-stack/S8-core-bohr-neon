@@ -1,6 +1,6 @@
 package com.s8.io.bohr.neon.core;
 
-import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.S8WebFrontObject;
 import com.s8.api.objects.web.WebS8VertexMethods;
 import com.s8.api.objects.web.functions.NeFunction;
 import com.s8.api.objects.web.functions.arrays.Bool8ArrayNeFunction;
@@ -326,7 +326,7 @@ public class NeVertexMethods0 implements WebS8VertexMethods {
 
 
 	@Override
-	public <T extends WebS8Object> void setObjectMethod(String name, ObjectNeFunction<T> function) {
+	public <T extends S8WebFrontObject> void setObjectMethod(String name, ObjectNeFunction<T> function) {
 		/* retrieve (or define if first time) method runner */
 		 @SuppressWarnings("unchecked")
 		ObjectNeMethod<T> method = (ObjectNeMethod<T>) prototype.getObjectMethod(name);

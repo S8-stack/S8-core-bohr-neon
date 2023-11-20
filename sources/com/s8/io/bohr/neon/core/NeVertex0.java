@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import com.s8.api.bohr.BOHR_Keywords;
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.objects.web.WebS8Object;
-import com.s8.api.objects.web.WebS8Vertex;
+import com.s8.api.objects.web.S8WebFrontObject;
+import com.s8.api.objects.web.S8WebVertex;
 import com.s8.api.objects.web.WebS8VertexFields;
 import com.s8.api.objects.web.WebS8VertexMethods;
 import com.s8.api.objects.web.WebS8VertexProviders;
@@ -18,11 +18,11 @@ import com.s8.api.objects.web.WebS8VertexProviders;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertex0 implements WebS8Vertex {
+public class NeVertex0 implements S8WebVertex {
 
 	public final NeBranch branch;
 
-	public final WebS8Object object;
+	public final S8WebFrontObject object;
 
 	private boolean hasUnpublishedChanges = false;
 
@@ -58,7 +58,7 @@ public class NeVertex0 implements WebS8Vertex {
 	 * 
 	 * @param branch
 	 */
-	public NeVertex0(NeBranch branch, String typeName, WebS8Object object) {
+	public NeVertex0(NeBranch branch, String typeName, S8WebFrontObject object) {
 		super();
 
 
@@ -78,7 +78,7 @@ public class NeVertex0 implements WebS8Vertex {
 	}
 
 	@Override
-	public WebS8Object getAttachedObject() {
+	public S8WebFrontObject getAttachedObject() {
 		return object;
 	}
 	

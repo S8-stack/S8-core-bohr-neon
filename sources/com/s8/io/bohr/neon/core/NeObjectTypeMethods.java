@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.s8.api.bytes.ByteInflow;
-import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.S8WebFrontObject;
 import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
@@ -588,7 +588,7 @@ public class NeObjectTypeMethods {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends WebS8Object>  ObjectNeMethod<T> getObjectMethod(String name) {
+	public <T extends S8WebFrontObject>  ObjectNeMethod<T> getObjectMethod(String name) {
 		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != ObjectNeMethod.SIGNATURE) { 
@@ -605,7 +605,7 @@ public class NeObjectTypeMethods {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends WebS8Object> ListNeMethod<T> getObjListMethod(String name) {
+	public <T extends S8WebFrontObject> ListNeMethod<T> getObjListMethod(String name) {
 		NeMethod method = methodByName.get(name);
 		if(method != null) {
 			if(method.getSignature() != ListNeMethod.SIGNATURE) { 

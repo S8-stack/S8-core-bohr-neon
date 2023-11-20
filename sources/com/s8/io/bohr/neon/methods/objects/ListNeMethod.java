@@ -7,7 +7,7 @@ import java.util.List;
 import com.s8.api.bohr.BOHR_Types;
 import com.s8.api.bytes.ByteInflow;
 import com.s8.api.flow.S8AsyncFlow;
-import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.S8WebFrontObject;
 import com.s8.api.objects.web.functions.NeFunction;
 import com.s8.api.objects.web.functions.objects.ObjectsListNeFunction;
 import com.s8.io.bohr.neon.core.NeBranch;
@@ -21,7 +21,7 @@ import com.s8.io.bohr.neon.methods.NeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class ListNeMethod<T extends WebS8Object> extends NeMethod {
+public class ListNeMethod<T extends S8WebFrontObject> extends NeMethod {
 
 
 

@@ -6,7 +6,7 @@ import java.util.Queue;
 
 import com.s8.api.bohr.BOHR_Keywords;
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.objects.web.WebS8Vertex;
+import com.s8.api.objects.web.S8WebVertex;
 
 /**
  * 
@@ -19,7 +19,7 @@ public class NeOutbound {
 	/**
 	 * 
 	 */
-	private Queue<WebS8Vertex> unpublishedChanges;
+	private Queue<S8WebVertex> unpublishedChanges;
 	
 	
 	/**
@@ -27,7 +27,7 @@ public class NeOutbound {
 	 */
 	public NeOutbound() {
 		super();
-		unpublishedChanges = new LinkedList<WebS8Vertex>();
+		unpublishedChanges = new LinkedList<S8WebVertex>();
 	}
 	
 	
@@ -53,7 +53,7 @@ public class NeOutbound {
 	 * 
 	 * @param object
 	 */
-	public void notifyChanged(WebS8Vertex object) {
+	public void notifyChanged(S8WebVertex object) {
 		unpublishedChanges.add(object);
 	}
 	

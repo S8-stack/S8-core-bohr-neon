@@ -1,6 +1,6 @@
 package com.s8.io.bohr.neon.demos.repo2;
 
-import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.S8WebFrontObject;
 import com.s8.io.bohr.neon.core.NeBranch;
 
 
@@ -11,7 +11,7 @@ import com.s8.io.bohr.neon.core.NeBranch;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class AircraftRotor extends WebS8Object {
+public class AircraftRotor extends S8WebFrontObject {
 
 
 

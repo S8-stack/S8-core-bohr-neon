@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.s8.api.objects.web.WebS8Object;
+import com.s8.api.objects.web.S8WebFrontObject;
 import com.s8.api.objects.web.WebS8VertexFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
@@ -302,7 +302,7 @@ public class NeVertexFields0 implements WebS8VertexFields {
 
 
 	@Override
-	public <T extends WebS8Object> void setObjectField(String name, T value) {
+	public <T extends S8WebFrontObject> void setObjectField(String name, T value) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		NeFieldValue entry = getEntry(field);
 		boolean isUpdated = field.set(entry, value);
@@ -311,7 +311,7 @@ public class NeVertexFields0 implements WebS8VertexFields {
 
 
 	@Override
-	public <T extends WebS8Object> void setObjectListField(String name, List<T> value) {
+	public <T extends S8WebFrontObject> void setObjectListField(String name, List<T> value) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		boolean isUpdated = field.set(entry, value);
@@ -320,7 +320,7 @@ public class NeVertexFields0 implements WebS8VertexFields {
 
 
 	@Override
-	public <T extends WebS8Object> void setObjectListField(String name, T[] value) {
+	public <T extends S8WebFrontObject> void setObjectListField(String name, T[] value) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		
@@ -334,7 +334,7 @@ public class NeVertexFields0 implements WebS8VertexFields {
 	
 
 	@Override
-	public <T extends WebS8Object> void addObjToList(String name, T obj) {
+	public <T extends S8WebFrontObject> void addObjToList(String name, T obj) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		field.add(entry, obj);
@@ -343,7 +343,7 @@ public class NeVertexFields0 implements WebS8VertexFields {
 
 
 	@Override
-	public <T extends WebS8Object> void removeObjFromList(String name, T obj) {
+	public <T extends S8WebFrontObject> void removeObjFromList(String name, T obj) {
 		if(obj != null) {
 			ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 			NeFieldValue entry = getEntry(field);
@@ -523,7 +523,7 @@ public class NeVertexFields0 implements WebS8VertexFields {
 	
 
 	@Override
-	public <T extends WebS8Object> T getObjectField(String name) {
+	public <T extends S8WebFrontObject> T getObjectField(String name) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		NeFieldValue entry = getEntry(field);
 		return field.get(entry);
@@ -531,7 +531,7 @@ public class NeVertexFields0 implements WebS8VertexFields {
 
 
 	@Override
-	public <T extends WebS8Object> List<T> getObjectListField(String name) {
+	public <T extends S8WebFrontObject> List<T> getObjectListField(String name) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		NeFieldValue entry = getEntry(field);
 		List<T> list = field.get(entry);
