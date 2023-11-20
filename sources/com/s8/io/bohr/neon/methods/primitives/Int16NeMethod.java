@@ -2,11 +2,11 @@ package com.s8.io.bohr.neon.methods.primitives;
 
 import java.io.IOException;
 
-import com.s8.api.bohr.BOHR_Types;
 import com.s8.api.bytes.ByteInflow;
 import com.s8.api.flow.S8AsyncFlow;
 import com.s8.api.objects.web.functions.NeFunction;
 import com.s8.api.objects.web.functions.primitives.Int16NeFunction;
+import com.s8.core.io.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
 import com.s8.io.bohr.neon.methods.NeMethod;

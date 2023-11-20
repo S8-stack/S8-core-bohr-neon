@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.s8.api.bohr.BOHR_Keywords;
 import com.s8.api.bytes.ByteOutflow;
 import com.s8.api.objects.web.S8WebVertex;
+import com.s8.core.io.bohr.atom.protocol.BOHR_Keywords;
 
 /**
  * 

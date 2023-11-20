@@ -2,11 +2,11 @@ package com.s8.io.bohr.neon.core;
 
 import java.io.IOException;
 
-import com.s8.api.bohr.BOHR_Keywords;
 import com.s8.api.bytes.ByteInflow;
 import com.s8.api.flow.S8AsyncFlow;
 import com.s8.api.flow.delivery.S8WebResourceGenerator;
 import com.s8.api.objects.web.functions.NeFunction;
+import com.s8.core.io.bohr.atom.protocol.BOHR_Keywords;
 import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.providers.NeProvider;
 
