@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.io.IOException;
 
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.core.io.bohr.atom.protocol.BOHR_Keywords;
+import com.s8.core.bohr.atom.protocol.BOHR_Keywords;
 
 
 

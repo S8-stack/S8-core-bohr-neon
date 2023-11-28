@@ -8,7 +8,7 @@ import com.s8.api.objects.web.S8WebVertex;
 import com.s8.api.objects.web.WebS8VertexFields;
 import com.s8.api.objects.web.WebS8VertexMethods;
 import com.s8.api.objects.web.WebS8VertexProviders;
-import com.s8.core.io.bohr.atom.protocol.BOHR_Keywords;
+import com.s8.core.bohr.atom.protocol.BOHR_Keywords;
 
 
 /**
