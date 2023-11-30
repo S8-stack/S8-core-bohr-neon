@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.objects.web.S8WebVertex;
+import com.s8.api.web.S8WebVertex;
 import com.s8.core.bohr.atom.protocol.BOHR_Keywords;
 
 /**

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.s8.api.objects.web.S8WebFrontObject;
+import com.s8.api.web.S8WebFrontObject;
 
 
 /**

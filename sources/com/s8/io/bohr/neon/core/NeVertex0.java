@@ -3,11 +3,11 @@ package com.s8.io.bohr.neon.core;
 import java.io.IOException;
 
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.objects.web.S8WebFrontObject;
-import com.s8.api.objects.web.S8WebVertex;
-import com.s8.api.objects.web.WebS8VertexFields;
-import com.s8.api.objects.web.WebS8VertexMethods;
-import com.s8.api.objects.web.WebS8VertexProviders;
+import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebVertex;
+import com.s8.api.web.WebS8VertexFields;
+import com.s8.api.web.WebS8VertexMethods;
+import com.s8.api.web.WebS8VertexProviders;
 import com.s8.core.bohr.atom.protocol.BOHR_Keywords;
 
 

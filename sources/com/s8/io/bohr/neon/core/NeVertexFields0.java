@@ -3,8 +3,8 @@ package com.s8.io.bohr.neon.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.s8.api.objects.web.S8WebFrontObject;
-import com.s8.api.objects.web.WebS8VertexFields;
+import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.WebS8VertexFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldValue;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;

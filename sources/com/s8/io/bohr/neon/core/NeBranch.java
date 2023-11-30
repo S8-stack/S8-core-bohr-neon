@@ -3,9 +3,9 @@ package com.s8.io.bohr.neon.core;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.s8.api.objects.web.S8WebFrontObject;
-import com.s8.api.objects.web.S8WebFront;
-import com.s8.api.objects.web.S8WebVertex;
+import com.s8.api.web.S8WebFront;
+import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebVertex;
 import com.s8.core.io.bytes.base64.Base64Composer;
 
 /**

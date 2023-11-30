@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.s8.api.bytes.ByteInflow;
-import com.s8.api.objects.web.S8WebFrontObject;
+import com.s8.api.web.S8WebFrontObject;
 import com.s8.io.bohr.neon.methods.NeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;

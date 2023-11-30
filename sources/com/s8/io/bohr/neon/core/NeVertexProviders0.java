@@ -1,7 +1,7 @@
 package com.s8.io.bohr.neon.core;
 
 import com.s8.api.flow.delivery.S8WebResourceGenerator;
-import com.s8.api.objects.web.WebS8VertexProviders;
+import com.s8.api.web.WebS8VertexProviders;
 import com.s8.io.bohr.neon.providers.NeProvider;
 import com.s8.io.bohr.neon.providers.RawNeProvider;
 

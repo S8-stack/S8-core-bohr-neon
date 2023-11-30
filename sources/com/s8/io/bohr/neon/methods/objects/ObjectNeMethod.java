@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import com.s8.api.bytes.ByteInflow;
 import com.s8.api.flow.S8AsyncFlow;
-import com.s8.api.objects.web.S8WebFrontObject;
-import com.s8.api.objects.web.S8WebVertex;
-import com.s8.api.objects.web.functions.NeFunction;
-import com.s8.api.objects.web.functions.objects.ObjectNeFunction;
+import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebVertex;
+import com.s8.api.web.functions.NeFunction;
+import com.s8.api.web.functions.objects.ObjectNeFunction;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
 import com.s8.io.bohr.neon.core.NeObjectTypeMethods;

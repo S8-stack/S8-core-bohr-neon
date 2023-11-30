@@ -1,6 +1,6 @@
 package com.s8.core.bohr.neon.demos.repo2;
 
-import com.s8.api.objects.web.S8WebFrontObject;
+import com.s8.api.web.S8WebFrontObject;
 import com.s8.io.bohr.neon.core.NeBranch;
 
 
