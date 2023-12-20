@@ -1,7 +1,7 @@
 
-import { ByteOutflow } from "/s8-core-io-bytes/ByteOutflow.js";
+import { ByteOutflow } from "/S8-core-io-bytes/ByteOutflow.js";
 
-import { BOHR_Keywords, BOHR_Types } from "/s8-core-io-bohr-atom/BOHR_Protocol.js";
+import { BOHR_Keywords, BOHR_Types } from "/S8-core-bohr-atom/BOHR_Protocol.js";
 
 import { NeObjectTypeHandler } from "./NeObjectTypeHandler.js";
 

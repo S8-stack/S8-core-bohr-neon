@@ -1,7 +1,7 @@
 
 
-import { S8 } from '/s8-core-io-bohr-atom/S8.js';
-import { BOHR_Keywords } from '/s8-core-io-bohr-atom/BOHR_Protocol.js';
+import { S8 } from '/S8-core-bohr-atom/S8.js';
+import { BOHR_Keywords } from '/S8-core-bohr-atom/BOHR_Protocol.js';
 
 import { NeObjectTypeHandler } from './NeObjectTypeHandler.js';
 import { NeVertex } from './NeVertex.js';

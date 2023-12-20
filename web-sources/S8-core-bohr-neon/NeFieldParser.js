@@ -1,7 +1,7 @@
 
 
-import { ByteInflow } from "/s8-core-io-bytes/ByteInflow.js";
-import { BOHR_Types } from "/s8-core-io-bohr-atom/BOHR_Protocol.js";
+import { ByteInflow } from "/S8-core-io-bytes/ByteInflow.js";
+import { BOHR_Types } from "/S8-core-bohr-atom/BOHR_Protocol.js";
 
 import { NeFieldEntry } from "./NeFieldEntry.js";
 import { NeVertex } from "./NeVertex.js";

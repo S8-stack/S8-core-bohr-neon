@@ -1,7 +1,7 @@
 
-import { ByteInflow } from "/s8-core-io-bytes/ByteInflow.js";
+import { ByteInflow } from "/S8-core-io-bytes/ByteInflow.js";
 
-import { BOHR_Keywords } from "/s8-core-io-bohr-atom/BOHR_Protocol.js";
+import { BOHR_Keywords } from "/S8-core-bohr-atom/BOHR_Protocol.js";
 
 
 import { NeFieldParser } from "./NeFieldParser.js";
@@ -24,7 +24,7 @@ VoidNeMethodRunner } from "./NeMethodRunner.js";
 import { NeBranch } from "./NeBranch.js";
 import { NeFieldEntry } from "./NeFieldEntry.js";
 import { NeObject } from "./NeObject.js";
-import { RawNeProvider } from "/s8-core-io-bohr-neon/NeProvider.js";
+import { RawNeProvider } from "/S8-core-bohr-neon/NeProvider.js";
 
 
 
