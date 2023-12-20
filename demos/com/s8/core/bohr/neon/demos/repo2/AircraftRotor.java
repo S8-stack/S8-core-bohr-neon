@@ -17,12 +17,15 @@ public class AircraftRotor extends S8WebFrontObject {
 
 	public AircraftRotor(NeBranch branch) {
 		super(branch, "Aircraft-rotor");
-		
-		vertex.methods().setFloat32Method("pitch", (flow, p) -> flow.runBlock(0, ()-> {
-			vertex.fields().setFloat64Field("pitch^2", p*p);
-			vertex.fields().setFloat64Field("pitch*radius", p * vertex.fields().getFloat64Field("radius"));
-		}).send());
-		
+
+		vertex.methods().setFloat32Method("pitch", (flow, p) -> {
+			flow.runBlock(0, ()-> {
+				vertex.fields().setFloat64Field("pitch^2", p*p);
+				vertex.fields().setFloat64Field("pitch*radius", p * vertex.fields().getFloat64Field("radius"));
+			});
+			flow.send();
+		});
+
 	}
 
 
@@ -32,8 +35,8 @@ public class AircraftRotor extends S8WebFrontObject {
 	 * @param value
 	 */
 	public void setPitch(double value) { vertex.fields().setFloat64Field("pitch", value); }
-	
-	
+
+
 
 
 	/**
@@ -41,7 +44,7 @@ public class AircraftRotor extends S8WebFrontObject {
 	 * @return pitch
 	 */
 	public double getPitch() { return vertex.fields().getFloat64Field("pitch"); }
-	
-	
-	
+
+
+
 }
