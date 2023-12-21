@@ -1,6 +1,6 @@
 
 
-import { S8 } from '/S8-core-bohr-atom/S8.js';
+import { S8 } from '/S8-api/S8Context.js';
 import { BOHR_Keywords } from '/S8-core-bohr-atom/BOHR_Protocol.js';
 
 import { NeObjectTypeHandler } from './NeObjectTypeHandler.js';
@@ -36,13 +36,6 @@ export class NeBranch {
 	vertices = new Map();
 
 
-
-	/**
-	 * @type{Object} 
-	 * Previously active object: the last which sends a signal
-	 */
-	focus = null;
-	
 	
 	/**
 	 * Branch version
@@ -168,7 +161,7 @@ export class NeBranch {
 		let object = vertex.object;
 
 		/* clear screen */
-		S8.removeChildren(this.screenNode);
+		S8.page.removeChildren(this.screenNode);
 
 		/* redraw screen */
 		this.screenNode.appendChild(object.getEnvelope());
@@ -211,36 +204,6 @@ export class NeBranch {
 		});
 	}
 
-
-
-	/**
-	 * 
-	 * @param {Object} object 
-	 */
-	setFocusOn(object) {
-		/* unfocus */
-		if (this.focus != null) {
-			if (this.focus.S8_unfocus) { this.focus.S8_unfocus(); }
-			else { console.log("Object missing a S8_unfocus method: " + previous); }
-		}
-
-		/* replace focus */
-		this.focus = object;
-	}
-
-	/**
-	 * 
-	 */
-	loseFocus(){
-		/* unfocus */
-		if (this.focus != null) {
-			if (this.focus.S8_unfocus) { this.focus.S8_unfocus(); }
-			else { console.log("Object missing a S8_unfocus method: " + previous); }
-		}
-
-		/* replace focus */
-		this.focus = null;
-	}
 }
 
 

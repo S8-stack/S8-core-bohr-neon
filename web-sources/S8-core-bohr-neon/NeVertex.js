@@ -1,23 +1,27 @@
 
 
+
+
+import { S8 } from '/S8-api/S8Context.js';
+
+import {S8Vertex} from "/S8-api/S8Vertex.js";
+import {S8Object} from "/S8-api/S8Object.js";
+
 import { ByteInflow } from "/S8-core-io-bytes/ByteInflow.js";
 import { ByteOutflow } from "/S8-core-io-bytes/ByteOutflow.js";
 
-import { S8 } from "/S8-core-bohr-atom/S8.js";
 import { BOHR_Keywords } from "/S8-core-bohr-atom/BOHR_Protocol.js";
 import { NeProvider } from "/S8-core-bohr-neon/NeProvider.js";
 
 import { NeBranch } from "./NeBranch.js";
-import { NeObject } from "./NeObject.js";
 import { NeObjectTypeHandler } from "./NeObjectTypeHandler.js";
 import { NeMethodRunner } from "./NeMethodRunner.js";
-
 
 
 /**
  * 
  */
-export class NeVertex {
+export class NeVertex extends S8Vertex {
 
 	/**
 	 * @type {NeBranch}
@@ -38,7 +42,7 @@ export class NeVertex {
 
 
 	/**
-	 * @type {NeObject}
+	 * @type {S8Object}
 	 */
 	object;
 
@@ -47,9 +51,10 @@ export class NeVertex {
 	 * @param {NeBranch} branch 
 	 * @param {string} id 
 	 * @param {NeObjectTypeHandler} type
-	 * @param {NeObject} object
+	 * @param {S8Object} object
 	 */
 	constructor(branch, id, type, object) {
+		super();
 		this.branch = branch;
 		this.id = id;
 		this.type = type;
@@ -373,9 +378,10 @@ export class NeVertex {
 
 		outflow.putUInt8(BOHR_Keywords.CLOSE_JUMP);
 
-		S8.sendRequest_HTTP2_POST(requestArrayBuffer, function (responseArrayBuffer) {
+		const _branch = this.branch;
+		S8.server.sendRequest_HTTP2_POST(requestArrayBuffer, function (responseArrayBuffer) {
 			let inflow = new ByteInflow(responseArrayBuffer);
-			S8.branch.consume(inflow);
+			_branch.consume(inflow);
 		});
 		/* </run-method> */
 
@@ -431,8 +437,7 @@ export class NeVertex {
 		/**
 		 * responseArrayBuffer = request.response
 		 */
-		S8.sendRequest_HTTP2_POST(requestArrayBuffer, function (responseArrayBuffer) {
-
+		S8.server.sendRequest_HTTP2_POST(requestArrayBuffer, function (responseArrayBuffer) {
 
 			// The actual download
 			var blob = new Blob([responseArrayBuffer], { type: 'application/text' });

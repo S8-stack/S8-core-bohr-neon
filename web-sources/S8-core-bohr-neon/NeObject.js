@@ -1,19 +1,15 @@
-import { NeVertex } from "./NeVertex.js";
 
 
+import {S8Object} from "/S8-api/S8Object.js";
 
-export class NeObject {
+
+export class NeObject extends S8Object {
 
 
-    /**
-     * Automatically assigned by NeObjectTypeHandler
-     * 
-     * @type {NeVertex}
-     */
-    S8_vertex;
 
 
     constructor() {
+        super();
     }
 
 
