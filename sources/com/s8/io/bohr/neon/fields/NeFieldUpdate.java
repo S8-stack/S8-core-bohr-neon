@@ -14,28 +14,22 @@ import com.s8.io.bohr.neon.core.BuildScope;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public abstract class NeFieldValue {
+public abstract class NeFieldUpdate {
 
 
-
-	
 	/**
-	 * has delta
+	 * 
+	 * @return
 	 */
-	protected boolean hasDelta;
-	
-	public NeFieldValue() {
+	public abstract NeFieldHandler getFieldHandler();
+
+
+	public NeFieldUpdate() {
 		super();
-		hasDelta = true;
 	}
-	
 
 
-	public boolean hasPendingDelta() {
-		return hasDelta;
-	}
-	
-	
+
 
 	/**
 	 * 
@@ -43,17 +37,17 @@ public abstract class NeFieldValue {
 	 * @throws IOException
 	 */
 	public abstract void parse(ByteInflow inflow, BuildScope scope) throws IOException;
-	
+
 
 	/*
 	 * publish the value
 	 */
 	public abstract void compose(ByteOutflow outflow) throws IOException;
-	
 
-	
-	
-	
+
+
+
+
 	/**
 	 * 
 	 * @param type
@@ -62,22 +56,15 @@ public abstract class NeFieldValue {
 	 * @throws IOException
 	 */
 	public void publishEntry(int code, ByteOutflow outflow) throws IOException {
-		
-		/* has delta */
-		if(hasDelta) {
-			
-			// publish field advertiser
-			outflow.putUInt8(BOHR_Keywords.SET_VALUE);
 
-			// publish field code
-			outflow.putUInt8(code);
-			
-			// publish field value
-			compose(outflow);
-			
-			// has delta
-			hasDelta = false;
-		}
+		/* publish field advertiser */
+		outflow.putUInt8(BOHR_Keywords.SET_VALUE);
+
+		/* publish field code */
+		outflow.putUInt8(code);
+
+		/* publish field value */
+		compose(outflow);
 	}
-	
+
 }

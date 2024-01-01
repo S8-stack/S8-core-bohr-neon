@@ -9,7 +9,7 @@ import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
 
 /**
@@ -44,29 +44,11 @@ public class ObjNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandle
 
 	/**
 	 * 
-	 * @param values
+	 * @param value
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	public T get(NeFieldValue wrapper) {
-		return ((Value<T>) wrapper).value;
-	}
-
-
-	/**
-	 * 
-	 * @param values
-	 * @param value
-	 */
-	@SuppressWarnings("unchecked")
-	public boolean set(NeFieldValue wrapper, T value) {
-		return ((Value<T>) wrapper).setValue(value);
-	}
-
-
-	@Override
-	public NeFieldValue createValue() {
-		return new Value<>();
+	public NeFieldUpdate createValue(T value) {
+		return new Update(value);
 	}
 
 
@@ -76,12 +58,13 @@ public class ObjNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandle
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value<T extends S8WebFrontObject> extends NeFieldValue {
+	public class Update extends NeFieldUpdate {
 
 		private T value;
 
-		public Value() {
+		public Update(T value) {
 			super();
+			this.value = value;
 		}
 
 
@@ -100,7 +83,6 @@ public class ObjNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandle
 		public boolean setValue(T value) {
 			if(checkIfHasDelta(value)) {
 				this.value = value;
-				this.hasDelta = true;
 				return true;
 			}
 			else {
@@ -126,13 +108,19 @@ public class ObjNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandle
 					@SuppressWarnings("unchecked")
 					@Override
 					public void resolve(BuildScope scope) throws IOException {
-						Value.this.value = (T) scope.retrieveObject(index);
+						value = (T) scope.retrieveObject(index);
 					}
 				});
 			}
 			else {
 				value = null;
 			}
+		}
+
+
+		@Override
+		public NeFieldHandler getFieldHandler() {
+			return ObjNeFieldHandler.this;
 		}
 	}	
 }

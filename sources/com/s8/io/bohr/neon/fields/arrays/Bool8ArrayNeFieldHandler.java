@@ -7,7 +7,7 @@ import com.s8.api.bytes.ByteOutflow;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldHandler;
 
 
 /**
@@ -47,20 +47,10 @@ public class Bool8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	/**
 	 * 
 	 * @param values
-	 * @return
-	 */
-	public boolean[] get(NeFieldValue wrapper) {
-		return ((Value) wrapper).value;
-	}
-	
-	
-	/**
-	 * 
-	 * @param values
 	 * @param value
 	 */
-	public boolean set(NeFieldValue wrapper, boolean[] value) {
-		return ((Value) wrapper).setValue(value);
+	public Update createUpdate(boolean[] value) {
+		return new Update(value);
 	}
 	
 
@@ -84,58 +74,28 @@ public class Bool8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	}
 	
 
-	@Override
-	public NeFieldValue createValue() {
-		return new Value();
-	}
-
 
 	/**
 	 * 
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value extends PrimitiveNeFieldHandler.Value {
+	public class Update extends PrimitiveNeFieldHandler.Update {
 
 		private boolean[] value;
 
-		public Value() {
+		/**
+		 * 
+		 * @param value
+		 */
+		public Update(boolean[] value) {
 			super();
+			this.value = value;
 		}
 		
 		
-		private boolean hasDiff(boolean[] value) {
-			if(this.value == null && value == null) {
-				return false;
-			}
-			else if((this.value != null && value == null) || (this.value == null && value != null)) {
-				return true;
-			}
-			else { /* this.value != null && value != null */
-				int nLeft = this.value.length, nRight = value.length;
-				if(nLeft != nRight) {
-					return true;
-				}
-				else {
-					for(int i= 0; i<nLeft; i++) {
-						if(this.value[i] != value[i]) { return true; }
-					}
-					return false;
-				}
-			}
-		}
 		
 		
-		public boolean setValue(boolean[] value) {
-			if(hasDiff(value)) {
-				this.value = value;
-				this.hasDelta = true;	
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
 
 		@Override
 		public void compose(ByteOutflow outflow) throws IOException {
@@ -159,6 +119,12 @@ public class Bool8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 			else {
 				value = null;
 			}
+		}
+
+
+		@Override
+		public NeFieldHandler getFieldHandler() {
+			return Bool8ArrayNeFieldHandler.this;
 		}
 	}
 

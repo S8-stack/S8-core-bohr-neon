@@ -16,7 +16,7 @@ import com.s8.io.bohr.neon.providers.RawNeProvider;
 public class NeVertexProviders0 implements WebS8VertexProviders {
 
 
-	public final NeVertex0 vertex;
+	public final NeVertex vertex;
 	
 	public final NeObjectTypeProviders prototype;
 
@@ -33,7 +33,7 @@ public class NeVertexProviders0 implements WebS8VertexProviders {
 	 * @param typeName
 	 * @param object
 	 */
-	public NeVertexProviders0(NeVertex0 vertex, NeObjectTypeProviders prototype) {
+	public NeVertexProviders0(NeVertex vertex, NeObjectTypeProviders prototype) {
 		super();	
 		this.vertex = vertex;
 		this.prototype = prototype;

@@ -11,7 +11,7 @@ import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
 
 /**
@@ -50,9 +50,9 @@ public class ListNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandl
 	 * @return
 	 */
 	
-	public List<T> get(NeFieldValue wrapper) {
+	public List<T> get(NeFieldUpdate wrapper) {
 		@SuppressWarnings("unchecked")
-		Value<T> value = (Value<T>) wrapper; 
+		Update value = (Update) wrapper; 
 		if(value.list == null) {
 			List<T> list = new ArrayList<T>();
 			value.list = list;
@@ -66,42 +66,8 @@ public class ListNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandl
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public boolean set(NeFieldValue wrapper, List<T> list) {
-		return ((Value<T>) wrapper).setValue(list);
-	}
-
-
-
-
-	/**
-	 * 
-	 * @param <T>
-	 * @param name
-	 * @param obj
-	 */
-	@SuppressWarnings("unchecked")
-	public void add(NeFieldValue wrapper, T obj) {
-		((Value<T>) wrapper).addObject(obj);
-	}
-	
-
-	/**
-	 * 
-	 * @param <T>
-	 * @param name
-	 * @param obj
-	 */
-	@SuppressWarnings("unchecked")
-	public void remove(NeFieldValue wrapper, String index) {
-		((Value<T>) wrapper).removeObject(index);
-	}
-
-
-
-	@Override
-	public NeFieldValue createValue() {
-		return new Value<>();
+	public NeFieldUpdate createUpdate(List<T> list) {
+		return new Update(list);
 	}
 
 
@@ -111,18 +77,14 @@ public class ListNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandl
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value<T extends S8WebFrontObject> extends NeFieldValue {
+	public class Update extends NeFieldUpdate {
 
 		private List<T> list;
 
-		public Value() {
+		public Update(List<T> list) {
 			super();
+			this.list = list;
 		}
-
-		public void notifyChange() {
-			hasDelta = true;
-		}
-
 		
 		
 		/**
@@ -163,7 +125,6 @@ public class ListNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandl
 		public boolean setValue(List<T> value) {
 			if(checkIfHasDelta(value)) {
 				this.list = value;
-				this.hasDelta = true;
 				return true;
 			}
 			else {
@@ -171,30 +132,6 @@ public class ListNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandl
 			}
 		}
 		
-		
-		public void addObject(T obj) {
-			if(list == null) { list = new ArrayList<T>(); }
-			list.add(obj);
-			hasDelta = true;
-		}
-		
-		public void removeObject(String objectIndex) {
-			if(list != null) {
-				boolean isFound = false;
-				int i = 0, n = list.size();
-				while(!isFound && i < n) {
-					if(list.get(i).vertex.getId().equals(objectIndex)) {
-						isFound = true;
-					}
-					else {
-						i++;
-					}
-				}
-				list.remove(i);
-				
-				hasDelta = true;		
-			}
-		}
 
 		@Override
 		public void compose(ByteOutflow outflow) throws IOException {
@@ -237,6 +174,12 @@ public class ListNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandl
 				list = null;
 			}
 
+		}
+
+
+		@Override
+		public NeFieldHandler getFieldHandler() {
+			return ListNeFieldHandler.this;
 		}
 	}	
 }

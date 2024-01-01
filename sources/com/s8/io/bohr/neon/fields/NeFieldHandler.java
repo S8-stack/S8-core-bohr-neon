@@ -58,17 +58,7 @@ public abstract class NeFieldHandler {
 	
 	public abstract long getSignature();
 	
-	
-	
-	
 
-	/**
-	 * 
-	 * @param vertex
-	 * @return
-	 */
-	public abstract NeFieldValue createValue();
-	
 	
 
 

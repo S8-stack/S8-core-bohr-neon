@@ -86,7 +86,7 @@ public class NeInbound {
 	private void runFunc(S8AsyncFlow flow, ByteInflow inflow) throws IOException {
 		
 		String index = inflow.getStringUTF8();
-		NeVertex0 vertex = branch.vertices.get(index);
+		NeVertex vertex = branch.vertices.get(index);
 		if(vertex == null) { throw new IOException("No Object for index = "+index); }
 		
 		int code = inflow.getUInt8();
@@ -95,7 +95,7 @@ public class NeInbound {
 		
 		int ordinal = method.ordinal;
 		
-		NeFunction function = vertex.methods.getFunction(ordinal);
+		NeFunction function = vertex.inbound.getFunction(ordinal);
 		if(function == null) { throw new IOException("Missing func @ code = "+code+", for index = "+index); }
 		
 		/* run function */
@@ -133,7 +133,7 @@ public class NeInbound {
 	private void runProvider(S8AsyncFlow flow, ByteInflow inflow) throws IOException {
 		
 		String index = inflow.getStringUTF8();
-		NeVertex0 vertex = branch.vertices.get(index);
+		NeVertex vertex = branch.vertices.get(index);
 		if(vertex == null) { throw new IOException("No Object for index = "+index); }
 		
 		int code = inflow.getUInt8();

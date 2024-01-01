@@ -7,7 +7,8 @@ import com.s8.api.bytes.ByteOutflow;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldHandler;
+import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
 
 /**
@@ -43,7 +44,7 @@ public class Float32NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @param values
 	 * @return
 	 */
-	public float get(NeFieldValue wrapper) {
+	public float get(NeFieldUpdate wrapper) {
 		return ((Value) wrapper).value;
 	}
 	
@@ -53,16 +54,10 @@ public class Float32NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @param values
 	 * @param value
 	 */
-	public boolean set(NeFieldValue wrapper, float value) {
-		return ((Value) wrapper).setValue(value);
+	public Value createValue(float value) {
+		return new Value(value);
 	}
 	
-	
-	
-	@Override
-	public NeFieldValue createValue() {
-		return new Value();
-	}
 
 	
 	/**
@@ -70,24 +65,20 @@ public class Float32NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value extends PrimitiveNeFieldHandler.Value {
+	public class Value extends PrimitiveNeFieldHandler.Update {
+		
+		@Override
+		public NeFieldHandler getFieldHandler() {
+			return Float32NeFieldHandler.this;
+		}
 		
 		private float value;
 	
-		public Value() {
+		public Value(float value) {
 			super();
+			this.value = value;
 		}
 		
-		public boolean setValue(float value) {
-			if(this.value != value) {
-				this.value = value;
-				this.hasDelta = true;
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
 
 		@Override
 		public void compose(ByteOutflow outflow) throws IOException {
@@ -98,5 +89,6 @@ public class Float32NeFieldHandler extends PrimitiveNeFieldHandler {
 		public void parse(ByteInflow inflow, BuildScope scope) throws IOException {
 			value = inflow.getFloat32();
 		}
+		
 	}
 }

@@ -31,7 +31,7 @@ public class NeBranch implements S8WebFront {
 	/**
 	 * 
 	 */
-	final Map<String, NeVertex0> vertices;
+	final Map<String, NeVertex> vertices;
 
 	
 	/**
@@ -89,7 +89,7 @@ public class NeBranch implements S8WebFront {
 	 * @param vertex
 	 * @return
 	 */
-	String appendObject(NeVertex0 object) {
+	String appendObject(NeVertex object) {
 		
 		String index = createNewIndex();
 		
@@ -143,7 +143,7 @@ public class NeBranch implements S8WebFront {
 
 	@Override
 	public S8WebVertex createVertex(String typeName, S8WebFrontObject object) {
-		return new NeVertex0(this, typeName, object);
+		return new NeVertex(this, typeName, object);
 	}
 
 }

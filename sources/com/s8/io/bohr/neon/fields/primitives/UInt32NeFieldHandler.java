@@ -7,7 +7,7 @@ import com.s8.api.bytes.ByteOutflow;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldHandler;
 
 
 /**
@@ -36,33 +36,15 @@ public class UInt32NeFieldHandler extends PrimitiveNeFieldHandler {
 		outflow.putUInt8(BOHR_Types.UINT32);
 	}
 
-	/**
-	 * 
-	 * @param values
-	 * @return
-	 */
-	public long get(NeFieldValue wrapper) {
-		return ((Value) wrapper).value;
-	}
-	
 	
 	/**
 	 * 
 	 * @param values
 	 * @param value
 	 */
-	public boolean set(NeFieldValue wrapper, long value) {
-		return ((Value) wrapper).setValue(value);
+	public Update createValue(long value) {
+		return new Update(value);
 	}
-	
-	
-
-	
-	@Override
-	public NeFieldValue createValue() {
-		return new Value();
-	}
-
 	
 	
 	/**
@@ -70,24 +52,15 @@ public class UInt32NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value extends PrimitiveNeFieldHandler.Value {
+	public class Update extends PrimitiveNeFieldHandler.Update {
 		
 		private long value;
 	
-		public Value() {
+		public Update(long value) {
 			super();
+			this.value = value;
 		}
 		
-		public boolean setValue(long value){
-			if(this.value != value) {
-				this.value = value;
-				this.hasDelta = true;		
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
 
 		@Override
 		public void compose(ByteOutflow outflow) throws IOException {
@@ -97,6 +70,11 @@ public class UInt32NeFieldHandler extends PrimitiveNeFieldHandler {
 		@Override
 		public void parse(ByteInflow inflow, BuildScope scope) throws IOException {
 			value = inflow.getUInt32();
+		}
+
+		@Override
+		public NeFieldHandler getFieldHandler() {
+			return UInt32NeFieldHandler.this;
 		}
 	}
 }

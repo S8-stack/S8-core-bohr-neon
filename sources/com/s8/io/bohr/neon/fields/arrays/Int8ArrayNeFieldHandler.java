@@ -7,7 +7,8 @@ import com.s8.api.bytes.ByteOutflow;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldHandler;
+import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
 
 /**
@@ -35,29 +36,14 @@ public class Int8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 		outflow.putUInt8(BOHR_Types.UINT8);
 	}
 
+	
 	/**
 	 * 
-	 * @param values
+	 * @param value
 	 * @return
 	 */
-	public int[] get(NeFieldValue wrapper) {
-		return ((Value) wrapper).value;
-	}
-	
-	
-	/**
-	 * 
-	 * @param values
-	 * @param value
-	 */
-	public void set(NeFieldValue wrapper, int[] value) {
-		((Value) wrapper).setValue(value);
-	}
-	
-
-	@Override
-	public NeFieldValue createValue() {
-		return new Value();
+	public NeFieldUpdate createValue(int[] value) {
+		return new Update(value);
 	}
 
 	
@@ -67,12 +53,13 @@ public class Int8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value extends PrimitiveNeFieldHandler.Value {
+	public class Update extends PrimitiveNeFieldHandler.Update {
 		
 		private int[] value;
 	
-		public Value() {
+		public Update(int[] value) {
 			super();
+			this.value = value;
 		}
 		
 		private boolean checkIfHasDelta(int[] value) {
@@ -99,7 +86,6 @@ public class Int8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 		public void setValue(int[] value) {
 			if(checkIfHasDelta(value)) {
 				this.value = value;
-				this.hasDelta = true;	
 			}
 		}
 
@@ -129,6 +115,11 @@ public class Int8ArrayNeFieldHandler extends PrimitiveNeFieldHandler {
 			else {
 				value = null;
 			}
+		}
+
+		@Override
+		public NeFieldHandler getFieldHandler() {
+			return Int8ArrayNeFieldHandler.this;
 		}
 	}
 }

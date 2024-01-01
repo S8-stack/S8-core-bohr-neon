@@ -2,7 +2,7 @@ package com.s8.io.bohr.neon.fields.arrays;
 
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
 /**
  * 
@@ -26,8 +26,8 @@ public abstract class PrimitiveNeFieldHandler extends NeFieldHandler {
 	
 	
 	
-	public static abstract class Value extends NeFieldValue {
-		public Value() {
+	public static abstract class Update extends NeFieldUpdate {
+		public Update() {
 			super();
 		}
 	}

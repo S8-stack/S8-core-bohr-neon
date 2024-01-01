@@ -1,7 +1,7 @@
 package com.s8.io.bohr.neon.core;
 
 import com.s8.api.web.S8WebFrontObject;
-import com.s8.api.web.WebS8VertexMethods;
+import com.s8.api.web.S8WebVertexInbound;
 import com.s8.api.web.functions.NeFunction;
 import com.s8.api.web.functions.arrays.Bool8ArrayNeFunction;
 import com.s8.api.web.functions.arrays.Float32ArrayNeFunction;
@@ -54,11 +54,11 @@ import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertexMethods0 implements WebS8VertexMethods {
+public class NeVertexInbound implements S8WebVertexInbound {
 
 
 
-	public final NeVertex0 vertex;
+	public final NeVertex vertex;
 
 	public final NeObjectTypeMethods prototype;
 	
@@ -71,7 +71,7 @@ public class NeVertexMethods0 implements WebS8VertexMethods {
 	 * @param typeName
 	 * @param object
 	 */
-	public NeVertexMethods0(NeVertex0 vertex, NeObjectTypeMethods prototype) {
+	public NeVertexInbound(NeVertex vertex, NeObjectTypeMethods prototype) {
 		super();
 		
 		this.vertex = vertex;

@@ -5,8 +5,8 @@ import java.io.IOException;
 import com.s8.api.bytes.ByteOutflow;
 import com.s8.api.web.S8WebFrontObject;
 import com.s8.api.web.S8WebVertex;
-import com.s8.api.web.WebS8VertexFields;
-import com.s8.api.web.WebS8VertexMethods;
+import com.s8.api.web.S8WebVertexOutbound;
+import com.s8.api.web.S8WebVertexInbound;
 import com.s8.api.web.WebS8VertexProviders;
 import com.s8.core.bohr.atom.protocol.BOHR_Keywords;
 
@@ -18,7 +18,7 @@ import com.s8.core.bohr.atom.protocol.BOHR_Keywords;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeVertex0 implements S8WebVertex {
+public class NeVertex implements S8WebVertex {
 
 	public final NeBranch branch;
 
@@ -47,9 +47,9 @@ public class NeVertex0 implements S8WebVertex {
 	private String index;
 
 	
-	public final NeVertexFields0 fields;
+	public final NeVertexOutbound outbound;
 	
-	public final NeVertexMethods0 methods;
+	public final NeVertexInbound inbound;
 
 	public final NeVertexProviders0 providers;
 
@@ -58,7 +58,7 @@ public class NeVertex0 implements S8WebVertex {
 	 * 
 	 * @param branch
 	 */
-	public NeVertex0(NeBranch branch, String typeName, S8WebFrontObject object) {
+	public NeVertex(NeBranch branch, String typeName, S8WebFrontObject object) {
 		super();
 
 
@@ -67,8 +67,8 @@ public class NeVertex0 implements S8WebVertex {
 		this.prototype = branch.retrieveObjectPrototype(typeName);
 		this.object = object;
 
-		this.fields = new NeVertexFields0(this, prototype.fields);
-		this.methods = new NeVertexMethods0(this, prototype.methods);
+		this.outbound = new NeVertexOutbound(this, prototype.fields);
+		this.inbound = new NeVertexInbound(this, prototype.methods);
 		this.providers = new NeVertexProviders0(this, prototype.providers);
 	}
 
@@ -166,7 +166,7 @@ public class NeVertex0 implements S8WebVertex {
 				/* publish index */
 				outflow.putStringUTF8(index);
 
-				prototype.fields.publishFields(fields.values, outflow);
+				prototype.fields.publishFields(outbound.pullUpdates(), outflow);
 
 				outflow.putUInt8(BOHR_Keywords.CLOSE_NODE);
 
@@ -181,7 +181,7 @@ public class NeVertex0 implements S8WebVertex {
 				outflow.putStringUTF8(index);
 
 				/* fields */
-				prototype.fields.publishFields(fields.values, outflow);
+				prototype.fields.publishFields(outbound.pullUpdates(), outflow);
 
 				outflow.putUInt8(BOHR_Keywords.CLOSE_NODE);
 
@@ -208,13 +208,13 @@ public class NeVertex0 implements S8WebVertex {
 	
 
 	@Override
-	public WebS8VertexFields fields() {
-		return fields;
+	public S8WebVertexOutbound outbound() {
+		return outbound;
 	}
 
 	@Override
-	public WebS8VertexMethods methods() {
-		return methods;
+	public S8WebVertexInbound inbound() {
+		return inbound;
 	}
 
 	@Override

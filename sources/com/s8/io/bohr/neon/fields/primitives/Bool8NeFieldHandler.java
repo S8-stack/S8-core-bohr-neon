@@ -7,7 +7,8 @@ import com.s8.api.bytes.ByteOutflow;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldHandler;
+import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
 
 /**
@@ -47,7 +48,7 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @param values
 	 * @return
 	 */
-	public boolean get(NeFieldValue wrapper) {
+	public boolean get(NeFieldUpdate wrapper) {
 		return ((Value) wrapper).value;
 	}
 	
@@ -57,8 +58,8 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 	 * @param values
 	 * @param value
 	 */
-	public boolean set(NeFieldValue wrapper, boolean value) {
-		return ((Value) wrapper).setValue(value);
+	public Value createUpdate(boolean value) {
+		return new Value(value);
 	}
 	
 
@@ -73,34 +74,25 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 	}
 	
 
-	@Override
-	public NeFieldValue createValue() {
-		return new Value();
-	}
-
 
 	/**
 	 * 
 	 * @author pierreconvert
 	 *
 	 */
-	public static class Value extends PrimitiveNeFieldHandler.Value {
+	public class Value extends PrimitiveNeFieldHandler.Update {
+		
+		@Override
+		public NeFieldHandler getFieldHandler() {
+			return Bool8NeFieldHandler.this;
+		}
+		
 
 		private boolean value;
 
-		public Value() {
+		public Value(boolean value) {
 			super();
-		}
-		
-		public boolean setValue(boolean value) {
-			if(this.value != value) {
-				this.value = value;
-				this.hasDelta = true;	
-				return true;
-			}
-			else {
-				return false;
-			}
+			this.value = value;
 		}
 
 		@Override
@@ -113,6 +105,4 @@ public class Bool8NeFieldHandler extends PrimitiveNeFieldHandler {
 			value = inflow.getBool8();
 		}
 	}
-
-
 }

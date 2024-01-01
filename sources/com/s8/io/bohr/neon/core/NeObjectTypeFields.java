@@ -7,7 +7,7 @@ import java.util.Map;
 import com.s8.api.bytes.ByteOutflow;
 import com.s8.api.web.S8WebFrontObject;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
-import com.s8.io.bohr.neon.fields.NeFieldValue;
+import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.Float32ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.Float64ArrayNeFieldHandler;
@@ -663,23 +663,24 @@ public class NeObjectTypeFields {
 	 * @param outflow
 	 * @throws IOException
 	 */
-	public void publishFields(NeFieldValue[] values, ByteOutflow outflow) throws IOException {
+	public void publishFields(NeFieldUpdate[] updates, ByteOutflow outflow) throws IOException {
 
 
-		int n = values.length;
+		int n = updates.length;
 
-		NeFieldValue value;
-		for(int code =0; code < n; code++) {
+		NeFieldUpdate update;
+		for(int i =0; i < n; i++) {
 
-			if((value = values[code]) != null) {
+			if((update = updates[i]) != null) {
 
-				NeFieldHandler field = fieldComposers[code];
+				/* field handler */
+				NeFieldHandler field = update.getFieldHandler();
 
 				/* declare field (if not already done) */
 				field.declare(outflow);
 
 				/* publish entry */
-				value.publishEntry(code, outflow);
+				update.publishEntry(field.code, outflow);
 			}
 		}
 	}
