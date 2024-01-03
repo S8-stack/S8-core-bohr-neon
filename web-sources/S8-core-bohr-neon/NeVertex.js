@@ -351,8 +351,7 @@ export class NeVertex extends S8Vertex {
 	 */
 	shoot(method, arg) {
 
-		let requestArrayBuffer = new ArrayBuffer(64);
-		let outflow = new ByteOutflow(requestArrayBuffer);
+		let outflow = new ByteOutflow(new ArrayBuffer(2048));
 		outflow.putUInt8(this.branch.requestRunFuncKeyword);
 
 
@@ -379,7 +378,7 @@ export class NeVertex extends S8Vertex {
 		outflow.putUInt8(BOHR_Keywords.CLOSE_JUMP);
 
 		const _branch = this.branch;
-		S8.server.sendRequest_HTTP2_POST(requestArrayBuffer, function (responseArrayBuffer) {
+		S8.server.sendRequest_HTTP2_POST(outflow.toRequestArray(), function (responseArrayBuffer) {
 			let inflow = new ByteInflow(responseArrayBuffer);
 			_branch.consume(inflow);
 		});
