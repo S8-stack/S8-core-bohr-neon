@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebObject;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;
@@ -598,7 +598,7 @@ public class NeObjectTypeFields {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends S8WebFrontObject> ObjNeFieldHandler<T> getObjField(String name) {
+	public <T extends S8WebObject> ObjNeFieldHandler<T> getObjField(String name) {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
 			if(field.getSignature() != ObjNeFieldHandler.SIGNATURE) { 
@@ -615,7 +615,7 @@ public class NeObjectTypeFields {
 
 
 	@SuppressWarnings("unchecked")
-	public <T extends S8WebFrontObject> ListNeFieldHandler<T> getObjArrayField(String name) {
+	public <T extends S8WebObject> ListNeFieldHandler<T> getObjArrayField(String name) {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
 			if(field.getSignature() != ListNeFieldHandler.SIGNATURE) { 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.s8.api.bytes.ByteInflow;
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebObject;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
 import com.s8.io.bohr.neon.core.NeObjectTypeFields;
@@ -21,7 +21,7 @@ import com.s8.io.bohr.neon.fields.NeFieldUpdate;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class ListNeFieldHandler<T extends S8WebFrontObject> extends NeFieldHandler {
+public class ListNeFieldHandler<T extends S8WebObject> extends NeFieldHandler {
 
 	public final static long SIGNATURE =  BOHR_Types.ARRAY << 8 & BOHR_Types.S8OBJECT;
 

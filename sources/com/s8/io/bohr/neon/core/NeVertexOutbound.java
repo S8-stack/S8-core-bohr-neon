@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebObject;
 import com.s8.api.web.S8WebVertexOutbound;
 import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 import com.s8.io.bohr.neon.fields.arrays.Bool8ArrayNeFieldHandler;
@@ -262,7 +262,7 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 
 
 	@Override
-	public <T extends S8WebFrontObject> void setObjectField(String name, T value) {
+	public <T extends S8WebObject> void setObjectField(String name, T value) {
 		ObjNeFieldHandler<T> field = prototype.getObjField(name);
 		pushUpdate(field.createValue(value));
 		 vertex.onUpdate();
@@ -270,7 +270,7 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 
 
 	@Override
-	public <T extends S8WebFrontObject> void setObjectListField(String name, List<T> value) {
+	public <T extends S8WebObject> void setObjectListField(String name, List<T> value) {
 		ListNeFieldHandler<T> field = prototype.getObjArrayField(name);
 		pushUpdate(field.createUpdate(value));
 		vertex.onUpdate();
@@ -278,7 +278,7 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 
 
 	@Override
-	public <T extends S8WebFrontObject> void setObjectListField(String name, T[] value) {
+	public <T extends S8WebObject> void setObjectListField(String name, T[] value) {
 		/*  transform array into list */
 		int n = value.length;
 		List<T> list = new ArrayList<>();
@@ -289,7 +289,7 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 	
 	
 	@Override
-	public <T extends S8WebFrontObject> void setObjectListField(String name, T singleValue) {
+	public <T extends S8WebObject> void setObjectListField(String name, T singleValue) {
 		/*  transform array into list */
 		List<T> list = new ArrayList<>();
 		list.add(singleValue);

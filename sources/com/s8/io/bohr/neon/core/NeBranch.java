@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.s8.api.web.S8WebFront;
-import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebObject;
 import com.s8.api.web.S8WebVertex;
 import com.s8.core.io.bytes.base64.Base64Composer;
 
@@ -117,7 +117,7 @@ public class NeBranch implements S8WebFront {
 	 * @param index
 	 * @return
 	 */
-	public S8WebFrontObject getObject(String index) {
+	public S8WebObject getObject(String index) {
 		S8WebVertex vertex = vertices.get(index);
 		return vertex != null ? vertex.getAttachedObject() : null;
 	}
@@ -142,7 +142,7 @@ public class NeBranch implements S8WebFront {
 
 
 	@Override
-	public S8WebVertex createVertex(String typeName, S8WebFrontObject object) {
+	public S8WebVertex createVertex(String typeName, S8WebObject object) {
 		return new NeVertex(this, typeName, object);
 	}
 

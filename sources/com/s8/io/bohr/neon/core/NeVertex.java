@@ -3,7 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.io.IOException;
 
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.web.S8WebFrontObject;
+import com.s8.api.web.S8WebObject;
 import com.s8.api.web.S8WebVertex;
 import com.s8.api.web.S8WebVertexOutbound;
 import com.s8.api.web.S8WebVertexInbound;
@@ -22,7 +22,7 @@ public class NeVertex implements S8WebVertex {
 
 	public final NeBranch branch;
 
-	public final S8WebFrontObject object;
+	public final S8WebObject object;
 
 	private boolean hasUnpublishedChanges = false;
 
@@ -58,7 +58,7 @@ public class NeVertex implements S8WebVertex {
 	 * 
 	 * @param branch
 	 */
-	public NeVertex(NeBranch branch, String typeName, S8WebFrontObject object) {
+	public NeVertex(NeBranch branch, String typeName, S8WebObject object) {
 		super();
 
 
@@ -78,7 +78,7 @@ public class NeVertex implements S8WebVertex {
 	}
 
 	@Override
-	public S8WebFrontObject getAttachedObject() {
+	public S8WebObject getAttachedObject() {
 		return object;
 	}
 	
