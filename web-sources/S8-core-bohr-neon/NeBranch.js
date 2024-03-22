@@ -47,16 +47,12 @@ export class NeBranch {
 	/**
 	 * Out of thin air!
 	 */
-	constructor(screenNode, requestRunFuncKeyword) {
+	constructor(requestRunFuncKeyword) {
 		
 		this.requestRunFuncKeyword = requestRunFuncKeyword;
 
 		/** views */
 		this.vertices.set("NULL", null);
-
-		/* <screen> */
-		this.screenNode = screenNode;
-		/* </screen> */
 
 		// create branch inbound
 		//this.inbound = new NeBranchInbound(this);
@@ -160,11 +156,14 @@ export class NeBranch {
 		if (vertex == undefined) { throw `No object for id=${id}`; }
 		let object = vertex.object;
 
-		/* clear screen */
+		
+		/* legacy code:
 		S8.page.removeChildren(this.screenNode);
-
-		/* redraw screen */
 		this.screenNode.appendChild(object.getEnvelope());
+		*/
+
+		/* new code */
+		S8.page.HTML_setRootElement(object.getEnvelope());
 	}
 
 

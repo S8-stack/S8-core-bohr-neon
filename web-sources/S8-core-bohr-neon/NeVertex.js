@@ -4,8 +4,8 @@
 
 import { S8 } from '/S8-api/S8Context.js';
 
-import {S8Vertex} from "/S8-api/S8Vertex.js";
-import {S8Object} from "/S8-api/S8Object.js";
+import { S8Vertex } from "/S8-api/S8Vertex.js";
+import { S8Object } from "/S8-api/S8Object.js";
 
 import { ByteInflow } from "/S8-core-io-bytes/ByteInflow.js";
 import { ByteOutflow } from "/S8-core-io-bytes/ByteOutflow.js";
@@ -64,13 +64,17 @@ export class NeVertex extends S8Vertex {
 
 
 
+	/**
+	 * @override
+	 * @param {string} methodName 
+	 */
 	runVoid(methodName) {
 		let methodRunner = this.type.getVoidMethodRunner(methodName);
 		this.shoot(methodRunner);
 	}
 
 	/**
-	 * 
+	 * @override
 	 * @param {string} methodName 
 	 * @param {boolean} argValue 
 	 */
