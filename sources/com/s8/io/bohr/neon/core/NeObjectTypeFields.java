@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.s8.api.bytes.ByteOutflow;
+import com.s8.api.serial.S8Serializable;
 import com.s8.api.web.S8WebObject;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldUpdate;
@@ -22,6 +23,8 @@ import com.s8.io.bohr.neon.fields.arrays.UInt64ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt8ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ListNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ObjNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.SerializableArrayNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.SerializableNeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Bool8NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float32NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float64NeFieldHandler;
@@ -596,6 +599,37 @@ public class NeObjectTypeFields {
 
 
 
+	public SerializableNeFieldHandler getSerializableField(String name) {
+		NeFieldHandler field = fieldComposersByName.get(name);
+		if(field != null) {
+			if(field.getSignature() != SerializableNeFieldHandler.SIGNATURE) { 
+				throw new RuntimeException("Cannot change field signature"); }
+			return (SerializableNeFieldHandler) field;
+		}
+		else {
+			SerializableNeFieldHandler newField = new SerializableNeFieldHandler(this, name);
+			appendField(newField);
+			return newField;
+		}
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public <S extends S8Serializable> SerializableArrayNeFieldHandler<S> getSerializableArrayField(String name) {
+		NeFieldHandler field = fieldComposersByName.get(name);
+		if(field != null) {
+			if(field.getSignature() != SerializableArrayNeFieldHandler.SIGNATURE) { 
+				throw new RuntimeException("Cannot change field signature"); }
+			return (SerializableArrayNeFieldHandler<S>) field;
+		}
+		else {
+			SerializableArrayNeFieldHandler<S> newField = new SerializableArrayNeFieldHandler<S>(this, name);
+			appendField(newField);
+			return newField;
+		}
+	}
+
+
 
 	@SuppressWarnings("unchecked")
 	public <T extends S8WebObject> ObjNeFieldHandler<T> getObjField(String name) {
@@ -684,4 +718,6 @@ public class NeObjectTypeFields {
 			}
 		}
 	}
+
+
 }

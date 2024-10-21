@@ -3,6 +3,7 @@ package com.s8.io.bohr.neon.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.s8.api.serial.S8Serializable;
 import com.s8.api.web.S8WebObject;
 import com.s8.api.web.S8WebVertexOutbound;
 import com.s8.io.bohr.neon.fields.NeFieldUpdate;
@@ -16,6 +17,8 @@ import com.s8.io.bohr.neon.fields.arrays.UInt32ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt8ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ListNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ObjNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.SerializableArrayNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.SerializableNeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Bool8NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float32NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float64NeFieldHandler;
@@ -259,6 +262,24 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 		pushUpdate(field.createValue(value));
 		vertex.onUpdate();
 	}
+	
+
+
+	@Override
+	public <S extends S8Serializable> void setSerializableField(String name, S value) {
+		SerializableNeFieldHandler field = prototype.getSerializableField(name);
+		pushUpdate(field.createUpdate(value));
+		vertex.onUpdate();	
+	}
+
+
+
+	@Override
+	public <S extends S8Serializable> void setSerializableArrayField(String name, S[] value) {
+		SerializableArrayNeFieldHandler<S> field = prototype.getSerializableArrayField(name);
+		pushUpdate(field.createValue(value));
+		vertex.onUpdate();
+	}
 
 
 	@Override
@@ -296,6 +317,8 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 		
 		setObjectListField(name, list);
 	}
+
+
 	
 	
 	/* </setters> */
