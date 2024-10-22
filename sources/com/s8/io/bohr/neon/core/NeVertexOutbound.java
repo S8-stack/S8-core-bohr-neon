@@ -3,8 +3,8 @@ package com.s8.io.bohr.neon.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.s8.api.serial.S8SerialPrototype;
-import com.s8.api.serial.S8Serializable;
+import com.s8.api.serial.S8ExplicitSerialPrototype;
+import com.s8.api.serial.S8ExplicitSerializable;
 import com.s8.api.web.S8WebObject;
 import com.s8.api.web.S8WebVertexOutbound;
 import com.s8.io.bohr.neon.NeException;
@@ -17,10 +17,10 @@ import com.s8.io.bohr.neon.fields.arrays.StringUTF8ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt16ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt32ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt8ArrayNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.ExplicitSerializableArrayNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.ExplicitSerializableNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ListNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ObjNeFieldHandler;
-import com.s8.io.bohr.neon.fields.objects.SerializableArrayNeFieldHandler;
-import com.s8.io.bohr.neon.fields.objects.SerializableNeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Bool8NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float32NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float64NeFieldHandler;
@@ -364,10 +364,10 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 
 
 	@Override
-	public <S extends S8Serializable> void setSerializableField(String name, S value)  {
+	public <S extends S8ExplicitSerializable> void setSerializableField(String name, S value)  {
 		try {
-			S8SerialPrototype<?> serialProto = value != null ? value.getSerialPrototype() : null;
-			SerializableNeFieldHandler field = prototype.getSerializableField(name, serialProto);
+			S8ExplicitSerialPrototype<?> serialProto = value != null ? value.getSerialPrototype() : null;
+			ExplicitSerializableNeFieldHandler field = prototype.getSerializableField(name, serialProto);
 			pushUpdate(field.createUpdate(value));
 			vertex.onUpdate();
 		} catch (NeException e) {
@@ -378,14 +378,15 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 
 
 	@Override
-	public <S extends S8Serializable> void setSerializableArrayField(String name, S[] value) {
+	public <S extends S8ExplicitSerializable> void setExplicitSerializableArrayField(String name, S[] value) {
 		try {
-			
+
 			/* retrieve proto if any */
 			@SuppressWarnings("unchecked")
-			S8SerialPrototype<S> serialProto = (value != null && value.length > 0) ? (S8SerialPrototype<S>) value[0].getSerialPrototype() : null;
-			
-			SerializableArrayNeFieldHandler<S> field = prototype.getSerializableArrayField(name, serialProto);
+			S8ExplicitSerialPrototype<S> serialProto = (value != null && value.length > 0) ? 
+					(S8ExplicitSerialPrototype<S>) value[0].getSerialPrototype() : null;
+
+			ExplicitSerializableArrayNeFieldHandler<S> field = prototype.getSerializableArrayField(name, serialProto);
 			pushUpdate(field.createValue(value));
 			vertex.onUpdate();
 		} catch (NeException e) {

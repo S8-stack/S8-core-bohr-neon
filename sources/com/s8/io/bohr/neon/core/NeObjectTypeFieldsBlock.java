@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.s8.api.bytes.ByteOutflow;
-import com.s8.api.serial.S8SerialPrototype;
-import com.s8.api.serial.S8Serializable;
+import com.s8.api.serial.S8ExplicitSerialPrototype;
+import com.s8.api.serial.S8ExplicitSerializable;
 import com.s8.api.web.S8WebObject;
 import com.s8.io.bohr.neon.NeException;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
@@ -23,10 +23,10 @@ import com.s8.io.bohr.neon.fields.arrays.UInt16ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt32ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt64ArrayNeFieldHandler;
 import com.s8.io.bohr.neon.fields.arrays.UInt8ArrayNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.ExplicitSerializableArrayNeFieldHandler;
+import com.s8.io.bohr.neon.fields.objects.ExplicitSerializableNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ListNeFieldHandler;
 import com.s8.io.bohr.neon.fields.objects.ObjNeFieldHandler;
-import com.s8.io.bohr.neon.fields.objects.SerializableArrayNeFieldHandler;
-import com.s8.io.bohr.neon.fields.objects.SerializableNeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Bool8NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float32NeFieldHandler;
 import com.s8.io.bohr.neon.fields.primitives.Float64NeFieldHandler;
@@ -617,13 +617,15 @@ public class NeObjectTypeFieldsBlock {
 
 
 
-	public SerializableNeFieldHandler getSerializableField(String name, S8SerialPrototype<?> serialProto) throws NeException {
+	public ExplicitSerializableNeFieldHandler getSerializableField(
+			String name, 
+			S8ExplicitSerialPrototype<?> serialProto) throws NeException {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
-			if(field.getSignature() != SerializableNeFieldHandler.SIGNATURE) { 
+			if(field.getSignature() != ExplicitSerializableNeFieldHandler.SIGNATURE) { 
 				throw new NeException("Cannot change field signature"); }
 			
-			SerializableNeFieldHandler sField = (SerializableNeFieldHandler) field;
+			ExplicitSerializableNeFieldHandler sField = (ExplicitSerializableNeFieldHandler) field;
 			if(sField.getSerialPrototype() != serialProto) { 
 				throw new NeException("Cannot change type of serial"); }
 			
@@ -631,7 +633,7 @@ public class NeObjectTypeFieldsBlock {
 		}
 		else {
 			if(serialProto == null) { throw new NeException("Cannot cdefine field without a non null serial proto"); }
-			SerializableNeFieldHandler newField = new SerializableNeFieldHandler(this, name, serialProto);
+			ExplicitSerializableNeFieldHandler newField = new ExplicitSerializableNeFieldHandler(this, name, serialProto);
 			appendField(newField);
 			return newField;
 		}
@@ -639,17 +641,19 @@ public class NeObjectTypeFieldsBlock {
 	
 	
 	@SuppressWarnings("unchecked")
-	public <S extends S8Serializable> SerializableArrayNeFieldHandler<S> getSerializableArrayField(String name, 
-			S8SerialPrototype<S> serialProto) throws NeException {
+	public <S extends S8ExplicitSerializable> ExplicitSerializableArrayNeFieldHandler<S> getSerializableArrayField(
+			String name, 
+			S8ExplicitSerialPrototype<S> serialProto) throws NeException {
 		NeFieldHandler field = fieldComposersByName.get(name);
 		if(field != null) {
-			if(field.getSignature() != SerializableArrayNeFieldHandler.SIGNATURE) { 
+			if(field.getSignature() != ExplicitSerializableArrayNeFieldHandler.SIGNATURE) { 
 				throw new NeException("Cannot change field signature"); }
-			return (SerializableArrayNeFieldHandler<S>) field;
+			return (ExplicitSerializableArrayNeFieldHandler<S>) field;
 		}
 		else {
 			if(serialProto == null) { throw new NeException("Cannot cdefine field without a non null serial proto"); }
-			SerializableArrayNeFieldHandler<S> newField = new SerializableArrayNeFieldHandler<S>(this, name, serialProto);
+			ExplicitSerializableArrayNeFieldHandler<S> newField = 
+					new ExplicitSerializableArrayNeFieldHandler<S>(this, name, serialProto);
 			appendField(newField);
 			return newField;
 		}

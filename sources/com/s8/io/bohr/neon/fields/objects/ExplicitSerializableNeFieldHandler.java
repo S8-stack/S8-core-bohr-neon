@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.s8.api.bytes.ByteInflow;
 import com.s8.api.bytes.ByteOutflow;
+import com.s8.api.serial.S8ExplicitSerialPrototype;
 import com.s8.api.serial.S8SerialPrototype;
 import com.s8.api.serial.S8Serializable;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
@@ -20,18 +21,18 @@ import com.s8.io.bohr.neon.fields.NeFieldUpdate;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  * 
  */
-public class SerializableNeFieldHandler extends NeFieldHandler {
+public class ExplicitSerializableNeFieldHandler extends NeFieldHandler {
 
 
-	public final static long SIGNATURE = BOHR_Types.SERIAL;
+	public final static long SIGNATURE = BOHR_Types.SERIAL_EXPLICIT;
 
 	public @Override long getSignature() { return SIGNATURE; }
 
 
 
-	private S8SerialPrototype<?> serialProto;
+	private S8ExplicitSerialPrototype<?> serialProto;
 
-	public SerializableNeFieldHandler(NeObjectTypeFieldsBlock block, String name, S8SerialPrototype<?> serialProto) {
+	public ExplicitSerializableNeFieldHandler(NeObjectTypeFieldsBlock block, String name, S8ExplicitSerialPrototype<?> serialProto) {
 		super(block, name);
 		this.serialProto = serialProto;
 	}
@@ -43,7 +44,7 @@ public class SerializableNeFieldHandler extends NeFieldHandler {
 	
 	@Override
 	public void publishEncoding(ByteOutflow outflow) throws IOException {
-		outflow.putUInt8(BOHR_Types.SERIAL);
+		outflow.putUInt8(BOHR_Types.SERIAL_EXPLICIT);
 		
 		/* publish serial signature */
 		for(byte b : serialProto.getSignature()) { outflow.putByte(b); }
@@ -96,7 +97,7 @@ public class SerializableNeFieldHandler extends NeFieldHandler {
 
 		@Override
 		public NeFieldHandler getFieldHandler() {
-			return SerializableNeFieldHandler.this;
+			return ExplicitSerializableNeFieldHandler.this;
 		}
 	}
 }
