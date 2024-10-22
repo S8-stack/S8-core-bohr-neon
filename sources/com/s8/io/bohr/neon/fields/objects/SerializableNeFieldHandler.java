@@ -8,7 +8,7 @@ import com.s8.api.serial.S8SerialPrototype;
 import com.s8.api.serial.S8Serializable;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
-import com.s8.io.bohr.neon.core.NeObjectTypeFields;
+import com.s8.io.bohr.neon.core.NeObjectTypeFieldsBlock;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
@@ -29,15 +29,24 @@ public class SerializableNeFieldHandler extends NeFieldHandler {
 
 
 
+	private S8SerialPrototype<?> serialProto;
 
-	public SerializableNeFieldHandler(NeObjectTypeFields prototype, String name) {
-		super(prototype, name);
+	public SerializableNeFieldHandler(NeObjectTypeFieldsBlock block, String name, S8SerialPrototype<?> serialProto) {
+		super(block, name);
+		this.serialProto = serialProto;
+	}
+	
+	public S8SerialPrototype<?> getSerialPrototype(){
+		return serialProto;
 	}
 
-
+	
 	@Override
 	public void publishEncoding(ByteOutflow outflow) throws IOException {
 		outflow.putUInt8(BOHR_Types.SERIAL);
+		
+		/* publish serial signature */
+		for(byte b : serialProto.getSignature()) { outflow.putByte(b); }
 	}
 
 

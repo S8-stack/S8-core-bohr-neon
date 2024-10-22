@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.s8.api.flow.S8AsyncFlow;
 import com.s8.api.flow.delivery.S8WebResourceGenerator;
-import com.s8.io.bohr.neon.core.NeObjectTypeProviders;
+import com.s8.io.bohr.neon.core.NeObjectTypeProvidersBlock;
 
 /**
  * 
@@ -21,7 +21,7 @@ public class RawNeProvider extends NeProvider {
 	 * @param prototype
 	 * @param name
 	 */
-	public RawNeProvider(NeObjectTypeProviders prototype, String name, int ordinal) {
+	public RawNeProvider(NeObjectTypeProvidersBlock prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 

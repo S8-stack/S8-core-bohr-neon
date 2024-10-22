@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.s8.api.flow.S8AsyncFlow;
 import com.s8.api.flow.delivery.S8WebResourceGenerator;
-import com.s8.io.bohr.neon.core.NeObjectTypeProviders;
+import com.s8.io.bohr.neon.core.NeObjectTypeProvidersBlock;
 
 
 /**
@@ -18,7 +18,7 @@ public abstract class NeProvider {
 	/**
 	 * 
 	 */
-	public final NeObjectTypeProviders prototype;
+	public final NeObjectTypeProvidersBlock prototype;
 	
 
 	public final int ordinal;
@@ -38,7 +38,7 @@ public abstract class NeProvider {
 	 * 
 	 * @param name
 	 */
-	public NeProvider(NeObjectTypeProviders prototype, String name, int ordinal) {
+	public NeProvider(NeObjectTypeProvidersBlock prototype, String name, int ordinal) {
 		super();
 		this.prototype = prototype;
 		this.name = name;

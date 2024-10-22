@@ -17,7 +17,7 @@ import com.s8.io.bohr.neon.providers.RawNeProvider;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeObjectTypeProviders {
+public class NeObjectTypeProvidersBlock {
 
 
 	/**
@@ -36,7 +36,7 @@ public class NeObjectTypeProviders {
 
 	
 	
-	public NeObjectTypeProviders(NeObjectTypeHandler prototype) {
+	public NeObjectTypeProvidersBlock(NeObjectTypeHandler prototype) {
 		super();
 		
 		this.prototype = prototype;

@@ -28,13 +28,13 @@ public class NeObjectTypeHandler {
 
 
 	/* fields */
-	public final NeObjectTypeFields fields;
+	public final NeObjectTypeFieldsBlock fields;
 
 	/* methods */
-	public final NeObjectTypeMethods methods;
+	public final NeObjectTypeMethodsBlock methods;
 	
 	/* providers */
-	public final NeObjectTypeProviders providers;
+	public final NeObjectTypeProvidersBlock providers;
 
 
 
@@ -44,13 +44,13 @@ public class NeObjectTypeHandler {
 		this.code = code;
 
 		/* fields */
-		this.fields = new NeObjectTypeFields(this);
+		this.fields = new NeObjectTypeFieldsBlock(this);
 
 		/* methods */
-		this.methods = new NeObjectTypeMethods(this);
+		this.methods = new NeObjectTypeMethodsBlock(this);
 		
 		/* providers */
-		this.providers = new NeObjectTypeProviders(this);
+		this.providers = new NeObjectTypeProvidersBlock(this);
 
 		isUnpublished = true;
 	}

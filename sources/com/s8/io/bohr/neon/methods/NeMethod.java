@@ -7,7 +7,7 @@ import com.s8.api.flow.S8AsyncFlow;
 import com.s8.api.web.functions.NeFunction;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethodsBlock;
 import com.s8.io.bohr.neon.methods.arrays.Bool8ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float32ArrayNeMethod;
 import com.s8.io.bohr.neon.methods.arrays.Float64ArrayNeMethod;
@@ -45,7 +45,7 @@ import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
 public abstract class NeMethod {
 
 
-	public NeObjectTypeMethods prototype;
+	public NeObjectTypeMethodsBlock prototype;
 	/**
 	 * 
 	 */
@@ -61,7 +61,7 @@ public abstract class NeMethod {
 	 * 
 	 * @param name
 	 */
-	public NeMethod(NeObjectTypeMethods prototype, String name, int ordinal) {
+	public NeMethod(NeObjectTypeMethodsBlock prototype, String name, int ordinal) {
 		super();
 		this.prototype = prototype;
 		this.name = name;

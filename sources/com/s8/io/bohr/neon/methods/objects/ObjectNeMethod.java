@@ -10,7 +10,7 @@ import com.s8.api.web.functions.NeFunction;
 import com.s8.api.web.functions.objects.ObjectNeFunction;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethodsBlock;
 import com.s8.io.bohr.neon.methods.NeMethod;
 
 /**
@@ -35,7 +35,7 @@ public class ObjectNeMethod<T extends S8WebObject> extends NeMethod {
 	 * @param prototype
 	 * @param name
 	 */
-	public ObjectNeMethod(NeObjectTypeMethods prototype, String name, int ordinal) {
+	public ObjectNeMethod(NeObjectTypeMethodsBlock prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 

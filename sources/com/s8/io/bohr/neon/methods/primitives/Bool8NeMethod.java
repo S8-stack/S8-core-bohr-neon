@@ -8,7 +8,7 @@ import com.s8.api.web.functions.NeFunction;
 import com.s8.api.web.functions.primitives.Bool8NeFunction;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.NeBranch;
-import com.s8.io.bohr.neon.core.NeObjectTypeMethods;
+import com.s8.io.bohr.neon.core.NeObjectTypeMethodsBlock;
 import com.s8.io.bohr.neon.methods.NeMethod;
 
 /**
@@ -31,7 +31,7 @@ public class Bool8NeMethod extends NeMethod {
 	 * @param prototype
 	 * @param name
 	 */
-	public Bool8NeMethod(NeObjectTypeMethods prototype, String name, int ordinal) {
+	public Bool8NeMethod(NeObjectTypeMethodsBlock prototype, String name, int ordinal) {
 		super(prototype, name, ordinal);
 	}
 

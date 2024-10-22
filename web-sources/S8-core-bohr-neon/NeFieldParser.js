@@ -30,6 +30,12 @@ export class NeFieldParser {
 
 
     /**
+     * @type {class}
+     */
+    type;
+
+
+    /**
      * @type {Function}
      */
     setter = null;
@@ -53,7 +59,7 @@ export class NeFieldParser {
             /* </structure> */
 
             /* <bytes> */
-            case BOHR_Types.SERIAL: throw "Unsupported serial";
+            case BOHR_Types.SERIAL: return new S8SerializableNeFieldParser(inflow);
             /* </bytes> */
 
 
@@ -112,6 +118,8 @@ export class NeFieldParser {
             case BOHR_Types.FLOAT64: return new Float64ArrayNeFieldParser();
 
             case BOHR_Types.STRING_UTF8: return new StringUTF8ArrayNeFieldParser();
+            case BOHR_Types.SERIAL: return new S8SerializableArrayNeFieldParser();
+
             case BOHR_Types.S8OBJECT: return new S8ObjectArrayNeFieldParser();
 
             default: throw "Unsupported BOHR ARRAY type code: " + code;
@@ -135,14 +143,16 @@ export class NeFieldParser {
      */
     link(objectClass) {
         if(!this.isLinked){
-            this.type = objectClass;
 
+            this.type = objectClass;
+           
             // resolve setter
             let setMethod = this.type.prototype["S8_set_" + this.name];
             if(setMethod == undefined){
                 throw "Failed to link against method for "+this.name+" in "+objectClass;
             }
             this.setter = setMethod;
+
             this.isLinked = true;
         }
     }
@@ -574,6 +584,115 @@ class StringUTF8ArrayNeFieldParser extends PrimitiveNeFieldParser {
         if (length >= 0) {
             let array = new Array(length);
             for (let i = 0; i < length; i++) { array[i] = inflow.getStringUTF8(); }
+            return new NeFieldEntry(this, array);
+        }
+        else {
+            return new NeFieldEntry(this, null);
+        }
+    }
+}
+
+
+class S8SerializableNeFieldParser extends PrimitiveNeFieldParser {
+
+
+    /**
+     * @type{function}
+     */
+    parser;
+
+    constructor(inflow){
+        let serialTypename = inflow.getStringUTF8();
+        
+    }
+
+     /**
+     * Override
+     * @param {Class} objectClass 
+     */
+    link(objectClass) {
+        if(!this.isLinked){
+            this.type = objectClass;
+
+            // resolve setter
+            let setMethod = this.type.prototype["S8_set_" + this.name];
+            if(setMethod == undefined){
+                throw "Failed to link against [SET] method for "+this.name+" in "+objectClass;
+            }
+            this.setter = setMethod;
+
+             // resolve setter
+            let parseMethod = this.type.prototype["S8_" + this.name + "_PARSER"];
+            if(parseMethod == undefined){
+                 throw "Failed to link against [PARSE] method for "+this.name+" in "+objectClass;
+            }
+            this.parser = parseMethod;
+
+            this.isLinked = true;
+        }
+    }
+
+
+    /**
+    * 
+    * @param {ByteInflow} inflow 
+    * @returns {NeFieldEntry}
+    */
+    retrieveValue(inflow) {
+        let value = this.parser(inflow);
+
+        // index can be null
+        return new NeFieldEntry(this, value);
+    }
+}
+
+
+
+class S8SerializableArrayNeFieldParser extends PrimitiveNeFieldParser {
+
+
+
+    /**
+     * @type{function}
+     */
+    parser;
+
+     /**
+     * Override
+     * @param {Class} objectClass 
+     */
+    link(objectClass) {
+        if(!this.isLinked){
+            this.type = objectClass;
+           
+            // resolve setter
+            let setMethod = this.type.prototype["S8_set_" + this.name];
+            if(setMethod == undefined){
+                throw "Failed to link against [SET] method for "+this.name+" in "+objectClass;
+            }
+            this.setter = setMethod;
+
+             // resolve setter
+            let parseMethod = this.type.prototype["S8_" + this.name + "_PARSER"];
+            if(parseMethod == undefined){
+                 throw "Failed to link against [PARSE] method for "+this.name+" in "+objectClass;
+            }
+            this.parser = parseMethod;
+
+            this.isLinked = true;
+        }
+    }
+
+    /**
+     * 
+     * @param {ByteInflow} inflow 
+     * @returns {NeFieldEntry} 
+     */
+    retrieveValue(inflow) {
+        let length = inflow.getUInt7x();
+        if (length >= 0) {
+            let array = new Array(length);
+            for (let i = 0; i < length; i++) { array[i] = this.parser(inflow); }
             return new NeFieldEntry(this, array);
         }
         else {

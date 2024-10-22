@@ -9,7 +9,7 @@ import com.s8.api.bytes.ByteOutflow;
 import com.s8.api.web.S8WebObject;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
-import com.s8.io.bohr.neon.core.NeObjectTypeFields;
+import com.s8.io.bohr.neon.core.NeObjectTypeFieldsBlock;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
@@ -31,7 +31,7 @@ public class ListNeFieldHandler<T extends S8WebObject> extends NeFieldHandler {
 	 * 
 	 * @param view
 	 */
-	public ListNeFieldHandler(NeObjectTypeFields prototype, String name) {
+	public ListNeFieldHandler(NeObjectTypeFieldsBlock prototype, String name) {
 		super(prototype, name);
 	}
 

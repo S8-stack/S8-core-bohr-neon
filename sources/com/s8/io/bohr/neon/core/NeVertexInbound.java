@@ -60,7 +60,7 @@ public class NeVertexInbound implements S8WebVertexInbound {
 
 	public final NeVertex vertex;
 
-	public final NeObjectTypeMethods prototype;
+	public final NeObjectTypeMethodsBlock prototype;
 	
 	private NeFunction[] functions;
 
@@ -71,7 +71,7 @@ public class NeVertexInbound implements S8WebVertexInbound {
 	 * @param typeName
 	 * @param object
 	 */
-	public NeVertexInbound(NeVertex vertex, NeObjectTypeMethods prototype) {
+	public NeVertexInbound(NeVertex vertex, NeObjectTypeMethodsBlock prototype) {
 		super();
 		
 		this.vertex = vertex;

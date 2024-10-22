@@ -44,7 +44,7 @@ import com.s8.io.bohr.neon.methods.zero.VoidNeMethod;
  * Copyright (C) 2022, Pierre Convert. All rights reserved.
  *
  */
-public class NeObjectTypeMethods {
+public class NeObjectTypeMethodsBlock {
 
 
 	/**
@@ -63,7 +63,7 @@ public class NeObjectTypeMethods {
 
 	
 	
-	public NeObjectTypeMethods(NeObjectTypeHandler prototype) {
+	public NeObjectTypeMethodsBlock(NeObjectTypeHandler prototype) {
 		super();
 		
 		this.prototype = prototype;

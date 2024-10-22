@@ -18,7 +18,7 @@ public class NeVertexProviders0 implements WebS8VertexProviders {
 
 	public final NeVertex vertex;
 	
-	public final NeObjectTypeProviders prototype;
+	public final NeObjectTypeProvidersBlock prototype;
 
 
 	private S8WebResourceGenerator[] generators;
@@ -33,7 +33,7 @@ public class NeVertexProviders0 implements WebS8VertexProviders {
 	 * @param typeName
 	 * @param object
 	 */
-	public NeVertexProviders0(NeVertex vertex, NeObjectTypeProviders prototype) {
+	public NeVertexProviders0(NeVertex vertex, NeObjectTypeProvidersBlock prototype) {
 		super();	
 		this.vertex = vertex;
 		this.prototype = prototype;

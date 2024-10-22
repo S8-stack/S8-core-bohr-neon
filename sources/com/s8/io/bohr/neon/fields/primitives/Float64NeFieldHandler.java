@@ -6,7 +6,7 @@ import com.s8.api.bytes.ByteInflow;
 import com.s8.api.bytes.ByteOutflow;
 import com.s8.core.bohr.atom.protocol.BOHR_Types;
 import com.s8.io.bohr.neon.core.BuildScope;
-import com.s8.io.bohr.neon.core.NeObjectTypeFields;
+import com.s8.io.bohr.neon.core.NeObjectTypeFieldsBlock;
 import com.s8.io.bohr.neon.fields.NeFieldHandler;
 import com.s8.io.bohr.neon.fields.NeFieldUpdate;
 
@@ -28,7 +28,7 @@ public class Float64NeFieldHandler extends PrimitiveNeFieldHandler {
 
 
 
-	public Float64NeFieldHandler(NeObjectTypeFields prototype, String name) {
+	public Float64NeFieldHandler(NeObjectTypeFieldsBlock prototype, String name) {
 		super(prototype, name);
 	}
 
