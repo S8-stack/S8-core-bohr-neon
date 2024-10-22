@@ -6,30 +6,30 @@ import { BOHR_Keywords } from "/S8-core-bohr-atom/BOHR_Protocol.js";
 
 import { NeFieldParser } from "./NeFieldParser.js";
 
-import { 
+import {
     VoidNeMethodRunner,
-    Bool8NeMethodRunner, 
-    NeMethodRunner, 
+    Bool8NeMethodRunner,
+    NeMethodRunner,
     UInt8NeMethodRunner,
-    UInt8ArrayNeMethodRunner, 
-    UInt16NeMethodRunner, 
-    UInt16ArrayNeMethodRunner, 
-    UInt32NeMethodRunner, 
-    UInt32ArrayNeMethodRunner, 
-    UInt64NeMethodRunner, 
+    UInt8ArrayNeMethodRunner,
+    UInt16NeMethodRunner,
+    UInt16ArrayNeMethodRunner,
+    UInt32NeMethodRunner,
+    UInt32ArrayNeMethodRunner,
+    UInt64NeMethodRunner,
     UInt64ArrayNeMethodRunner,
-    Int8NeMethodRunner, 
-    Int8ArrayNeMethodRunner,  
-    Int16NeMethodRunner, 
-    Int32NeMethodRunner, 
-    Int32ArrayNeMethodRunner, 
-    Int64NeMethodRunner, 
-    Int64ArrayNeMethodRunner, 
-    Float32NeMethodRunner, 
-    Float32ArrayNeMethodRunner, 
-    Float64NeMethodRunner, 
-    Float64ArrayNeMethodRunner, 
-    StringUTF8NeMethodRunner, 
+    Int8NeMethodRunner,
+    Int8ArrayNeMethodRunner,
+    Int16NeMethodRunner,
+    Int32NeMethodRunner,
+    Int32ArrayNeMethodRunner,
+    Int64NeMethodRunner,
+    Int64ArrayNeMethodRunner,
+    Float32NeMethodRunner,
+    Float32ArrayNeMethodRunner,
+    Float64NeMethodRunner,
+    Float64ArrayNeMethodRunner,
+    StringUTF8NeMethodRunner,
     StringUTF8ArrayNeMethodRunner
 } from "./NeMethodRunner.js";
 
@@ -317,7 +317,7 @@ export class NeObjectTypeHandler {
         return this.getMethodRunner(methodName, code => new Bool8NeMethodRunner(methodName, code));
     }
 
-   
+
     /**
      * @param {string} methodName
      */
@@ -506,6 +506,3 @@ export class NeObjectTypeHandler {
     }
 
 }
-
-
-

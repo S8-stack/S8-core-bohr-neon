@@ -5,6 +5,7 @@ import { BOHR_Types } from "/S8-core-bohr-atom/BOHR_Protocol.js";
 
 import { NeFieldEntry } from "./NeFieldEntry.js";
 import { NeVertex } from "./NeVertex.js";
+import { getS8Deserializer } from "./NeS8ExplicitDeserializer.js";
 
 
 
@@ -59,7 +60,7 @@ export class NeFieldParser {
             /* </structure> */
 
             /* <bytes> */
-            case BOHR_Types.SERIAL: return new S8SerializableNeFieldParser(inflow);
+            case BOHR_Types.SERIAL_EXPLICIT: return new S8SerializableNeFieldParser(inflow);
             /* </bytes> */
 
 
@@ -118,7 +119,8 @@ export class NeFieldParser {
             case BOHR_Types.FLOAT64: return new Float64ArrayNeFieldParser();
 
             case BOHR_Types.STRING_UTF8: return new StringUTF8ArrayNeFieldParser();
-            case BOHR_Types.SERIAL: return new S8SerializableArrayNeFieldParser();
+
+            case BOHR_Types.SERIAL_EXPLICIT: return new S8SerializableArrayNeFieldParser(inflow);
 
             case BOHR_Types.S8OBJECT: return new S8ObjectArrayNeFieldParser();
 
@@ -142,14 +144,14 @@ export class NeFieldParser {
      * @param {Class} objectClass 
      */
     link(objectClass) {
-        if(!this.isLinked){
+        if (!this.isLinked) {
 
             this.type = objectClass;
-           
+
             // resolve setter
             let setMethod = this.type.prototype["S8_set_" + this.name];
-            if(setMethod == undefined){
-                throw "Failed to link against method for "+this.name+" in "+objectClass;
+            if (setMethod == undefined) {
+                throw "Failed to link against method for " + this.name + " in " + objectClass;
             }
             this.setter = setMethod;
 
@@ -163,11 +165,11 @@ export class NeFieldParser {
 
 class PrimitiveNeFieldParser extends NeFieldParser {
 
-   /**
-    * 
-    * @param {NeVertex} vertex 
-    * @param { * } value 
-    */
+    /**
+     * 
+     * @param {NeVertex} vertex 
+     * @param { * } value 
+     */
     setValue(vertex, value) {
         let object = vertex.object;
         this.setter.call(object, value);
@@ -593,45 +595,26 @@ class StringUTF8ArrayNeFieldParser extends PrimitiveNeFieldParser {
 }
 
 
+/*
+Explicit
+*/
 class S8SerializableNeFieldParser extends PrimitiveNeFieldParser {
 
 
     /**
-     * @type{function}
+     * @type{function(ByteInflow)}
      */
-    parser;
+    deserializer;
 
-    constructor(inflow){
-        let serialTypename = inflow.getStringUTF8();
-        
-    }
 
-     /**
-     * Override
-     * @param {Class} objectClass 
+    /**
+     * 
+     * @param {ByteInflow} inflow 
      */
-    link(objectClass) {
-        if(!this.isLinked){
-            this.type = objectClass;
-
-            // resolve setter
-            let setMethod = this.type.prototype["S8_set_" + this.name];
-            if(setMethod == undefined){
-                throw "Failed to link against [SET] method for "+this.name+" in "+objectClass;
-            }
-            this.setter = setMethod;
-
-             // resolve setter
-            let parseMethod = this.type.prototype["S8_" + this.name + "_PARSER"];
-            if(parseMethod == undefined){
-                 throw "Failed to link against [PARSE] method for "+this.name+" in "+objectClass;
-            }
-            this.parser = parseMethod;
-
-            this.isLinked = true;
-        }
+    constructor(inflow) {
+        super();
+        this.deserializer = getS8Deserializer(inflow);
     }
-
 
     /**
     * 
@@ -639,7 +622,7 @@ class S8SerializableNeFieldParser extends PrimitiveNeFieldParser {
     * @returns {NeFieldEntry}
     */
     retrieveValue(inflow) {
-        let value = this.parser(inflow);
+        let value = this.deserializer(inflow);
 
         // index can be null
         return new NeFieldEntry(this, value);
@@ -650,38 +633,16 @@ class S8SerializableNeFieldParser extends PrimitiveNeFieldParser {
 
 class S8SerializableArrayNeFieldParser extends PrimitiveNeFieldParser {
 
-
-
     /**
-     * @type{function}
-     */
-    parser;
+       * @type{function(ByteInflow)}
+       */
+    deserializer;
 
-     /**
-     * Override
-     * @param {Class} objectClass 
-     */
-    link(objectClass) {
-        if(!this.isLinked){
-            this.type = objectClass;
-           
-            // resolve setter
-            let setMethod = this.type.prototype["S8_set_" + this.name];
-            if(setMethod == undefined){
-                throw "Failed to link against [SET] method for "+this.name+" in "+objectClass;
-            }
-            this.setter = setMethod;
-
-             // resolve setter
-            let parseMethod = this.type.prototype["S8_" + this.name + "_PARSER"];
-            if(parseMethod == undefined){
-                 throw "Failed to link against [PARSE] method for "+this.name+" in "+objectClass;
-            }
-            this.parser = parseMethod;
-
-            this.isLinked = true;
-        }
+    constructor(inflow) {
+        super();
+        this.deserializer = getS8Deserializer(inflow);
     }
+
 
     /**
      * 
@@ -692,7 +653,7 @@ class S8SerializableArrayNeFieldParser extends PrimitiveNeFieldParser {
         let length = inflow.getUInt7x();
         if (length >= 0) {
             let array = new Array(length);
-            for (let i = 0; i < length; i++) { array[i] = this.parser(inflow); }
+            for (let i = 0; i < length; i++) { array[i] = this.deserializer(inflow); }
             return new NeFieldEntry(this, array);
         }
         else {
@@ -762,9 +723,9 @@ class S8ObjectArrayNeFieldParser extends NeFieldParser {
         if (indices != null) {
             let length = indices.length;
             let array = new Array(length);
-            for (let i = 0; i < length; i++) { 
+            for (let i = 0; i < length; i++) {
                 let id = indices[i];
-                array[i] = id!=null ? branch.getObject(id) : null; 
+                array[i] = id != null ? branch.getObject(id) : null;
             }
             this.setter.call(object, array);
         }
