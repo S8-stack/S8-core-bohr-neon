@@ -1,5 +1,6 @@
 package com.s8.io.bohr.neon.core;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -391,6 +392,20 @@ public class NeVertexOutbound implements S8WebVertexOutbound {
 			vertex.onUpdate();
 		} catch (NeException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public <S extends S8ExplicitSerializable> void setExplicitSerializableArrayField(String name, List<S> value) {
+		if(value != null && value.size() > 0) {
+			Class<?> type = value.get(0).getSerialPrototype().getSerialType();
+			@SuppressWarnings("unchecked")
+			S[] array = (S[]) Array.newInstance(type, value.size());
+			value.toArray(array);
+			setExplicitSerializableArrayField(name, array);
+		}
+		else {
+			setExplicitSerializableArrayField(name, (S[]) null);
 		}
 	}
 
